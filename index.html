@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JO Companion — Milano Cortina 2026</title>
+  <meta name="description" content="Vivez les Jeux Olympiques et Paralympiques d'hiver Milano Cortina 2026 : actualités, sports, ambiances, application et calendrier officiel.">
+
+  <!-- marque l'activation de JS au plus tôt (évite tout clignotement des animations) -->
+  <script>document.documentElement.classList.add('js');</script>
+
+  <!-- Police Lato -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Sprite SVG (icônes inline, recolorables, fonctionne en file://) -->
+  <svg class="svg-sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="ic-mountain" viewBox="0 0 135 117">
+      <path d="M134.453 116.548H62.2969L91.4339 41.9883L95.5668 49.1527L71.748 110.102H122.961L80.927 103.741L95.2234 66.8241L122.767 96.298L131.337 111.165L134.453 116.548Z"/>
+      <path d="M33.827 92.7618L80.169 53.0919L55.3915 116.548H0L79.2945 33.8658L67.2135 12.9102L70.6208 34.0084L20.852 86.1999L63.6183 6.69155L67.2135 0L87.3075 34.8375L15.2293 109.921L33.827 92.7618Z"/>
+    </symbol>
+    <symbol id="ic-burger" viewBox="0 0 44 26">
+      <path d="M0 24C0 25.1046 0.895431 26 2 26H42C43.1046 26 44 25.1046 44 24V23.6667C44 22.5621 43.1046 21.6667 42 21.6667H2C0.895431 21.6667 0 22.5621 0 23.6667V24ZM0 13.1667C0 14.2712 0.895431 15.1667 2 15.1667H42C43.1046 15.1667 44 14.2712 44 13.1667V12.8333C44 11.7288 43.1046 10.8333 42 10.8333H2C0.895431 10.8333 0 11.7288 0 12.8333V13.1667ZM2 0C0.895431 0 0 0.895431 0 2V2.33333C0 3.4379 0.895431 4.33333 2 4.33333H42C43.1046 4.33333 44 3.4379 44 2.33333V2C44 0.89543 43.1046 0 42 0H2Z"/>
+    </symbol>
+    <symbol id="ic-search" viewBox="0 0 19 21">
+      <path d="M9.5 0C4.25389 0 0 4.2315 0 9.45C0 13.8285 2.99778 17.5035 7.06167 18.5745L9.5 21L11.9383 18.5745C16.0022 17.5035 19 13.8285 19 9.45C19 4.2315 14.7461 0 9.5 0ZM9.5 2.1C11.2522 2.1 12.6667 3.507 12.6667 5.25C12.6667 6.993 11.2522 8.4 9.5 8.4C7.74778 8.4 6.33333 6.993 6.33333 5.25C6.33333 3.507 7.74778 2.1 9.5 2.1ZM9.5 17.115C6.86111 17.115 4.52833 15.771 3.16667 13.734C3.19833 11.6445 7.38889 10.5 9.5 10.5C11.6006 10.5 15.8017 11.6445 15.8333 13.734C14.4717 15.771 12.1389 17.115 9.5 17.115Z"/>
+    </symbol>
+    <symbol id="ic-account" viewBox="0 0 20.5858 20.5858">
+      <path d="M20.0738 20.2929C19.6832 20.6834 19.0501 20.6834 18.6596 20.2929L12.6496 14.2829C12.2893 13.9226 11.719 13.8981 11.2815 14.1593C10.8876 14.3944 10.4618 14.5941 10.0042 14.7583C9.24583 15.0306 8.43889 15.1667 7.58333 15.1667C5.46389 15.1667 3.67033 14.4328 2.20267 12.9652C0.734222 11.4967 0 9.70278 0 7.58333C0 5.46389 0.734222 3.66994 2.20267 2.2015C3.67033 0.733833 5.46389 0 7.58333 0C9.70278 0 11.4967 0.733833 12.9652 2.2015C14.4328 3.66994 15.1667 5.46389 15.1667 7.58333C15.1667 8.43889 15.0306 9.24583 14.7583 10.0042C14.5941 10.4618 14.3944 10.8876 14.1593 11.2815C13.8981 11.719 13.9226 12.2893 14.2829 12.6496L20.2929 18.6596C20.6834 19.0501 20.6834 19.6832 20.2929 20.0738L20.0738 20.2929ZM7.58333 12.8333C9.04167 12.8333 10.2814 12.3231 11.3027 11.3027C12.3231 10.2814 12.8333 9.04167 12.8333 7.58333C12.8333 6.125 12.3231 4.88522 11.3027 3.864C10.2814 2.84356 9.04167 2.33333 7.58333 2.33333C6.125 2.33333 4.88522 2.84356 3.864 3.864C2.84356 4.88522 2.33333 6.125 2.33333 7.58333C2.33333 9.04167 2.84356 10.2814 3.864 11.3027C4.88522 12.3231 6.125 12.8333 7.58333 12.8333Z"/>
+    </symbol>
+    <symbol id="ic-book" viewBox="0 0 24 24">
+      <path d="M19 3.25H6.75C6.10713 3.23113 5.483 3.46789 5.01439 3.90839C4.54577 4.34889 4.2709 4.95719 4.25 5.6V18C4.27609 18.7542 4.60027 19.4673 5.15142 19.9829C5.70258 20.4984 6.43571 20.7743 7.19 20.75H19C19.1981 20.7474 19.3874 20.6676 19.5275 20.5275C19.6676 20.3874 19.7474 20.1981 19.75 20V4C19.7474 3.80189 19.6676 3.61263 19.5275 3.47253C19.3874 3.33244 19.1981 3.25259 19 3.25ZM18.25 19.25H7.19C6.83339 19.2748 6.48151 19.1571 6.21156 18.9227C5.94161 18.6884 5.77562 18.3566 5.75 18C5.77562 17.6434 5.94161 17.3116 6.21156 17.0773C6.48151 16.8429 6.83339 16.7252 7.19 16.75H18.25V19.25ZM18.25 15.25H7.19C6.68656 15.2506 6.19135 15.3778 5.75 15.62V5.6C5.7729 5.35589 5.89028 5.13038 6.0771 4.97159C6.26392 4.81279 6.50538 4.73328 6.75 4.75H18.25V15.25Z"/>
+      <path d="M8.75 8.75H15.25C15.4489 8.75 15.6397 8.67098 15.7803 8.53033C15.921 8.38968 16 8.19891 16 8C16 7.80109 15.921 7.61032 15.7803 7.46967C15.6397 7.32902 15.4489 7.25 15.25 7.25H8.75C8.55109 7.25 8.36032 7.32902 8.21967 7.46967C8.07902 7.61032 8 7.80109 8 8C8 8.19891 8.07902 8.38968 8.21967 8.53033C8.36032 8.67098 8.55109 8.75 8.75 8.75ZM8.75 12.25H15.25C15.4489 12.25 15.6397 12.171 15.7803 12.0303C15.921 11.8897 16 11.6989 16 11.5C16 11.3011 15.921 11.1103 15.7803 10.9697C15.6397 10.829 15.4489 10.75 15.25 10.75H8.75C8.55109 10.75 8.36032 10.829 8.21967 10.9697C8.07902 11.1103 8 11.3011 8 11.5C8 11.6989 8.07902 11.8897 8.21967 12.0303C8.36032 12.171 8.55109 12.25 8.75 12.25Z"/>
+    </symbol>
+    <symbol id="ic-heart" viewBox="0 0 17.5222 17.5222">
+      <path d="M8.83408 13.7629L8.76107 13.8359L8.68076 13.7629C5.21283 10.6162 2.92034 8.53545 2.92034 6.42548C2.92034 4.9653 4.01548 3.87016 5.47566 3.87016C6.6 3.87016 7.69514 4.60025 8.08209 5.59318H9.44006C9.82701 4.60025 10.9221 3.87016 12.0465 3.87016C13.5067 3.87016 14.6018 4.9653 14.6018 6.42548C14.6018 8.53545 12.3093 10.6162 8.83408 13.7629ZM12.0465 2.40998C10.7761 2.40998 9.55687 3.00135 8.76107 3.92857C7.96528 3.00135 6.74602 2.40998 5.47566 2.40998C3.22698 2.40998 1.46016 4.1695 1.46016 6.42548C1.46016 9.17793 3.94247 11.4339 7.70244 14.8434L8.76107 15.8072L9.81971 14.8434C13.5797 11.4339 16.062 9.17793 16.062 6.42548C16.062 4.1695 14.2952 2.40998 12.0465 2.40998Z"/>
+    </symbol>
+    <symbol id="ic-heart-fill" viewBox="0 0 17.5222 17.5222">
+      <path d="M12.0465 2.40998C10.7761 2.40998 9.55687 3.00135 8.76107 3.92857C7.96528 3.00135 6.74602 2.40998 5.47566 2.40998C3.22698 2.40998 1.46016 4.1695 1.46016 6.42548C1.46016 9.17793 3.94247 11.4339 7.70244 14.8434L8.76107 15.8072L9.81971 14.8434C13.5797 11.4339 16.062 9.17793 16.062 6.42548C16.062 4.1695 14.2952 2.40998 12.0465 2.40998Z"/>
+    </symbol>
+    <symbol id="ic-chevron" viewBox="0 0 9.5375 16.186">
+      <path d="M9.11451 0.423601C8.98051 0.289321 8.82134 0.182789 8.64611 0.110102C8.47088 0.0374147 8.28304 0 8.09333 0C7.90363 0 7.71578 0.0374147 7.54055 0.110102C7.36533 0.182789 7.20615 0.289321 7.07215 0.423601L0.423601 7.07215C0.289321 7.20615 0.182789 7.36533 0.110102 7.54055C0.0374147 7.71578 0 7.90363 0 8.09333C0 8.28304 0.0374147 8.47088 0.110102 8.64611C0.182789 8.82134 0.289321 8.98051 0.423601 9.11451L7.07215 15.7631C7.20625 15.8972 7.36546 16.0035 7.54067 16.0761C7.71589 16.1487 7.90368 16.186 8.09333 16.186C8.28298 16.186 8.47078 16.1487 8.64599 16.0761C8.82121 16.0035 8.98041 15.8972 9.11451 15.7631C9.24862 15.629 9.35499 15.4698 9.42757 15.2945C9.50015 15.1193 9.5375 14.9315 9.5375 14.7419C9.5375 14.5522 9.50015 14.3644 9.42757 14.1892C9.35499 14.014 9.24862 13.8548 9.11451 13.7207L3.49439 8.08609L9.11451 2.46597C9.67942 1.90106 9.66494 0.974026 9.11451 0.423601Z"/>
+    </symbol>
+  </svg>
+
+  <!-- Menu compact collant (apparaît au scroll) -->
+  <div class="mininav" id="mininav">
+    <div class="mininav__inner">
+      <a class="mininav__logo" href="index.html" aria-label="Accueil">
+        <img src="assets/img/logo-nav.png" alt="Milano Cortina 2026">
+      </a>
+      <nav class="mininav__links" aria-label="Navigation compacte">
+        <a href="#">Les jeux</a>
+        <a href="#">L'application</a>
+        <a href="#">Billeterie</a>
+      </nav>
+      <a class="btn btn--light" href="#">S'inscrire</a>
+    </div>
+  </div>
+
+  <!-- ===================== HEADER ===================== -->
+  <header class="site-header">
+
+    <!-- Bandeau rouge -->
+    <div class="topbar">
+      <p class="topbar__dates">
+        Jeux Olympiques d'hiver™ · Du 6 au 22 février 2026 | Jeux Paralympiques d'hiver™ · Du 6 au 15 mars 2026
+      </p>
+      <ul class="lang-switch" aria-label="Choix de la langue">
+        <li><a href="#">IT</a></li>
+        <li><a href="#">EN</a></li>
+        <li class="is-active"><a href="#" aria-current="true">FR</a></li>
+      </ul>
+    </div>
+
+    <div class="header__inner">
+
+      <!-- Menu de navigation -->
+      <nav class="main-nav" aria-label="Navigation principale">
+        <div class="main-nav__bar glass">
+          <button class="nav-burger" type="button" aria-label="Ouvrir le menu">
+            <svg class="icon icon--burger" aria-hidden="true"><use href="#ic-burger"></use></svg>
+          </button>
+
+          <ul class="nav-links">
+            <li><a href="#">Les jeux</a></li>
+            <li><a href="#">L'application</a></li>
+          </ul>
+
+          <a class="nav-logo" href="index.html" aria-label="Accueil — Milano Cortina 2026">
+            <img src="assets/img/logo-nav.png" alt="Milano Cortina 2026">
+          </a>
+
+          <ul class="nav-links">
+            <li><a href="#">Billeterie</a></li>
+          </ul>
+
+          <a class="btn btn--light" href="#">S'inscrire</a>
+
+          <div class="nav-actions">
+            <a href="#" class="nav-icon" aria-label="Rechercher">
+              <svg class="icon icon--search" aria-hidden="true"><use href="#ic-search"></use></svg>
+            </a>
+            <a href="#" class="nav-icon" aria-label="Mon compte">
+              <svg class="icon icon--account" aria-hidden="true"><use href="#ic-account"></use></svg>
+            </a>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Cover / Hero -->
+      <section class="hero">
+        <div class="hero__media">
+          <img src="assets/img/cover.png" alt="Médaillés français de ski alpinisme aux JO d'hiver">
+        </div>
+
+        <div class="hero__content">
+          <span class="badge badge--cortina">
+            <span>SKI ALPINISME</span>
+            <span class="badge__sep" aria-hidden="true"></span>
+            <span>À LA UNE</span>
+          </span>
+
+          <h1 class="hero__title">Les médailles du ski alpinisme français en vidéo</h1>
+
+          <a class="hero__more" href="#">
+            <svg class="icon icon--book" aria-hidden="true"><use href="#ic-book"></use></svg>
+            <span>Lire plus</span>
+          </a>
+        </div>
+      </section>
+
+    </div>
+  </header>
+
+  <!-- ===================== CONTENU ===================== -->
+  <main>
+
+    <!-- ===================== NOS ACTUALITÉS ===================== -->
+    <section class="actus" aria-labelledby="actus-titre">
+      <div class="actus__inner">
+
+        <div class="actus__left">
+          <h2 class="section-title" id="actus-titre">
+            <svg class="section-title__logo" aria-hidden="true"><use href="#ic-mountain"></use></svg>
+            <span class="section-title__text">
+              <span class="section-title__small">Nos</span>
+              <span class="section-title__big">Actualités</span>
+            </span>
+          </h2>
+
+          <div class="actus__grid">
+            <article class="news-card">
+              <img src="assets/img/news-biathlon.png" alt="Équipe de France de biathlon célébrant ses médailles">
+              <span class="news-card__tag">Biathlon</span>
+              <p class="news-card__title glass">L'Odyssée du biathlon français aux JO 26</p>
+            </article>
+
+            <article class="news-card">
+              <img src="assets/img/news-patinage.png" alt="Couple de patinage artistique en pleine figure">
+              <span class="news-card__tag">Patinage artistique</span>
+              <p class="news-card__title glass">Guillaume Cizeron et Laurence Fournier Beaudry champions olympiques</p>
+            </article>
+
+            <article class="news-card">
+              <img src="assets/img/news-perrine.png" alt="Perrine Laffont émue">
+              <span class="news-card__tag">Perrine Laffont</span>
+              <p class="news-card__title glass">« Toute seule, j'aurais abandonné »</p>
+            </article>
+
+            <article class="news-card">
+              <img src="assets/img/news-skialp.png" alt="Athlètes de ski-alpinisme">
+              <span class="news-card__tag">Ski alpinisme</span>
+              <p class="news-card__title glass">C'était comment, le ski-alpinisme aux JO ?</p>
+            </article>
+          </div>
+        </div>
+
+        <aside class="actus__panel glass" aria-label="Prochaines épreuves et tableau des médailles">
+
+          <!-- Prochaines épreuves -->
+          <h3 class="section-title section-title--sm">
+            <svg class="section-title__logo" aria-hidden="true"><use href="#ic-mountain"></use></svg>
+            <span class="section-title__text">
+              <span class="section-title__small">Prochaines</span>
+              <span class="section-title__big">Épreuves</span>
+            </span>
+          </h3>
+
+          <div class="events glass">
+            <div class="event">
+              <div class="event__date"><span class="event__day">17</span><span class="event__month">FEVR.</span></div>
+              <div class="event__info"><p class="event__name">Ski alpin homme</p><p class="event__detail">Slalom Géant - 10:10</p></div>
+            </div>
+            <div class="event">
+              <div class="event__date"><span class="event__day">22</span><span class="event__month">FEVR.</span></div>
+              <div class="event__info"><p class="event__name">Patinage artistique</p><p class="event__detail">Slalom Géant - 10:10</p></div>
+            </div>
+            <div class="event">
+              <div class="event__date"><span class="event__day">17</span><span class="event__month">FEVR.</span></div>
+              <div class="event__info"><p class="event__name">Ski alpin homme</p><p class="event__detail">Slalom Géant - 10:10</p></div>
+            </div>
+            <div class="event">
+              <div class="event__date"><span class="event__day">22</span><span class="event__month">FEVR.</span></div>
+              <div class="event__info"><p class="event__name">Patinage artistique</p><p class="event__detail">Slalom Géant - 10:10</p></div>
+            </div>
+            <div class="event">
+              <div class="event__date"><span class="event__day">26</span><span class="event__month">FEVR.</span></div>
+              <div class="event__info"><p class="event__name">Bobsleigh homme</p><p class="event__detail">Slalom Géant - 10:10</p></div>
+            </div>
+            <div class="event">
+              <div class="event__date"><span class="event__day">26</span><span class="event__month">FEVR.</span></div>
+              <div class="event__info"><p class="event__name">Bobsleigh homme</p><p class="event__detail">Slalom Géant - 10:10</p></div>
+            </div>
+          </div>
+
+          <!-- Tableau des médailles -->
+          <h3 class="section-title section-title--sm">
+            <svg class="section-title__logo" aria-hidden="true"><use href="#ic-mountain"></use></svg>
+            <span class="section-title__text">
+              <span class="section-title__small">Tableau des</span>
+              <span class="section-title__big">Médailles</span>
+            </span>
+          </h3>
+
+          <table class="medals">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Pays</th>
+                <th><span class="medal-dot medal-dot--gold" title="Or"></span></th>
+                <th><span class="medal-dot medal-dot--silver" title="Argent"></span></th>
+                <th><span class="medal-dot medal-dot--bronze" title="Bronze"></span></th>
+                <th><img class="icon-total" src="assets/img/icon-medals.svg" alt="Total"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td><span class="medals__country"><img src="assets/img/flag-no.png" alt="Norvège">Norvège</span></td>
+                <td>18</td><td>12</td><td>11</td><td class="is-total">41</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td><span class="medals__country"><img src="assets/img/flag-us.png" alt="États-Unis">USA</span></td>
+                <td>18</td><td>12</td><td>11</td><td class="is-total">41</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td><span class="medals__country"><img src="assets/img/flag-it.png" alt="Italie">Italie</span></td>
+                <td>18</td><td>12</td><td>11</td><td class="is-total">41</td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td><span class="medals__country"><img src="assets/img/flag-de.png" alt="Allemagne">Allemagne</span></td>
+                <td>18</td><td>12</td><td>11</td><td class="is-total">41</td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td><span class="medals__country"><img src="assets/img/flag-jp.png" alt="Japon">Japon</span></td>
+                <td>18</td><td>12</td><td>11</td><td class="is-total">41</td>
+              </tr>
+            </tbody>
+          </table>
+
+        </aside>
+      </div>
+    </section>
+
+    <!-- ===================== LES SPORTS ===================== -->
+    <section class="sports" aria-labelledby="sports-titre">
+      <div class="sports__head">
+        <h2 class="section-title" id="sports-titre">
+          <svg class="section-title__logo" aria-hidden="true"><use href="#ic-mountain"></use></svg>
+          <span class="section-title__text">
+            <span class="section-title__small">Nos</span>
+            <span class="section-title__big">Sports</span>
+          </span>
+        </h2>
+      </div>
+
+      <div class="sports__ribbon">
+        <div class="sports__band" aria-hidden="true"></div>
+
+        <div class="sports__carousel">
+          <button class="sports__nav sports__nav--prev glass" type="button" aria-label="Précédent" data-dir="-1">
+          <svg class="icon icon--chevron" aria-hidden="true"><use href="#ic-chevron"></use></svg>
+        </button>
+
+        <div class="sports__track">
+          <div class="sports__rail" id="sports-rail">
+          <div class="sport-card"><div class="sport-card__media"><img src="assets/img/sport-biathlon.png" alt="Biathlon"></div><div class="sport-card__foot"><button class="sport-card__fav" type="button" aria-label="Ajouter Biathlon aux favoris"><svg class="icon icon--heart" aria-hidden="true"><use href="#ic-heart"></use></svg></button><span class="sport-card__name">Biathlon</span></div></div>
+          <div class="sport-card"><div class="sport-card__media"><img src="assets/img/sport-bobsleigh.png" alt="Bobsleigh"></div><div class="sport-card__foot"><button class="sport-card__fav" type="button" aria-label="Ajouter Bobsleigh aux favoris"><svg class="icon icon--heart" aria-hidden="true"><use href="#ic-heart"></use></svg></button><span class="sport-card__name">Bobsleigh</span></div></div>
+          <div class="sport-card"><div class="sport-card__media"><img src="assets/img/sport-curling.png" alt="Curling"></div><div class="sport-card__foot"><button class="sport-card__fav" type="button" aria-label="Ajouter Curling aux favoris"><svg class="icon icon--heart" aria-hidden="true"><use href="#ic-heart"></use></svg></button><span class="sport-card__name">Curling</span></div></div>
+          <div class="sport-card"><div class="sport-card__media"><img src="assets/img/sport-hockey.png" alt="Hockey sur glace"></div><div class="sport-card__foot"><button class="sport-card__fav" type="button" aria-label="Ajouter Hockey sur glace aux favoris"><svg class="icon icon--heart" aria-hidden="true"><use href="#ic-heart"></use></svg></button><span class="sport-card__name">Hockey sur glace</span></div></div>
+          <div class="sport-card"><div class="sport-card__foot"><button class="sport-card__fav" type="button" aria-label="Ajouter Combiné nordique aux favoris"><svg class="icon icon--heart" aria-hidden="true"><use href="#ic-heart"></use></svg></button><span class="sport-card__name">Combiné nordique</span></div></div>
+          <div class="sport-card"><div class="sport-card__media"><img src="assets/img/sport-curling.png" alt="Curling fauteuil"></div><div class="sport-card__foot"><button class="sport-card__fav" type="button" aria-label="Ajouter Curling fauteuil aux favoris"><svg class="icon icon--heart" aria-hidden="true"><use href="#ic-heart"></use></svg></button><span class="sport-card__name">Curling fauteuil</span></div></div>
+          <div class="sport-card"><div class="sport-card__foot"><button class="sport-card__fav" type="button" aria-label="Ajouter Luge aux favoris"><svg class="icon icon--heart" aria-hidden="true"><use href="#ic-heart"></use></svg></button><span class="sport-card__name">Luge</span></div></div>
+          <div class="sport-card"><div class="sport-card__foot"><button class="sport-card__fav" type="button" aria-label="Ajouter Para Biathlon aux favoris"><svg class="icon icon--heart" aria-hidden="true"><use href="#ic-heart"></use></svg></button><span class="sport-card__name">Para Biathlon</span></div></div>
+          <div class="sport-card"><div class="sport-card__media"><img src="assets/img/sport-hockey.png" alt="Para Hockey sur glace"></div><div class="sport-card__foot"><button class="sport-card__fav" type="button" aria-label="Ajouter Para Hockey sur glace aux favoris"><svg class="icon icon--heart" aria-hidden="true"><use href="#ic-heart"></use></svg></button><span class="sport-card__name">Para Hockey sur glace</span></div></div>
+          <div class="sport-card"><div class="sport-card__foot"><button class="sport-card__fav" type="button" aria-label="Ajouter Para ski alpin aux favoris"><svg class="icon icon--heart" aria-hidden="true"><use href="#ic-heart"></use></svg></button><span class="sport-card__name">Para ski alpin</span></div></div>
+          <div class="sport-card"><div class="sport-card__foot"><button class="sport-card__fav" type="button" aria-label="Ajouter Para ski de fond aux favoris"><svg class="icon icon--heart" aria-hidden="true"><use href="#ic-heart"></use></svg></button><span class="sport-card__name">Para ski de fond</span></div></div>
+          <div class="sport-card"><div class="sport-card__foot"><button class="sport-card__fav" type="button" aria-label="Ajouter Para Snowboard aux favoris"><svg class="icon icon--heart" aria-hidden="true"><use href="#ic-heart"></use></svg></button><span class="sport-card__name">Para Snowboard</span></div></div>
+          <div class="sport-card"><div class="sport-card__media"><img src="assets/img/sport-patinage.png" alt="Patinage artistique"></div><div class="sport-card__foot"><button class="sport-card__fav" type="button" aria-label="Ajouter Patinage artistique aux favoris"><svg class="icon icon--heart" aria-hidden="true"><use href="#ic-heart"></use></svg></button><span class="sport-card__name">Patinage artistique</span></div></div>
+          <div class="sport-card"><div class="sport-card__foot"><button class="sport-card__fav" type="button" aria-label="Ajouter Patinage de vitesse aux favoris"><svg class="icon icon--heart" aria-hidden="true"><use href="#ic-heart"></use></svg></button><span class="sport-card__name">Patinage de vitesse</span></div></div>
+          <div class="sport-card"><div class="sport-card__foot"><button class="sport-card__fav" type="button" aria-label="Ajouter Patinage de vitesse sur piste de course aux favoris"><svg class="icon icon--heart" aria-hidden="true"><use href="#ic-heart"></use></svg></button><span class="sport-card__name">Patinage de vitesse sur piste de course</span></div></div>
+          <div class="sport-card"><div class="sport-card__foot"><button class="sport-card__fav" type="button" aria-label="Ajouter Saut à ski aux favoris"><svg class="icon icon--heart" aria-hidden="true"><use href="#ic-heart"></use></svg></button><span class="sport-card__name">Saut à ski</span></div></div>
+          <div class="sport-card"><div class="sport-card__foot"><button class="sport-card__fav" type="button" aria-label="Ajouter Skeleton aux favoris"><svg class="icon icon--heart" aria-hidden="true"><use href="#ic-heart"></use></svg></button><span class="sport-card__name">Skeleton</span></div></div>
+          <div class="sport-card"><div class="sport-card__foot"><button class="sport-card__fav" type="button" aria-label="Ajouter Ski acrobatique aux favoris"><svg class="icon icon--heart" aria-hidden="true"><use href="#ic-heart"></use></svg></button><span class="sport-card__name">Ski acrobatique</span></div></div>
+          <div class="sport-card"><div class="sport-card__foot"><button class="sport-card__fav" type="button" aria-label="Ajouter Ski alpin aux favoris"><svg class="icon icon--heart" aria-hidden="true"><use href="#ic-heart"></use></svg></button><span class="sport-card__name">Ski alpin</span></div></div>
+          <div class="sport-card"><div class="sport-card__foot"><button class="sport-card__fav" type="button" aria-label="Ajouter Ski de fond aux favoris"><svg class="icon icon--heart" aria-hidden="true"><use href="#ic-heart"></use></svg></button><span class="sport-card__name">Ski de fond</span></div></div>
+          <div class="sport-card"><div class="sport-card__foot"><button class="sport-card__fav" type="button" aria-label="Ajouter Ski-Alpinisme aux favoris"><svg class="icon icon--heart" aria-hidden="true"><use href="#ic-heart"></use></svg></button><span class="sport-card__name">Ski-Alpinisme</span></div></div>
+          <div class="sport-card"><div class="sport-card__foot"><button class="sport-card__fav" type="button" aria-label="Ajouter Snowboard aux favoris"><svg class="icon icon--heart" aria-hidden="true"><use href="#ic-heart"></use></svg></button><span class="sport-card__name">Snowboard</span></div></div>
+          </div>
+        </div>
+
+        <button class="sports__nav sports__nav--next glass" type="button" aria-label="Suivant" data-dir="1">
+          <svg class="icon icon--chevron" aria-hidden="true"><use href="#ic-chevron"></use></svg>
+        </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== NOS AMBIANCES ===================== -->
+    <section class="ambiances" aria-labelledby="ambiances-titre">
+      <div class="ambiances__head">
+        <h2 class="section-title" id="ambiances-titre">
+          <svg class="section-title__logo" aria-hidden="true"><use href="#ic-mountain"></use></svg>
+          <span class="section-title__text">
+            <span class="section-title__small">Nos</span>
+            <span class="section-title__big">Ambiances</span>
+          </span>
+        </h2>
+      </div>
+
+      <div class="ambiances__ribbon">
+        <div class="ambiances__band" aria-hidden="true"></div>
+        <div class="ambiances__cities">
+          <figure class="ville ville--milan" tabindex="0">
+            <img src="assets/img/ville-milan-color.png" alt="Milan — Piazza del Duomo">
+            <span class="ville__tint" aria-hidden="true"></span>
+            <figcaption class="ville__name">Milan</figcaption>
+          </figure>
+          <figure class="ville ville--cortina" tabindex="0">
+            <img src="assets/img/ville-cortina-color.png" alt="Cortina d'Ampezzo sous la neige">
+            <span class="ville__tint" aria-hidden="true"></span>
+            <figcaption class="ville__name">Cortina d'Ampezzo</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== APPLICATION ===================== -->
+    <section class="app" aria-label="L'application Olympic Journey">
+      <div class="app__intro">
+        <div class="app-logo">
+          <svg class="app-logo__mark" aria-hidden="true"><use href="#ic-mountain"></use></svg>
+          <span class="app-logo__text">
+            <span class="app-logo__top">OLYMPIC</span>
+            <span class="app-logo__main">JOURNEY</span>
+            <span class="app-logo__sub">Milano Cortina 2026</span>
+          </span>
+        </div>
+
+        <p class="app__quote">« Les Jeux ne sont plus seulement regardés. Ils sont vécus. »</p>
+        <p class="app__desc">Constituez votre délégation, choisissez vos épreuves culturelles et sportives, collectez des médailles.</p>
+
+        <div class="app__actions">
+          <a class="btn btn--lg btn--gold" href="#">Télécharger l'application</a>
+          <a class="btn btn--lg btn--outline" href="#">Découvrir Olympic Journey</a>
+        </div>
+      </div>
+
+      <ol class="app__steps">
+        <li class="info-card info-card--steps">
+          <span class="info-card__lead info-card__lead--num">01</span>
+          <div class="info-card__body">
+            <p class="info-card__title">Constituez votre délégation</p>
+            <p class="info-card__desc">Invitez famille et amis.</p>
+          </div>
+        </li>
+        <li class="info-card info-card--steps">
+          <span class="info-card__lead info-card__lead--num">02</span>
+          <div class="info-card__body">
+            <p class="info-card__title">Choisissez vos épreuves</p>
+            <p class="info-card__desc">Chaque lieu lié à une discipline.</p>
+          </div>
+        </li>
+        <li class="info-card info-card--steps">
+          <span class="info-card__lead info-card__lead--num">03</span>
+          <div class="info-card__body">
+            <p class="info-card__title">Révélez l'angle invisible</p>
+            <p class="info-card__desc">Le regard de l'athlète sur la ville.</p>
+          </div>
+        </li>
+        <li class="info-card info-card--steps">
+          <span class="info-card__lead info-card__lead--num">04</span>
+          <div class="info-card__body">
+            <p class="info-card__title">Décrochez vos médailles</p>
+            <p class="info-card__desc">Bronze, Argent, Or — votre palmarès.</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <!-- ===================== CALENDRIER OFFICIEL ===================== -->
+    <section class="calendar" aria-labelledby="calendar-titre">
+      <div class="calendar__bg" aria-hidden="true">
+        <img src="assets/img/calendar-bg.png" alt="">
+      </div>
+
+      <h2 class="section-title" id="calendar-titre">
+        <svg class="section-title__logo" aria-hidden="true"><use href="#ic-mountain"></use></svg>
+        <span class="section-title__text">
+          <span class="section-title__small">Calendrier</span>
+          <span class="section-title__big">Officiel</span>
+        </span>
+      </h2>
+
+      <p class="calendar__intro">Deux semaines de compétition intense en février, suivies des Jeux Paralympiques en mars. Un programme chargé d'émotions et d'exploits.</p>
+
+      <div class="calendar__dates">
+        <div class="cal-date">
+          <p class="cal-date__num">6</p>
+          <div class="cal-date__body">
+            <p class="cal-date__month">FÉVRIER 2026</p>
+            <p class="cal-date__desc">Ouverture des Jeux Olympiques — Cérémonie au stade San Siro, Milan</p>
+          </div>
+        </div>
+        <div class="cal-date">
+          <p class="cal-date__num">6-22</p>
+          <div class="cal-date__body">
+            <p class="cal-date__month">FÉVRIER 2026</p>
+            <p class="cal-date__desc">16 jours de compétition dans 16 disciplines olympiques</p>
+          </div>
+        </div>
+        <div class="cal-date">
+          <p class="cal-date__num">6</p>
+          <div class="cal-date__body">
+            <p class="cal-date__month">MARS 2026</p>
+            <p class="cal-date__desc">Ouverture des Jeux Paralympiques d'hiver</p>
+          </div>
+        </div>
+        <div class="cal-date">
+          <p class="cal-date__num">15</p>
+          <div class="cal-date__body">
+            <p class="cal-date__month">MARS 2026</p>
+            <p class="cal-date__desc">Clôture des Jeux Paralympiques — Arena de Vérone</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== DURABILITÉ ===================== -->
+    <section class="durability" aria-labelledby="durability-titre">
+      <div class="durability__head">
+        <h2 class="section-title" id="durability-titre">
+          <svg class="section-title__logo" aria-hidden="true"><use href="#ic-mountain"></use></svg>
+          <span class="section-title__text">
+            <span class="section-title__small">Au service de la</span>
+            <span class="section-title__big">Durabilité</span>
+          </span>
+        </h2>
+        <p class="durability__intro">Milano Cortina 2026 inaugure un modèle olympique flexible, optimisant les infrastructures existantes pour minimiser l'empreinte environnementale.</p>
+      </div>
+
+      <div class="durability__ribbon">
+        <div class="durability__band" aria-hidden="true"></div>
+        <div class="durability__cards">
+          <article class="info-card info-card--feature">
+            <span class="info-card__lead info-card__lead--icon" aria-hidden="true">🏗️</span>
+            <div>
+              <h3 class="info-card__title">Sites existants valorisés</h3>
+              <p class="info-card__desc">Premier modèle olympique basé sur l'optimisation des infrastructures déjà en place, réduisant construction et coûts.</p>
+            </div>
+          </article>
+          <article class="info-card info-card--feature">
+            <span class="info-card__lead info-card__lead--icon" aria-hidden="true">🎓</span>
+            <div>
+              <h3 class="info-card__title">Village de Porta Romana</h3>
+              <p class="info-card__desc">Après les Jeux, le village olympique se transforme en résidence étudiante — un héritage durable pour Milan.</p>
+            </div>
+          </article>
+          <article class="info-card info-card--feature">
+            <span class="info-card__lead info-card__lead--icon" aria-hidden="true">❄️</span>
+            <div>
+              <h3 class="info-card__title">Stratégie bas carbone</h3>
+              <p class="info-card__desc">Gestion responsable de la neige artificielle et réduction de l'empreinte carbone sur l'ensemble des sites.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== FAQ ===================== -->
+    <section class="faq" aria-labelledby="faq-titre">
+      <div class="faq__head">
+        <h2 class="section-title" id="faq-titre">
+          <svg class="section-title__logo" aria-hidden="true"><use href="#ic-mountain"></use></svg>
+          <span class="section-title__text">
+            <span class="section-title__small">Foire aux</span>
+            <span class="section-title__big">Questions</span>
+          </span>
+        </h2>
+      </div>
+
+      <div class="faq__ribbon">
+        <div class="faq__list">
+
+          <details class="faq-item glass" name="faq" open>
+            <summary class="faq-item__q">
+              Où et quand les Jeux Olympiques d'hiver 2026 se dérouleront-ils ?
+              <span class="faq-chev" aria-hidden="true"><svg class="icon icon--chevron"><use href="#ic-chevron"></use></svg></span>
+            </summary>
+            <div class="faq-item__a">
+              <p>Les Jeux d'hiver 2026 se tiendront principalement à Milan et Cortina, mais les épreuves seront réparties sur plusieurs pôles (clusters) majeurs dans le nord du pays.</p>
+              <p><strong>Les dates officielles :</strong><br>
+                 Jeux Olympiques : du 6 au 22 février 2026.<br>
+                 Jeux Paralympiques : du 6 au 15 mars 2026.</p>
+              <p><strong>Les lieux clés :</strong><br>
+                 <strong>Milan</strong> : épreuves sur glace (patinage artistique, short-track, hockey) et la grande cérémonie d'ouverture au mythique stade San Siro.<br>
+                 <strong>Cortina d'Ampezzo</strong> : surnommée la « Reine des Dolomites », elle accueillera le ski alpin féminin, le curling, le bobsleigh, la luge et le skeleton.<br>
+                 <strong>Valtellina (Bormio &amp; Livigno)</strong> : ski alpin masculin, snowboard, freestyle et la grande nouveauté de cette année : le ski-alpinisme.<br>
+                 <strong>Val di Fiemme &amp; Anterselva</strong> : biathlon, ski de fond et saut à ski.<br>
+                 <strong>Vérone</strong> : les Jeux se clôtureront dans le cadre historique des Arènes de Vérone.</p>
+            </div>
+          </details>
+
+          <details class="faq-item glass" name="faq">
+            <summary class="faq-item__q">
+              Comment obtenir des billets pour les Jeux d'hiver 2026 ?
+              <span class="faq-chev" aria-hidden="true"><svg class="icon icon--chevron"><use href="#ic-chevron"></use></svg></span>
+            </summary>
+            <div class="faq-item__a">
+              <p>La billetterie officielle est gérée exclusivement sur le site de Milano Cortina 2026. La vente se fait par phases (tirages au sort puis vente directe selon les disponibilités) : créez un compte pour être informé des ouvertures et éviter les revendeurs non officiels.</p>
+            </div>
+          </details>
+
+          <details class="faq-item glass" name="faq">
+            <summary class="faq-item__q">
+              Comment se qualifier pour les Jeux d'hiver 2026 ?
+              <span class="faq-chev" aria-hidden="true"><svg class="icon icon--chevron"><use href="#ic-chevron"></use></svg></span>
+            </summary>
+            <div class="faq-item__a">
+              <p>Le parcours de qualification se fait en deux étapes :</p>
+              <p><strong>Pour le pays</strong> : les athlètes doivent d'abord décrocher des places de « quota » pour leur nation en brillant sur le circuit international (classements en Coupe du monde et Championnats du monde).</p>
+              <p><strong>Pour l'athlète</strong> : une fois les places obtenues, chaque Comité National Olympique sélectionne officiellement les athlètes les plus performants pour composer son équipe finale.</p>
+            </div>
+          </details>
+
+          <details class="faq-item glass" name="faq">
+            <summary class="faq-item__q">
+              Combien de pays participeront aux Jeux d'hiver 2026 ?
+              <span class="faq-chev" aria-hidden="true"><svg class="icon icon--chevron"><use href="#ic-chevron"></use></svg></span>
+            </summary>
+            <div class="faq-item__a">
+              <p>Environ 90 nations sont attendues à Milano Cortina 2026, un record pour des Jeux d'hiver. Le nombre définitif dépendra des places de quota obtenues par chaque pays à l'issue des épreuves de qualification.</p>
+            </div>
+          </details>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="site-footer">
+    <div class="footer-partners" aria-label="Nos partenaires">
+      <img src="assets/img/partner-airbnb.png" alt="Airbnb">
+      <img src="assets/img/partner-alibaba.png" alt="Alibaba">
+      <img src="assets/img/partner-allianz.png" alt="Allianz">
+      <img src="assets/img/partner-cocacola.png" alt="Coca-Cola">
+      <img src="assets/img/partner-corona.png" alt="Corona">
+      <img src="assets/img/partner-deloitte.png" alt="Deloitte">
+      <img src="assets/img/partner-omega.png" alt="Omega">
+      <img src="assets/img/partner-pg.png" alt="P&G">
+      <img src="assets/img/partner-samsung.png" alt="Samsung">
+      <img src="assets/img/partner-tcl.png" alt="TCL">
+      <img src="assets/img/partner-visa.png" alt="Visa">
+    </div>
+
+    <div class="footer-main">
+      <div class="footer-main__bg" aria-hidden="true">
+        <img src="assets/img/foot-bg.png" alt="">
+      </div>
+
+      <div class="footer-main__inner">
+        <a class="footer-cta glass" href="#">Télécharger l'appli</a>
+
+        <div class="footer-content">
+          <div class="footer-brand">
+            <img class="footer-brand__logo" src="assets/img/logo-nav.png" alt="Milano Cortina 2026">
+            <img class="footer-brand__qr" src="assets/img/qrcode.png" alt="QR code de téléchargement de l'application">
+          </div>
+
+          <nav class="footer-nav" aria-label="Liens de pied de page">
+            <div class="footer-col">
+              <h3>Les jeux</h3>
+              <a href="#">Sport</a>
+              <a href="#">Programme</a>
+              <a href="#">Athlètes</a>
+              <a href="#">Sites</a>
+              <a href="#">Calendrier</a>
+            </div>
+            <div class="footer-col">
+              <h3>À propos</h3>
+              <a href="#">Organisation</a>
+              <a href="#">Histoire</a>
+              <a href="#">Partenaires</a>
+              <a href="#">Presse</a>
+              <a href="#">Résultats</a>
+            </div>
+            <div class="footer-col">
+              <h3>Nous rejoindre</h3>
+              <a href="#">Bénévolat</a>
+              <a href="#">Carrières</a>
+              <a href="#">Merchandising</a>
+              <a href="#">Contact</a>
+              <a href="#">Newsletter</a>
+            </div>
+          </nav>
+        </div>
+
+        <div class="footer-bar glass">
+          <div class="footer-bar__links">
+            <a href="#">Boutique</a>
+            <a href="#">Contactez-nous</a>
+          </div>
+          <p class="footer-bar__copy">© Milano Cortina 2026 — Tous droits réservés</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+
+</body>
+</html>

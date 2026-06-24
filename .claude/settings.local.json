@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__8f9624b4-b74b-445b-bd2e-6a7c4883d07a__get_metadata",
+      "mcp__8f9624b4-b74b-445b-bd2e-6a7c4883d07a__get_screenshot",
+      "Bash(curl -s -o \"/c/Users/Dorian/Documents/YNOV/BLOC 6/website/figma_home.png\" \"https://www.figma.com/api/mcp/asset/12606973-5cc9-41f6-9c26-7396b2b3b905\")",
+      "mcp__8f9624b4-b74b-445b-bd2e-6a7c4883d07a__get_variable_defs",
+      "mcp__8f9624b4-b74b-445b-bd2e-6a7c4883d07a__get_design_context",
+      "Bash(curl -s -o \"hero-header.png\" \"https://www.figma.com/api/mcp/asset/d74ec420-449c-4cb1-a97a-1a98e4ed725b\")",
+      "Bash(curl -s -o \"ville-milan.png\" \"https://www.figma.com/api/mcp/asset/ce7cb7ca-b803-4246-8333-ad4cc1fc5f5f\")",
+      "Bash(curl -s -o \"ville-cortina.png\" \"https://www.figma.com/api/mcp/asset/cf9d2221-41c9-4bcc-90a3-a3a503f5e46f\")",
+      "mcp__Claude_Preview__preview_start",
+      "PowerShell(foreach \\($c in 'node','npx','php','py'\\) { $p = \\(Get-Command $c -ErrorAction SilentlyContinue\\).Source; if \\($p\\) { \"$c -> $p\" } else { \"$c -> \\(absent\\)\" } })",
+      "Bash(curl -s -o \"calendar-bg.png\" \"https://www.figma.com/api/mcp/asset/dc320cca-75df-4754-855e-e12124c77ffc\")",
+      "Bash(curl -s -o \"ville-milan-color.png\"   \"https://www.figma.com/api/mcp/asset/80979916-39c6-4e21-8b4e-1510e250bd33\")",
+      "Bash(curl -s -o \"ville-cortina-color.png\" \"https://www.figma.com/api/mcp/asset/2543343b-ae6b-4f41-9de7-f259604d22e1\")",
+      "Bash(curl -s -o \"_fig_cards.png\" \"https://www.figma.com/api/mcp/asset/4d9312af-27ea-42f7-93bf-42f2f97ce492\")"
+    ]
+  }
+}

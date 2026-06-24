@@ -1,0 +1,1413 @@
+/* =========================================================
+   JO Companion — Milano Cortina 2026
+   Feuille de style commune
+   ========================================================= */
+
+/* ---------- 1. Tokens (variables) ---------- */
+:root {
+  /* Couleurs (issues des variables Figma) */
+  --bg-body:        #EEF7FF;   /* bg-body */
+  --c-dark:         #213151;   /* bg-user-interaction */
+  --c-red:          #F23C39;   /* tag-milan */
+  --c-blue:         #4FA8D0;   /* tag-cortina */
+  --c-gold:         #FFD700;   /* OR */
+  --c-legend:       #919497;   /* legend-color */
+  --c-epreuve-bg:   #FEECEC;   /* Tag-epreuve */
+  --c-text-light:   #F0F4F8;
+  --c-white:        #FFFFFF;
+  --glass:          rgba(255, 255, 255, 0.10);  /* effet glass clair */
+
+  /* Typographie */
+  --font:           'Lato', system-ui, -apple-system, sans-serif;
+
+  /* Mise en page */
+  --container:      1281px;
+  --pad-x:          50px;
+  --radius:         30px;
+  --radius-sm:      10px;
+
+  /* Animations (design system) */
+  --ease-bounce:    cubic-bezier(.34, 1.45, .5, 1);  /* rebond "Rapide" (Figma) — court, dépassement léger */
+  --dur-bounce:     .42s;
+
+  /* Glassmorphism (design system) — verre givré, à appliquer via .glass */
+  --glass-blur:     blur(14px) saturate(1.4);
+  --glass-edge:     rgba(255, 255, 255, 0.35);          /* liseré clair (bord de verre) */
+  --glass-sheen:    inset 0 1px 1px rgba(255, 255, 255, 0.5);  /* reflet supérieur */
+}
+
+/* ---------- 2. Reset léger ---------- */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+* { margin: 0; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  font-family: var(--font);
+  font-size: 16px;
+  line-height: 1.4;
+  color: var(--c-dark);
+  background: var(--bg-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img,
+svg { display: block; max-width: 100%; }
+
+img { height: auto; }
+
+ul { list-style: none; padding: 0; }
+
+a { text-decoration: none; color: inherit; }
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+/* ---------- 3. Utilitaires ---------- */
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--pad-x);
+}
+
+/* Bouton générique */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 7px 16px;
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+  white-space: nowrap;
+  transition: transform .3s cubic-bezier(.22, .61, .36, 1), box-shadow .3s ease,
+              background-color .3s ease, color .3s ease, border-color .3s ease;
+}
+.btn:hover { transform: translateY(-2px); }
+
+.btn--light {
+  background: var(--c-white);
+  color: var(--c-dark);
+}
+
+/* Sprite SVG caché */
+.svg-sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+
+/* Icônes (SVG inline via <use> -> recolorables par `color`/`fill`) */
+.icon {
+  display: inline-block;
+  flex-shrink: 0;
+  fill: currentColor;
+}
+.icon--burger  { width: 30px; height: 18px; }
+.icon--search  { width: 21px; height: 21px; }
+.icon--account { width: 22px; height: 22px; }
+.icon--book    { width: 22px; height: 22px; }
+
+/* Badge / tag */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 20px;
+  letter-spacing: .02em;
+  color: var(--c-white);
+}
+.badge--cortina { background: var(--c-blue); }
+.badge--milan   { background: var(--c-red); }
+.badge__sep {
+  width: 9px;
+  height: 1px;
+  background: currentColor;
+}
+
+/* =========================================================
+   TITRE DE SECTION (logo montagne estompé + texte penché)
+   Réutilisé dans toutes les sections : NOS ACTUALITÉS, NOS SPORTS…
+   ========================================================= */
+.section-title {
+  display: inline-flex;
+  align-items: center;
+}
+.section-title__logo {
+  flex: none;
+  width: 130px;
+  aspect-ratio: 135 / 117;
+  margin-right: -55px;
+  fill: var(--c-red);
+  opacity: .20;
+}
+.section-title__text {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  transform: rotate(-8.64deg);
+  color: var(--c-dark);
+  line-height: .95;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.section-title__small { font-weight: 600; font-size: 20px; }
+.section-title__big   { font-weight: 900; font-size: 60px; }
+
+/* variante compacte (panneaux latéraux) */
+.section-title--sm .section-title__logo { width: 90px; margin-right: -42px; }
+.section-title--sm .section-title__text  { line-height: 1.08; gap: 2px; }
+.section-title--sm .section-title__small { font-size: 13px; }
+.section-title--sm .section-title__big   { font-size: 46px; }
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+.site-header {
+  position: relative;
+  padding-bottom: 50px;
+  color: var(--c-white);
+  background: linear-gradient(
+    180deg,
+    var(--c-dark) 0%,
+    rgba(51, 75, 124, 0.58) 68%,
+    rgba(75, 111, 183, 0) 100%
+  );
+}
+
+/* ----- Bandeau rouge ----- */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 18px 46px;
+  background: var(--c-red);
+}
+.topbar__dates {
+  font-weight: 700;
+  color: var(--c-text-light);
+}
+
+.lang-switch {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  font-weight: 700;
+  color: var(--c-text-light);
+}
+.lang-switch li {
+  position: relative;
+  opacity: .85;
+}
+/* petit point séparateur entre les langues */
+.lang-switch li:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  right: -13px;
+  top: 50%;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: currentColor;
+  transform: translateY(-50%);
+}
+.lang-switch .is-active { opacity: 1; }
+
+/* conteneur interne (menu + hero) */
+.header__inner {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding: 95px var(--pad-x) 0;
+}
+
+/* ----- Menu de navigation ----- */
+.main-nav { margin-bottom: 95px; }
+
+.main-nav__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  padding: 0 16px;
+  height: 69px;
+  border-radius: 20px;
+  background: var(--glass);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
+.nav-burger { display: inline-flex; }
+
+/* display:contents -> les liens deviennent frères directs de la barre,
+   donc tous les éléments du menu partagent le même espacement (space-between) */
+.nav-links {
+  display: contents;
+  font-weight: 700;
+}
+.nav-links a { transition: opacity .15s ease; }
+.nav-links a:hover { opacity: .7; }
+
+/* Logo central qui déborde de la barre */
+.nav-logo {
+  flex-shrink: 0;
+  margin-block: -45px;   /* déborde au-dessus et en dessous */
+}
+.nav-logo img { width: 130px; height: auto; }
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.nav-icon { display: inline-flex; transition: opacity .15s ease; }
+.nav-icon:hover { opacity: .7; }
+
+/* ----- Cover / Hero ----- */
+.hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 586px;
+  padding: 50px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.25);
+}
+.hero__media {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+.hero__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/* dégradé sombre pour la lisibilité du texte */
+.hero__media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    270deg,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(33, 49, 81, 0.8) 85%
+  );
+}
+
+.hero__content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.hero__title {
+  max-width: 360px;
+  font-size: 34px;
+  font-weight: 700;
+  line-height: 1.15;
+  text-transform: uppercase;
+}
+
+.hero__more {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-style: italic;
+  transition: gap .15s ease;
+}
+.hero__more:hover { gap: 12px; }
+
+/* =========================================================
+   SECTION NOS ACTUALITÉS
+   ========================================================= */
+.actus { padding-block: 40px; }
+.actus__inner {
+  display: flex;
+  align-items: stretch;
+  gap: 20px;
+  max-width: var(--container);
+  margin-inline: auto;
+}
+.actus__left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 55px;
+  padding: 0 50px;
+  min-width: 0;
+}
+
+/* grille de 4 cartes */
+.actus__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+.news-card {
+  position: relative;
+  aspect-ratio: 385 / 254;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  color: #000;
+}
+.news-card > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.news-card__tag {
+  position: absolute;
+  top: 23px;
+  left: 20px;
+  padding: 3px 20px;
+  border-radius: 3px;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--c-white);
+  background: var(--c-blue);
+}
+.news-card__title {
+  position: absolute;
+  left: 20px;
+  bottom: 22px;
+  max-width: 310px;
+  padding: 16px;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.6);
+  font-weight: 700;
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+}
+
+/* panneau latéral droit */
+.actus__panel {
+  flex: none;
+  width: 392px;
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+  padding: 40px 26px 47px 50px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: var(--radius-sm);
+}
+
+/* liste des prochaines épreuves */
+.events {
+  display: flex;
+  flex-direction: column;
+  width: 283px;
+  max-height: 255px;
+  overflow-y: auto;
+  padding: 12px;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.1);
+}
+.event {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+}
+.event + .event { border-top: 1px solid rgba(33, 49, 81, 0.15); }
+.event__date {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 78px;
+  height: 60px;
+  border-radius: var(--radius-sm);
+  background: #181f39;
+  color: var(--c-white);
+}
+.event__day   { font-size: 22px; font-weight: 600; line-height: 1; }
+.event__month { font-size: 14px; color: #c4c4c4; }
+.event__name   { font-size: 16px; font-weight: 600; color: #000; }
+.event__detail { font-size: 12px; color: #000; }
+
+/* tableau des médailles */
+.medals {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  color: #000;
+}
+.medals th {
+  font-family: 'Inter', var(--font);
+  font-size: 14px;
+  font-weight: 500;
+  color: #736a6a;
+  text-align: left;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(33, 49, 81, 0.15);
+}
+.medals td { padding: 6px 0; }
+.medals tbody tr td:first-child { color: #736a6a; font-weight: 500; }
+.medals .medals__country { display: flex; align-items: center; gap: 12px; }
+.medals .medals__country img {
+  width: 24px;
+  height: 16px;
+  border-radius: 4px;
+  object-fit: cover;
+}
+.medals .is-total { opacity: .41; }
+.medal-dot {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+.medal-dot--gold   { background: var(--c-gold); }
+.medal-dot--silver { background: #c4c4c4; }
+.medal-dot--bronze { background: #e0a270; }
+.medals .icon-total { width: 15px; height: 14px; }
+
+/* =========================================================
+   SECTION LES SPORTS
+   ========================================================= */
+.sports {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  padding-top: 40px;
+}
+.sports__head {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: 50px;
+}
+
+/* bandeau gris en diagonale + carrousel */
+.sports__ribbon {
+  position: relative;
+  padding-block: 45px;
+  overflow: hidden;
+}
+.sports__band {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 160vw;
+  min-width: 1806px;
+  height: 235px;
+  transform: translate(-50%, -50%) rotate(-2.4deg) skewX(4.7deg);
+  /* navy stylisé (même base que Olympic Journey) */
+  background: linear-gradient(125deg, #2c3f68 0%, var(--c-dark) 55%, #1b2843 100%);
+}
+/* fines bandes claires au-dessus / en dessous pour l'effet ruban */
+.sports__band::before,
+.sports__band::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 40px;
+  background: #34487a;
+}
+.sports__band::before { top: -58px;    opacity: .35; }
+.sports__band::after  { bottom: -58px; opacity: .35; }
+
+/* piste de cartes (droite, scroll horizontal) */
+/* conteneur centré : flèches | piste | flèches */
+.sports__carousel {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;          /* flèches centrées sur la hauteur des cartes */
+  justify-content: center;      /* carrousel centré sur la page */
+  gap: 28px;                     /* écart flèches <-> cartes */
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: 16px;
+}
+.sports__track {                /* fenêtre : 4 cartes visibles, le reste masqué */
+  width: min(970px, 100%);      /* 4×212 + 3×30 + 2×16 de respiration latérale */
+  padding-inline: 16px;         /* respiration : les ombres des cartes de bord s'y affichent */
+  overflow-x: clip;             /* masque les cartes hors-champ (clip au bord du padding) */
+  overflow-y: visible;          /* laisse passer les ombres (haut / bas) */
+}
+.sports__rail {
+  display: flex;
+  gap: 30px;
+  transition: transform var(--dur-bounce) var(--ease-bounce);  /* rebond au défilement */
+  will-change: transform;
+}
+
+.sport-card {
+  position: relative;
+  flex: none;
+  width: 212px;
+  height: 212px;
+  border-radius: 18px;
+  /* verre givré : fond translucide + flou de l'arrière-plan (le picto, au premier plan, reste net) */
+  background: linear-gradient(135deg, rgba(238, 247, 255, 0.45), rgba(238, 247, 255, 0.1));
+  -webkit-backdrop-filter: blur(14px) saturate(1.4);
+          backdrop-filter: blur(14px) saturate(1.4);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18),
+              inset 0 1px 1px rgba(255, 255, 255, 0.55);   /* reflet de verre */
+  overflow: hidden;
+}
+.sport-card__media {
+  position: absolute;
+  inset: 0 0 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px;
+}
+.sport-card__media img { max-width: 100%; max-height: 100%; object-fit: contain; }
+.sport-card__foot {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 44px;
+  padding: 0 18px;
+  background: var(--c-epreuve-bg);
+}
+.sport-card__fav {
+  display: inline-flex;
+  color: var(--c-dark);
+  transition: transform .15s ease, color .15s ease;
+}
+.sport-card__fav:hover { transform: scale(1.15); color: var(--c-red); }
+.sport-card__fav.is-fav { color: var(--c-red); }
+.sport-card__name {
+  font-size: 16px;
+  font-weight: 700;
+  color: #000;
+  line-height: 1.05;
+}
+.icon--heart   { width: 18px; height: 18px; }
+.icon--chevron { width: 11px; height: 17px; }
+
+/* boutons chevrons */
+.sports__nav {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(33, 49, 81, 0.55);
+  color: var(--c-white);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  /* remontées de la moitié du pied (44px) pour viser le centre de l'illustration */
+  transform: translateY(-22px);
+  transition: background .15s ease;
+}
+.sports__nav:hover { background: rgba(33, 49, 81, 0.8); }
+.sports__nav--next .icon--chevron { transform: scaleX(-1); }
+
+/* =========================================================
+   SECTION NOS AMBIANCES
+   ========================================================= */
+.ambiances {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  padding-top: 40px;
+}
+.ambiances__head {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: 44px;
+}
+.ambiances__ribbon {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  padding-block: 35px;
+  overflow: hidden;
+}
+.ambiances__band {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 160vw;
+  min-width: 1806px;
+  height: 560px;
+  transform: translate(-50%, -50%) rotate(-2.4deg) skewX(4.7deg);
+  background: var(--c-blue);
+  opacity: .9;
+}
+.ambiances__band::before,
+.ambiances__band::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 40px;
+  background: var(--c-blue);
+  opacity: .4;
+}
+.ambiances__band::before { top: -72px; }
+.ambiances__band::after  { bottom: -72px; }
+
+.ambiances__cities {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  gap: 120px;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 30px;
+}
+.ambiances__cities figure {
+  position: relative;
+  isolation: isolate;          /* contient le mix-blend de la teinte */
+  margin: 0;
+  width: 453px;
+  max-width: 100%;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+  outline-offset: 4px;
+}
+.ambiances__cities img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 453 / 561;
+  object-fit: cover;
+}
+
+/* Teinte bleue (duotone) qui s'efface au survol -> photo en couleur */
+.ville__tint {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: var(--c-blue);
+  mix-blend-mode: color;
+  opacity: 1;
+  transition: opacity .55s ease;
+  pointer-events: none;
+}
+.ville:hover .ville__tint,
+.ville:focus-within .ville__tint { opacity: 0; }
+
+/* Nom de la ville révélé au survol */
+.ville__name {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 52px 24px 22px;
+  font-weight: 900;
+  font-size: 30px;
+  color: #fff;
+  background: linear-gradient(transparent, rgba(11, 21, 40, 0.72));
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity .35s ease, transform .35s ease;
+  pointer-events: none;
+}
+.ville__name::before {
+  content: "";
+  flex: none;
+  width: 6px;
+  height: 30px;
+  border-radius: 3px;
+  background: var(--accent, #fff);
+}
+.ville--milan   { --accent: var(--c-red); }
+.ville--cortina { --accent: var(--c-blue); }
+.ambiances__cities figure:hover .ville__name,
+.ambiances__cities figure:focus-visible .ville__name,
+.ambiances__cities figure:focus-within .ville__name {
+  opacity: 1;
+  transform: none;
+}
+
+/* =========================================================
+   SECTION APPLICATION (Olympic Journey)
+   ========================================================= */
+.app {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 42px;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 44px;
+  background: var(--c-dark);
+  color: var(--c-text-light);
+}
+.app__intro {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  align-items: flex-start;
+  width: 607px;
+  max-width: 100%;
+}
+
+/* logo Olympic Journey */
+.app-logo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.app-logo__mark {
+  flex: none;
+  width: 120px;
+  aspect-ratio: 135 / 117;
+  fill: var(--c-text-light);
+}
+.app-logo__text { display: flex; flex-direction: column; align-items: center; line-height: .9; }
+.app-logo__top { font-weight: 300; font-size: 54px; letter-spacing: 3px; color: var(--c-text-light); }
+.app-logo__main { font-weight: 900; font-size: 60px; color: var(--c-text-light); }
+.app-logo__sub { font-weight: 300; font-size: 26px; letter-spacing: 1px; color: var(--c-white); }
+
+.app__quote {
+  max-width: 430px;
+  font-weight: 900;
+  font-size: 22px;
+  color: var(--c-blue);
+}
+.app__desc {
+  max-width: 576px;
+  font-weight: 400;
+  font-size: 16px;
+}
+.app__actions { display: flex; flex-wrap: wrap; gap: 20px; }
+.btn--lg {
+  padding: 20px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font);
+  font-weight: 900;
+  font-size: 22px;
+}
+/* Bouton or : se soulève + halo doré */
+.btn--gold { background: var(--c-gold); color: var(--c-dark); }
+.btn--gold:hover,
+.btn--gold:focus-visible {
+  box-shadow: 0 12px 28px rgba(255, 215, 0, 0.45);
+  filter: brightness(1.05);
+}
+
+/* Bouton contour : remplissage clair qui balaie depuis la gauche */
+.btn--outline {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background: transparent;
+  color: var(--c-text-light);
+  border: 2px solid var(--c-text-light);
+}
+.btn--outline::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--c-text-light);
+  transform: translateX(-101%);
+  transition: transform .42s cubic-bezier(.4, 0, .2, 1);
+}
+.btn--outline:hover,
+.btn--outline:focus-visible { color: var(--c-dark); }
+.btn--outline:hover::before,
+.btn--outline:focus-visible::before { transform: translateX(0); }
+
+/* étapes numérotées */
+.app__steps {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 540px;
+  max-width: 100%;
+}
+/* =========================================================
+   COMPOSANT RÉUTILISABLE : carte d'info en verre (chiffre OU icône)
+   Variantes : --steps (Olympic Journey, chiffre) / --feature (Durabilité, icône)
+   Même verre, même accent or au survol, même animation ; taille différente.
+   ========================================================= */
+.info-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 26px;
+  border-radius: 8px;
+  background: rgba(46, 62, 96, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);  /* liseré "verre" en haut */
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  overflow: hidden;
+  transition: transform .45s cubic-bezier(.22, .61, .36, 1),
+              background-color .45s ease,
+              border-color .45s ease,
+              box-shadow .45s ease;
+}
+.info-card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 5px;
+  background-color: var(--c-blue);
+  border-radius: 0 4px 4px 0;
+  transition: width .45s cubic-bezier(.22, .61, .36, 1),
+              background-color .45s ease, box-shadow .45s ease;
+}
+.info-card:hover {
+  transform: translateY(-3px);                  /* léger soulèvement */
+  background-color: rgba(64, 82, 120, 0.5);     /* la vitre s'éclaircit */
+  border-color: rgba(255, 215, 0, 0.5);         /* liseré doré */
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.28),
+              inset 0 1px 0 rgba(255, 255, 255, 0.14);  /* reflet "verre" renforcé */
+}
+.info-card:hover::before {
+  background-color: var(--c-gold);                       /* accent or */
+  box-shadow: 0 0 12px rgba(255, 215, 0, 0.45);          /* glow doux et modéré */
+}
+.info-card__lead {
+  flex: none;
+  line-height: 1;
+  color: var(--c-blue);
+  transition: transform .45s cubic-bezier(.22, .61, .36, 1), color .45s ease;
+}
+.info-card:hover .info-card__lead { transform: scale(1.06); }
+/* le chiffre se dore au survol ; l'icône emoji garde sa couleur (juste l'échelle) */
+.info-card:hover .info-card__lead--num { color: var(--c-gold); }
+.info-card__title { color: var(--c-blue); margin-bottom: 6px; transition: color .45s ease; }
+.info-card__desc  { color: var(--c-text-light); }
+
+/* Variante chiffre / étapes (Olympic Journey) */
+.info-card--steps { min-height: 120px; }
+.info-card--steps .info-card__lead  { font-family: 'Inter', var(--font); font-weight: 700; font-size: 28px; }
+.info-card--steps .info-card__title { font-family: 'Inter', var(--font); font-weight: 700; font-size: 12px; letter-spacing: .03em; text-transform: uppercase; }
+.info-card--steps .info-card__desc  { font-family: 'Inter', var(--font); font-weight: 400; font-size: 13px; }
+
+/* Variante icône / feature (Durabilité) — plus grande */
+.info-card--feature {
+  width: 374px;
+  max-width: 100%;
+  min-height: 190px;
+  gap: 16px;
+}
+.info-card--feature .info-card__lead  { font-size: 30px; }
+.info-card--feature .info-card__title { font-weight: 900; font-size: 22px; margin-bottom: 12px; }
+.info-card--feature .info-card__desc  { font-weight: 600; font-size: 14px; line-height: 1.5; }
+
+/* =========================================================
+   SECTION CALENDRIER OFFICIEL
+   ========================================================= */
+.calendar {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  padding: 50px 0 60px;
+  overflow: hidden;
+  background: var(--bg-body);   /* même couleur que la page -> pas de bloc qui tranche */
+  color: #000;
+}
+/* contenu aligné sur la largeur des autres sections */
+.calendar > :not(.calendar__bg) {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: 44px;
+}
+.calendar__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.calendar__bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: .4;
+}
+.calendar__bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  /* l'image se fond dans la page : transparent au centre -> couleur de page en haut et en bas */
+  background: linear-gradient(180deg,
+    var(--bg-body) 0%,
+    rgba(238, 247, 255, 0) 28%,
+    rgba(238, 247, 255, 0) 60%,
+    var(--bg-body) 92%);
+}
+.calendar > *:not(.calendar__bg) { position: relative; z-index: 1; }
+
+.calendar__intro {
+  max-width: 1082px;
+  font-weight: 900;
+  font-size: 22px;
+}
+.calendar__dates {
+  display: flex;
+  gap: 34px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.cal-date {
+  flex: 1 1 230px;
+  max-width: 295px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 36px;
+  text-align: center;
+}
+.cal-date__num { font-weight: 900; font-size: 70px; line-height: 1; }
+.cal-date__body { display: flex; flex-direction: column; gap: 10px; }
+.cal-date__month { font-weight: 700; font-size: 34px; }
+.cal-date__desc { font-weight: 400; font-size: 16px; }
+
+/* =========================================================
+   SECTION AU SERVICE DE LA DURABILITÉ
+   ========================================================= */
+.durability {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  padding-top: 40px;
+}
+.durability__head {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: 44px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+.durability__intro {
+  max-width: 1188px;
+  font-weight: 900;
+  font-size: 22px;
+  color: #000;
+}
+.durability__ribbon {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  padding-block: 35px;
+  overflow: hidden;
+}
+.durability__band {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 160vw;
+  min-width: 1806px;
+  height: 250px;
+  transform: translate(-50%, -50%) rotate(-2.4deg) skewX(4.7deg);
+  /* navy stylisé (même base que Olympic Journey) */
+  background: linear-gradient(125deg, #2c3f68 0%, var(--c-dark) 55%, #1b2843 100%);
+}
+.durability__band::before,
+.durability__band::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 40px;
+  background: #34487a;
+  opacity: .4;
+}
+.durability__band::before { top: -64px; }
+.durability__band::after  { bottom: -64px; }
+.durability__cards {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  gap: 39px;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 20px;
+}
+/* (les cartes Durabilité utilisent désormais le composant .info-card--feature) */
+/* Durabilité : survol plus doux */
+.js .durability__cards .info-card {
+  transition: transform .6s ease, background-color .6s ease,
+              border-color .6s ease, box-shadow .6s ease;
+}
+.durability__cards .info-card::before {
+  transition: width .6s ease, background-color .6s ease, box-shadow .6s ease;
+}
+.durability__cards .info-card__lead,
+.durability__cards .info-card__title {
+  transition: transform .6s ease, color .6s ease;
+}
+
+/* =========================================================
+   SECTION FAQ (accordéon natif <details>)
+   ========================================================= */
+.faq {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding-top: 40px;
+}
+.faq__head {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: 44px;
+}
+.faq__ribbon {
+  position: relative;
+  padding: 70px 0;
+  overflow: hidden;
+}
+/* bande cyan en léger biais qui couvre toute la hauteur du contenu */
+.faq__ribbon::before {
+  content: "";
+  position: absolute;
+  left: -5%;
+  right: -5%;
+  top: 0;
+  bottom: 0;
+  background: var(--c-blue);
+  transform: skewY(-2.2deg);
+  z-index: 0;
+}
+.faq__list {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 762px;
+  margin-inline: auto;
+  padding-inline: 24px;
+}
+.faq-item {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 30px;
+  overflow: hidden;
+}
+.faq-item__q {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 49px;
+  padding: 12px 20px;
+  cursor: pointer;
+  font-weight: 900;
+  font-size: 22px;
+  color: var(--c-text-light);
+}
+.faq-item__q::-webkit-details-marker { display: none; }
+.faq-chev {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 29px;
+  height: 29px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.15);
+  transition: transform var(--dur-bounce) var(--ease-bounce);  /* rebond (ouverture ET fermeture) */
+}
+.faq-chev .icon--chevron { transform: rotate(-90deg); }
+.faq-item[open] .faq-chev { transform: rotate(180deg); }
+.faq-item__a {
+  padding: 4px 24px 20px 30px;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 20px;
+  color: var(--c-text-light);
+}
+
+/* Animation d'ouverture/fermeture (Chrome moderne ; ignoré ailleurs -> bascule instantanée) */
+:root { interpolate-size: allow-keywords; }
+.faq-item::details-content {
+  block-size: 0;
+  overflow: clip;
+  /* rebond "Rapide" sur ouverture ET fermeture (token réutilisable) */
+  transition: block-size var(--dur-bounce) var(--ease-bounce),
+              content-visibility var(--dur-bounce) allow-discrete;
+}
+.faq-item[open]::details-content { block-size: auto; }
+.faq-item__a p { margin-bottom: 12px; }
+.faq-item__a p:last-child { margin-bottom: 0; }
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+.site-footer { color: #fff; }
+
+/* bandeau partenaires */
+.footer-partners {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px 24px;
+  /* barre pleine largeur, mais logos alignés sur le conteneur de la page */
+  padding: 21px max(44px, calc((100% - var(--container)) / 2 + 44px));
+  background: var(--c-blue);
+}
+.footer-partners img {
+  height: 56px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* zone principale */
+.footer-main {
+  position: relative;
+  padding: 50px 0;
+  overflow: hidden;
+}
+.footer-main__bg { position: absolute; inset: 0; z-index: 0; }
+.footer-main__bg img { width: 100%; height: 100%; object-fit: cover; opacity: .6; }
+.footer-main__bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.8), rgba(24, 31, 57, 0.85));
+}
+.footer-main__inner {
+  position: relative;
+  z-index: 1;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: 44px;        /* aligné sur les autres sections */
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+.footer-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 26px;
+  border-radius: var(--radius-sm);
+  background: rgba(24, 31, 57, 0.25);
+  font-weight: 900;
+  font-size: 22px;
+  color: #fff;
+  align-self: flex-start;
+  transition: background .15s ease;
+}
+.footer-cta:hover { background: rgba(24, 31, 57, 0.45); }
+
+.footer-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px 66px;
+  align-items: flex-start;
+  justify-content: space-between;   /* brand + colonnes répartis sur toute la largeur */
+}
+.footer-brand { display: flex; gap: 40px; align-items: flex-end; }
+.footer-brand__logo { width: 130px; }
+.footer-brand__qr {
+  width: 130px;
+  height: 130px;
+  border-radius: 20px;
+}
+/* la nav ne forme plus un bloc : ses 3 colonnes participent à la répartition */
+.footer-nav { display: contents; }
+.footer-col h3 {
+  font-weight: 900;
+  font-size: 22px;
+  color: var(--c-text-light);
+  margin-bottom: 10px;
+}
+.footer-col a {
+  display: block;
+  font-weight: 600;
+  font-size: 13px;
+  color: #fff;
+  padding: 4px 0;
+  transition: opacity .15s ease;
+}
+.footer-col a:hover { opacity: .7; }
+
+.footer-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px 40px;
+  padding: 12px 34px;
+  border-radius: 15px;
+  background: rgba(24, 31, 57, 0.3);
+}
+.footer-bar__links { display: flex; gap: 58px; }
+.footer-bar__links a { font-weight: 900; font-size: 22px; color: #fff; }
+.footer-bar__copy { font-size: 13px; }
+
+/* =========================================================
+   ANIMATIONS
+   ========================================================= */
+
+/* 0. Rebond réutilisable (design system) — easing : var(--ease-bounce)
+   .bounce-in : apparition "pop" élastique sur n'importe quel élément */
+@keyframes bounce-in {
+  0%   { opacity: 0; transform: scale(.85); }
+  100% { opacity: 1; transform: scale(1); }
+}
+.bounce-in { animation: bounce-in var(--dur-bounce) var(--ease-bounce) both; }
+
+/* 1. Apparition au scroll (uniquement si JS actif) */
+.js .reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity .7s ease, transform .7s ease;
+  will-change: opacity, transform;
+}
+.js .reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Nos Ambiances : fondu + zoom + léger flou (esprit Smart Animate "dissolve")
+   avec dérive diagonale. Keyframes = lecture fiable de bout en bout. */
+.js .ambiances__cities figure.reveal { opacity: 0; }
+.js .ambiances__cities figure.reveal.is-visible {
+  animation: ambiance-in-left 1s cubic-bezier(.2, .75, .25, 1) both;
+}
+.js .ambiances__cities figure.reveal:nth-child(2).is-visible {
+  animation-name: ambiance-in-right;
+  animation-delay: .18s;
+}
+@keyframes ambiance-in-left {
+  0%   { opacity: 0; transform: scale(.82) translate(-34px, 46px) rotate(-2.2deg); filter: blur(7px); }
+  55%  { opacity: 1; }
+  100% { opacity: 1; transform: none; filter: blur(0); }
+}
+@keyframes ambiance-in-right {
+  0%   { opacity: 0; transform: scale(.82) translate(34px, 46px) rotate(2.2deg); filter: blur(7px); }
+  55%  { opacity: 1; }
+  100% { opacity: 1; transform: none; filter: blur(0); }
+}
+
+/* 2. Menu compact collant */
+.mininav {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 200;
+  background: rgba(33, 49, 81, 0.95);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.25);
+  transform: translateY(-100%);
+  transition: transform .35s ease;
+  color: var(--c-white);
+}
+.mininav.is-visible { transform: translateY(0); }
+.mininav__inner {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding: 8px 50px;
+}
+.mininav__logo img { height: 46px; width: auto; }
+.mininav__links {
+  display: flex;
+  gap: 28px;
+  margin-right: auto;
+  font-weight: 700;
+}
+.mininav__links a { transition: opacity .15s ease; }
+.mininav__links a:hover { opacity: .7; }
+.mininav .btn--light { padding: 6px 14px; }
+
+/* 3. Survols renforcés */
+.news-card > img { transition: transform .45s ease; }
+.news-card:hover > img { transform: scale(1.06); }
+
+.sport-card { transition: transform .2s ease, box-shadow .2s ease; }
+.sport-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.28),
+              inset 0 1px 1px rgba(255, 255, 255, 0.55);
+}
+
+.ambiances__cities img { transition: transform .5s ease, box-shadow .3s ease; }
+.ambiances__cities figure:hover img { transform: scale(1.03); }
+
+/* Cartes .info-card : apparition en cascade (glissement depuis la gauche).
+   fill `backwards` (pas `both`) -> ne verrouille pas le transform, le survol reste actif. */
+.js .info-card.reveal { opacity: 0; }
+/* la transition de survol doit primer sur celle du reveal générique (0.7s) */
+.js .info-card {
+  transition: transform .45s cubic-bezier(.22, .61, .36, 1),
+              background-color .45s ease, border-color .45s ease,
+              box-shadow .45s ease, color .45s ease;
+}
+.js .info-card.reveal.is-visible {
+  opacity: 1;
+  animation: card-in .6s cubic-bezier(.2, .7, .2, 1) backwards;
+}
+.js .info-card.reveal:nth-child(2).is-visible { animation-delay: .09s; }
+.js .info-card.reveal:nth-child(3).is-visible { animation-delay: .18s; }
+.js .info-card.reveal:nth-child(4).is-visible { animation-delay: .27s; }
+@keyframes card-in {
+  from { opacity: 0; transform: translateX(-45px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.sustain-card { transition: transform .2s ease; }
+.sustain-card:hover { transform: translateY(-4px); }
+
+.btn--gold:hover, .footer-cta:hover { box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25); }
+
+/* 4. Accessibilité : on coupe tout si l'utilisateur préfère moins de mouvement */
+@media (prefers-reduced-motion: reduce) {
+  .js .reveal { opacity: 1; transform: none; transition: none; }
+  .mininav { transition: none; }
+  .faq-item::details-content { transition: none; }
+  .faq-chev { transition: none; }
+  * { scroll-behavior: auto !important; }
+}
+
+/* =========================================================
+   GLASSMORPHISME RÉUTILISABLE (design system)
+   À ajouter sur tout élément translucide. Prime sur les
+   backdrop-filter individuels (placé en fin de feuille).
+   ========================================================= */
+.glass {
+  -webkit-backdrop-filter: var(--glass-blur);
+          backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-edge);
+  box-shadow: var(--glass-sheen);
+}
