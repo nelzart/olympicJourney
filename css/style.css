@@ -39,10 +39,11 @@
   --text-neutral-subtle:  var(--color-grey-500);
   --text-on-dark-default: var(--color-white);
   --text-on-dark-subtle:  var(--color-text-light);
-  --text-brand-milan:     var(--color-red-500);
-  --text-brand-cortina:   var(--color-blue-700);
-  --text-accent-default:  var(--color-gold-500);
-  --text-accent-strong:   var(--color-gold-700);
+  --text-brand-milan:        var(--color-red-500);
+  --text-brand-cortina:      var(--color-blue-500);   /* cyan vif (titres/accents) */
+  --text-brand-cortina-soft: var(--color-blue-700);   /* cyan lisible sur fond clair (tags soft) */
+  --text-accent-default:     var(--color-gold-500);
+  --text-accent-strong:      var(--color-gold-700);
 
   /* ---------- 3. Fonds (bg) ---------- */
   --bg-page:              var(--color-sky-50);
@@ -61,6 +62,8 @@
   --border-neutral-subtle:  rgba(33, 49, 81, 0.08);
   --border-neutral-default: rgba(33, 49, 81, 0.18);
   --border-glass:           rgba(255, 255, 255, 0.35);
+  --border-brand-cortina:   var(--color-blue-500);
+  --border-accent-default:  var(--color-gold-500);
   --border-accent-hover:    rgba(255, 215, 0, 0.5);
   --border-info-focus:      var(--color-blue-500);
   --ring-focus:             0 0 0 3px rgba(79, 168, 208, 0.25);
@@ -77,6 +80,20 @@
   --radius:      30px;
   --radius-sm:   10px;
   --radius-pill: 999px;
+
+  /* Échelle typographique (valeurs réelles du projet, nommage t-shirt) */
+  --fs-3xs:  11px;
+  --fs-2xs:  12px;
+  --fs-xs:   13px;
+  --fs-sm:   14px;
+  --fs-md:   15px;
+  --fs-base: 16px;
+  --fs-lg:   18px;
+  --fs-xl:   20px;
+  --fs-2xl:  22px;
+  --fs-3xl:  24px;
+  --fs-4xl:  30px;
+  --fs-5xl:  34px;
 
   /* ---------- 7. Mouvement (intentions d'animation) ---------- */
   --ease-bounce: cubic-bezier(.34, 1.45, .5, 1);  /* rebond court (Figma "Rapide") */
@@ -116,9 +133,9 @@ html { -webkit-text-size-adjust: 100%; }
 
 body {
   font-family: var(--font);
-  font-size: 16px;
+  font-size: var(--fs-base);
   line-height: 1.4;
-  color: var(--c-dark);
+  color: var(--text-primary-default);
   background: var(--bg-body);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
@@ -165,7 +182,7 @@ button {
 
 .btn--light {
   background: var(--c-white);
-  color: var(--c-dark);
+  color: var(--text-primary-default);
 }
 
 /* Sprite SVG caché */
@@ -191,16 +208,16 @@ button {
   gap: 8px;
   padding: 7px 18px;
   border-radius: var(--radius-sm);
-  font-size: 13px;
+  font-size: var(--fs-xs);
   font-weight: 700;
   line-height: 1.2;
   letter-spacing: .03em;
   text-transform: uppercase;
-  color: var(--c-white);
-  background: var(--c-blue);          /* cyan par défaut */
+  color: var(--text-on-dark-default);
+  background: var(--bg-brand-cortina);          /* cyan par défaut */
 }
-.tag--milan   { background: var(--c-red); }
-.tag--cortina { background: var(--c-blue); }
+.tag--milan   { background: var(--bg-brand-milan); }
+.tag--cortina { background: var(--bg-brand-cortina); }
 .tag__sep { width: 9px; height: 1px; background: currentColor; opacity: .85; }
 
 /* =========================================================
@@ -224,18 +241,18 @@ button {
   display: flex;
   flex-direction: column;
   transform: rotate(-8.64deg);
-  color: var(--c-dark);
+  color: var(--text-primary-default);
   line-height: 1.05;          /* interlignage unifié dans tout le site */
   text-transform: uppercase;
   white-space: nowrap;
 }
-.section-title__small { font-weight: 600; font-size: 20px; }
+.section-title__small { font-weight: 600; font-size: var(--fs-xl); }
 .section-title__big   { font-weight: 900; font-size: 60px; }
 
 /* variante compacte (panneaux latéraux) */
 .section-title--sm .section-title__logo { width: 90px; margin-right: -42px; }
 .section-title--sm .section-title__text  { gap: 2px; }
-.section-title--sm .section-title__small { font-size: 13px; }
+.section-title--sm .section-title__small { font-size: var(--fs-xs); }
 .section-title--sm .section-title__big   { font-size: 46px; }
 
 /* =========================================================
@@ -244,7 +261,7 @@ button {
 .site-header {
   position: relative;
   padding-bottom: 50px;
-  color: var(--c-white);
+  color: var(--text-on-dark-default);
   background: linear-gradient(
     180deg,
     var(--c-dark) 0%,
@@ -260,11 +277,11 @@ button {
   justify-content: space-between;
   gap: 24px;
   padding: 18px 46px;
-  background: var(--c-red);
+  background: var(--bg-brand-milan);
 }
 .topbar__dates {
   font-weight: 700;
-  color: var(--c-text-light);
+  color: var(--text-on-dark-subtle);
 }
 
 .lang-switch {
@@ -272,7 +289,7 @@ button {
   align-items: center;
   gap: 22px;
   font-weight: 700;
-  color: var(--c-text-light);
+  color: var(--text-on-dark-subtle);
 }
 .lang-switch li {
   position: relative;
@@ -388,7 +405,7 @@ button {
 
 .hero__title {
   max-width: 360px;
-  font-size: 34px;
+  font-size: var(--fs-5xl);
   font-weight: 700;
   line-height: 1.15;
   text-transform: uppercase;
@@ -503,23 +520,23 @@ button {
   height: 60px;
   border-radius: var(--radius-sm);
   background: #181f39;
-  color: var(--c-white);
+  color: var(--text-on-dark-default);
 }
-.event__day   { font-size: 22px; font-weight: 600; line-height: 1; }
-.event__month { font-size: 14px; color: #c4c4c4; }
-.event__name   { font-size: 16px; font-weight: 600; color: #000; }
-.event__detail { font-size: 12px; color: #000; }
+.event__day   { font-size: var(--fs-2xl); font-weight: 600; line-height: 1; }
+.event__month { font-size: var(--fs-sm); color: #c4c4c4; }
+.event__name   { font-size: var(--fs-base); font-weight: 600; color: #000; }
+.event__detail { font-size: var(--fs-2xs); color: #000; }
 
 /* tableau des médailles */
 .medals {
   width: 100%;
   border-collapse: collapse;
-  font-size: 12px;
+  font-size: var(--fs-2xs);
   color: #000;
 }
 .medals th {
   font-family: 'Inter', var(--font);
-  font-size: 14px;
+  font-size: var(--fs-sm);
   font-weight: 500;
   color: #736a6a;
   text-align: left;
@@ -543,7 +560,7 @@ button {
   border-radius: 50%;
   vertical-align: middle;
 }
-.medal-dot--gold   { background: var(--c-gold); }
+.medal-dot--gold   { background: var(--bg-accent-default); }
 .medal-dot--silver { background: #c4c4c4; }
 .medal-dot--bronze { background: #e0a270; }
 .medals .icon-total { width: 15px; height: 14px; }
@@ -658,20 +675,20 @@ button {
 }
 .sport-card__fav {
   display: inline-flex;
-  color: var(--c-dark);
+  color: var(--text-primary-default);
   transition: transform .15s ease, color .15s ease;
 }
-.sport-card__fav:hover { transform: scale(1.15); color: var(--c-red); }
-.sport-card__fav.is-fav { color: var(--c-red); }
+.sport-card__fav:hover { transform: scale(1.15); color: var(--text-brand-milan); }
+.sport-card__fav.is-fav { color: var(--text-brand-milan); }
 .sport-card__name {
-  font-size: 16px;
+  font-size: var(--fs-base);
   font-weight: 700;
   color: #000;
   line-height: 1.05;
   text-decoration: none;
   transition: color .15s ease;
 }
-a.sport-card__name:hover { color: var(--c-red); }
+a.sport-card__name:hover { color: var(--text-brand-milan); }
 .icon--heart   { width: 18px; height: 18px; }
 .icon--chevron { width: 11px; height: 17px; }
 
@@ -685,7 +702,7 @@ a.sport-card__name:hover { color: var(--c-red); }
   height: 38px;
   border-radius: 50%;
   background: rgba(33, 49, 81, 0.55);
-  color: var(--c-white);
+  color: var(--text-on-dark-default);
   -webkit-backdrop-filter: blur(4px);
   backdrop-filter: blur(4px);
   /* remontées de la moitié du pied (44px) pour viser le centre de l'illustration */
@@ -725,7 +742,7 @@ a.sport-card__name:hover { color: var(--c-red); }
   min-width: 1806px;
   height: 560px;
   transform: translate(-50%, -50%) rotate(-2.4deg) skewX(4.7deg);
-  background: var(--c-blue);
+  background: var(--bg-brand-cortina);
   opacity: .9;
 }
 .ambiances__band::before,
@@ -735,7 +752,7 @@ a.sport-card__name:hover { color: var(--c-red); }
   left: 0;
   width: 100%;
   height: 40px;
-  background: var(--c-blue);
+  background: var(--bg-brand-cortina);
   opacity: .4;
 }
 .ambiances__band::before { top: -72px; }
@@ -773,14 +790,14 @@ a.sport-card__name:hover { color: var(--c-red); }
   width: 453px; max-width: 100%;
   border-radius: var(--radius);
 }
-.ville-link:focus-visible { outline: 3px solid var(--c-gold); outline-offset: 6px; border-radius: var(--radius); }
+.ville-link:focus-visible { outline: 3px solid var(--border-accent-default); outline-offset: 6px; border-radius: var(--radius); }
 
 /* Teinte bleue (duotone) qui s'efface au survol -> photo en couleur */
 .ville__tint {
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: var(--c-blue);
+  background: var(--bg-brand-cortina);
   mix-blend-mode: color;
   opacity: 1;
   transition: opacity .55s ease;
@@ -801,7 +818,7 @@ a.sport-card__name:hover { color: var(--c-red); }
   gap: 12px;
   padding: 52px 24px 22px;
   font-weight: 900;
-  font-size: 30px;
+  font-size: var(--fs-4xl);
   color: #fff;
   background: linear-gradient(transparent, rgba(11, 21, 40, 0.72));
   opacity: 0;
@@ -836,8 +853,8 @@ a.sport-card__name:hover { color: var(--c-red); }
   align-items: center;
   justify-content: center;
   padding: 60px 44px;
-  background: var(--c-dark);
-  color: var(--c-text-light);
+  background: var(--bg-primary-default);
+  color: var(--text-on-dark-subtle);
 }
 .app__intro {
   display: flex;
@@ -861,20 +878,20 @@ a.sport-card__name:hover { color: var(--c-red); }
   fill: var(--c-text-light);
 }
 .app-logo__text { display: flex; flex-direction: column; align-items: center; line-height: .9; }
-.app-logo__top { font-weight: 300; font-size: clamp(36px, 4.4vw, 54px); letter-spacing: 3px; color: var(--c-text-light); }
-.app-logo__main { font-weight: 900; font-size: clamp(40px, 5vw, 60px); color: var(--c-text-light); }
-.app-logo__sub { font-weight: 300; font-size: clamp(17px, 2.1vw, 26px); letter-spacing: 1px; color: var(--c-white); }
+.app-logo__top { font-weight: 300; font-size: clamp(36px, 4.4vw, 54px); letter-spacing: 3px; color: var(--text-on-dark-subtle); }
+.app-logo__main { font-weight: 900; font-size: clamp(40px, 5vw, 60px); color: var(--text-on-dark-subtle); }
+.app-logo__sub { font-weight: 300; font-size: clamp(17px, 2.1vw, 26px); letter-spacing: 1px; color: var(--text-on-dark-default); }
 
 .app__quote {
   max-width: 430px;
   font-weight: 900;
-  font-size: 22px;
-  color: var(--c-blue);
+  font-size: var(--fs-2xl);
+  color: var(--text-brand-cortina);
 }
 .app__desc {
   max-width: 576px;
   font-weight: 400;
-  font-size: 16px;
+  font-size: var(--fs-base);
 }
 .app__actions { display: flex; flex-wrap: wrap; gap: 20px; }
 .btn--lg {
@@ -882,10 +899,10 @@ a.sport-card__name:hover { color: var(--c-red); }
   border-radius: var(--radius-sm);
   font-family: var(--font);
   font-weight: 900;
-  font-size: 22px;
+  font-size: var(--fs-2xl);
 }
 /* Bouton or : se soulève + halo doré */
-.btn--gold { background: var(--c-gold); color: var(--c-dark); }
+.btn--gold { background: var(--bg-accent-default); color: var(--text-primary-default); }
 .btn--gold:hover,
 .btn--gold:focus-visible {
   box-shadow: 0 12px 28px rgba(255, 215, 0, 0.45);
@@ -898,7 +915,7 @@ a.sport-card__name:hover { color: var(--c-red); }
   overflow: hidden;
   isolation: isolate;
   background: transparent;
-  color: var(--c-text-light);
+  color: var(--text-on-dark-subtle);
   border: 2px solid var(--c-text-light);
 }
 .btn--outline::before {
@@ -911,7 +928,7 @@ a.sport-card__name:hover { color: var(--c-red); }
   transition: transform .42s cubic-bezier(.4, 0, .2, 1);
 }
 .btn--outline:hover,
-.btn--outline:focus-visible { color: var(--c-dark); }
+.btn--outline:focus-visible { color: var(--text-primary-default); }
 .btn--outline:hover::before,
 .btn--outline:focus-visible::before { transform: translateX(0); }
 
@@ -955,7 +972,7 @@ a.sport-card__name:hover { color: var(--c-red); }
   top: 0;
   bottom: 0;
   width: 5px;
-  background-color: var(--c-blue);
+  background-color: var(--bg-brand-cortina);
   border-radius: 0 4px 4px 0;
   transition: width .45s cubic-bezier(.22, .61, .36, 1),
               background-color .45s ease, box-shadow .45s ease;
@@ -968,26 +985,26 @@ a.sport-card__name:hover { color: var(--c-red); }
               inset 0 1px 0 rgba(255, 255, 255, 0.14);  /* reflet "verre" renforcé */
 }
 .info-card:hover::before {
-  background-color: var(--c-gold);                       /* accent or */
+  background-color: var(--bg-accent-default);                       /* accent or */
   box-shadow: 0 0 12px rgba(255, 215, 0, 0.45);          /* glow doux et modéré */
 }
 .info-card__lead {
   flex: none;
   line-height: 1;
-  color: var(--c-blue);
+  color: var(--text-brand-cortina);
   transition: transform .45s cubic-bezier(.22, .61, .36, 1), color .45s ease;
 }
 .info-card:hover .info-card__lead { transform: scale(1.06); }
 /* le chiffre se dore au survol ; l'icône emoji garde sa couleur (juste l'échelle) */
-.info-card:hover .info-card__lead--num { color: var(--c-gold); }
-.info-card__title { color: var(--c-blue); margin-bottom: 6px; transition: color .45s ease; }
-.info-card__desc  { color: var(--c-text-light); }
+.info-card:hover .info-card__lead--num { color: var(--text-accent-default); }
+.info-card__title { color: var(--text-brand-cortina); margin-bottom: 6px; transition: color .45s ease; }
+.info-card__desc  { color: var(--text-on-dark-subtle); }
 
 /* Variante chiffre / étapes (Olympic Journey) */
 .info-card--steps { min-height: 120px; }
 .info-card--steps .info-card__lead  { font-family: 'Inter', var(--font); font-weight: 700; font-size: 28px; }
-.info-card--steps .info-card__title { font-family: 'Inter', var(--font); font-weight: 700; font-size: 12px; letter-spacing: .03em; text-transform: uppercase; }
-.info-card--steps .info-card__desc  { font-family: 'Inter', var(--font); font-weight: 400; font-size: 13px; }
+.info-card--steps .info-card__title { font-family: 'Inter', var(--font); font-weight: 700; font-size: var(--fs-2xs); letter-spacing: .03em; text-transform: uppercase; }
+.info-card--steps .info-card__desc  { font-family: 'Inter', var(--font); font-weight: 400; font-size: var(--fs-xs); }
 
 /* Variante icône / feature (Durabilité) — plus grande */
 .info-card--feature {
@@ -996,9 +1013,9 @@ a.sport-card__name:hover { color: var(--c-red); }
   min-height: 190px;
   gap: 16px;
 }
-.info-card--feature .info-card__lead  { font-size: 30px; }
-.info-card--feature .info-card__title { font-weight: 900; font-size: 22px; margin-bottom: 12px; }
-.info-card--feature .info-card__desc  { font-weight: 600; font-size: 14px; line-height: 1.5; }
+.info-card--feature .info-card__lead  { font-size: var(--fs-4xl); }
+.info-card--feature .info-card__title { font-weight: 900; font-size: var(--fs-2xl); margin-bottom: 12px; }
+.info-card--feature .info-card__desc  { font-weight: 600; font-size: var(--fs-sm); line-height: 1.5; }
 
 /* =========================================================
    SECTION CALENDRIER OFFICIEL
@@ -1047,7 +1064,7 @@ a.sport-card__name:hover { color: var(--c-red); }
 .calendar__intro {
   max-width: 1082px;
   font-weight: 400;
-  font-size: 22px;
+  font-size: var(--fs-2xl);
 }
 .calendar__dates {
   display: flex;
@@ -1066,8 +1083,8 @@ a.sport-card__name:hover { color: var(--c-red); }
 }
 .cal-date__num { font-weight: 900; font-size: 70px; line-height: 1; }
 .cal-date__body { display: flex; flex-direction: column; gap: 10px; }
-.cal-date__month { font-weight: 700; font-size: 34px; }
-.cal-date__desc { font-weight: 400; font-size: 16px; }
+.cal-date__month { font-weight: 700; font-size: var(--fs-5xl); }
+.cal-date__desc { font-weight: 400; font-size: var(--fs-base); }
 
 /* =========================================================
    SECTION AU SERVICE DE LA DURABILITÉ
@@ -1090,7 +1107,7 @@ a.sport-card__name:hover { color: var(--c-red); }
 .durability__intro {
   max-width: 1188px;
   font-weight: 400;
-  font-size: 22px;
+  font-size: var(--fs-2xl);
   color: #000;
 }
 .durability__ribbon {
@@ -1174,7 +1191,7 @@ a.sport-card__name:hover { color: var(--c-red); }
   right: -5%;
   top: 0;
   bottom: 0;
-  background: var(--c-blue);
+  background: var(--bg-brand-cortina);
   transform: skewY(-2.2deg);
   z-index: 0;
 }
@@ -1203,8 +1220,8 @@ a.sport-card__name:hover { color: var(--c-red); }
   padding: 12px 20px;
   cursor: pointer;
   font-weight: 900;
-  font-size: 22px;
-  color: var(--c-text-light);
+  font-size: var(--fs-2xl);
+  color: var(--text-on-dark-subtle);
 }
 .faq-item__q::-webkit-details-marker { display: none; }
 .faq-chev {
@@ -1223,9 +1240,9 @@ a.sport-card__name:hover { color: var(--c-red); }
 .faq-item__a {
   padding: 4px 24px 20px 30px;
   font-weight: 600;
-  font-size: 13px;
+  font-size: var(--fs-xs);
   line-height: 20px;
-  color: var(--c-text-light);
+  color: var(--text-on-dark-subtle);
 }
 
 /* Animation d'ouverture/fermeture (Chrome moderne ; ignoré ailleurs -> bascule instantanée) */
@@ -1255,7 +1272,7 @@ a.sport-card__name:hover { color: var(--c-red); }
   gap: 16px 24px;
   /* barre pleine largeur, mais logos alignés sur le conteneur de la page */
   padding: 21px max(44px, calc((100% - var(--container)) / 2 + 44px));
-  background: var(--c-blue);
+  background: var(--bg-brand-cortina);
 }
 .footer-partners img {
   height: 56px;
@@ -1295,7 +1312,7 @@ a.sport-card__name:hover { color: var(--c-red); }
   border-radius: var(--radius-sm);
   background: rgba(24, 31, 57, 0.25);
   font-weight: 900;
-  font-size: 22px;
+  font-size: var(--fs-2xl);
   color: #fff;
   align-self: flex-start;
   transition: background .15s ease;
@@ -1320,14 +1337,14 @@ a.sport-card__name:hover { color: var(--c-red); }
 .footer-nav { display: contents; }
 .footer-col h3 {
   font-weight: 900;
-  font-size: 22px;
-  color: var(--c-text-light);
+  font-size: var(--fs-2xl);
+  color: var(--text-on-dark-subtle);
   margin-bottom: 10px;
 }
 .footer-col a {
   display: block;
   font-weight: 600;
-  font-size: 13px;
+  font-size: var(--fs-xs);
   color: #fff;
   padding: 4px 0;
   transition: opacity .15s ease;
@@ -1345,8 +1362,8 @@ a.sport-card__name:hover { color: var(--c-red); }
   background: rgba(24, 31, 57, 0.3);
 }
 .footer-bar__links { display: flex; gap: 58px; }
-.footer-bar__links a { font-weight: 900; font-size: 22px; color: #fff; }
-.footer-bar__copy { font-size: 13px; }
+.footer-bar__links a { font-weight: 900; font-size: var(--fs-2xl); color: #fff; }
+.footer-bar__copy { font-size: var(--fs-xs); }
 
 /* =========================================================
    ANIMATIONS
@@ -1404,7 +1421,7 @@ a.sport-card__name:hover { color: var(--c-red); }
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.25);
   transform: translateY(-100%);
   transition: transform .35s ease;
-  color: var(--c-white);
+  color: var(--text-on-dark-default);
 }
 .mininav.is-visible { transform: translateY(0); }
 .mininav__inner {
@@ -1498,10 +1515,10 @@ a.sport-card__name:hover { color: var(--c-red); }
   display: inline-block;
   padding: 14px 36px;
   border-radius: var(--radius-pill);
-  background: var(--c-blue);
-  color: var(--c-white);
+  background: var(--bg-brand-cortina);
+  color: var(--text-on-dark-default);
   font-weight: 700;
-  font-size: 20px;
+  font-size: var(--fs-xl);
   letter-spacing: 1px;
   box-shadow: 0 8px 22px rgba(0, 0, 0, 0.25);
 }
@@ -1534,13 +1551,13 @@ a.sport-card__name:hover { color: var(--c-red); }
   border-radius: var(--radius-pill);
   border: 1px solid rgba(33, 49, 81, 0.25);
   background: transparent;
-  color: var(--c-dark);
+  color: var(--text-primary-default);
   font: 700 15px var(--font);
   cursor: pointer;
   transition: background .15s ease, color .15s ease, border-color .15s ease;
 }
-.filter:hover { border-color: var(--c-blue); color: var(--c-blue); }
-.filter.is-active { background: var(--c-blue); border-color: var(--c-blue); color: var(--c-white); }
+.filter:hover { border-color: var(--border-brand-cortina); color: var(--text-brand-cortina); }
+.filter.is-active { background: var(--bg-brand-cortina); border-color: var(--border-brand-cortina); color: var(--text-on-dark-default); }
 .filters__search {
   margin-left: auto;
   display: flex;
@@ -1553,16 +1570,16 @@ a.sport-card__name:hover { color: var(--c-red); }
 }
 .filters__search input {
   border: 0; background: transparent; outline: none;
-  font: 400 14px var(--font); color: var(--c-dark); width: 150px;
+  font: 400 14px var(--font); color: var(--text-primary-default); width: 150px;
 }
-.filters__search .icon--search { width: 15px; height: 17px; color: var(--c-legend); }
+.filters__search .icon--search { width: 15px; height: 17px; color: var(--text-neutral-subtle); }
 
 /* Grille de sports — réutilise .sport-card (remplit la colonne) */
 .sport-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
 .sport-grid .sport-card { width: auto; height: auto; aspect-ratio: 13 / 14; }
 /* masquage fiable pour le filtre (prime sur display:grid/none) */
 .sport-grid[hidden], .jeux__divider[hidden], .sport-card[hidden] { display: none; }
-.sport-empty { color: var(--c-legend); font-weight: 700; padding: 8px 2px; }
+.sport-empty { color: var(--text-neutral-subtle); font-weight: 700; padding: 8px 2px; }
 
 /* Séparateur « Sports paralympiques » */
 .jeux__divider {
@@ -1570,9 +1587,9 @@ a.sport-card__name:hover { color: var(--c-red); }
   align-items: center;
   gap: 14px;
   margin-top: 10px;
-  color: var(--c-dark);
+  color: var(--text-primary-default);
   font-weight: 700;
-  font-size: 15px;
+  font-size: var(--fs-md);
 }
 .jeux__divider::after { content: ""; flex: 1; height: 1px; background: var(--border-neutral-default); }
 
@@ -1580,20 +1597,20 @@ a.sport-card__name:hover { color: var(--c-red); }
 .section-header--center { text-align: center; max-width: 720px; margin-inline: auto; }
 .section-header__eyebrow {
   display: block;
-  color: var(--c-blue);
+  color: var(--text-brand-cortina);
   font-weight: 700;
-  font-size: 16px;
+  font-size: var(--fs-base);
   letter-spacing: 2px;
   text-transform: uppercase;
 }
 .section-header__title {
   margin-top: 16px;
-  color: var(--c-white);
+  color: var(--text-on-dark-default);
   font-weight: 900;
   font-size: 54px;
   line-height: 1.08;
 }
-.section-header__sub { margin-top: 16px; color: var(--c-legend); font-size: 16px; }
+.section-header__sub { margin-top: 16px; color: var(--text-neutral-subtle); font-size: var(--fs-base); }
 
 /* === Section Héritage (bandeau navy) + Timeline + Stats === */
 .heritage {
@@ -1620,8 +1637,8 @@ a.sport-card__name:hover { color: var(--c-red); }
   top: 26px;
   width: 22px; height: 22px;
   border-radius: 50%;
-  background: var(--c-dark);
-  border: 4px solid var(--c-blue);
+  background: var(--bg-primary-default);
+  border: 4px solid var(--border-brand-cortina);
   z-index: 2;
 }
 .tl-item--left  .tl-node { right: -11px; }
@@ -1650,21 +1667,21 @@ a.sport-card__name:hover { color: var(--c-red); }
   padding: 6px 16px;
   border-bottom-right-radius: var(--radius-sm);
   font-weight: 900;
-  color: var(--c-white);
-  background: var(--c-blue);
+  color: var(--text-on-dark-default);
+  background: var(--bg-brand-cortina);
 }
-.tl-year--gold { background: var(--c-gold); color: var(--c-dark); }
-.tl-year--red  { background: var(--c-red); }
+.tl-year--gold { background: var(--bg-accent-default); color: var(--text-primary-default); }
+.tl-year--red  { background: var(--bg-brand-milan); }
 .tl-card__body { padding: 18px 20px 22px; }
-.tl-card__title { color: var(--c-white); font-weight: 700; font-size: 17px; }
-.tl-card__text { margin-top: 8px; color: var(--c-text-light); font-size: 13px; line-height: 1.55; opacity: .82; }
+.tl-card__title { color: var(--text-on-dark-default); font-weight: 700; font-size: 17px; }
+.tl-card__text { margin-top: 8px; color: var(--text-on-dark-subtle); font-size: var(--fs-xs); line-height: 1.55; opacity: .82; }
 .tl-stats { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
 .tl-stat {
   padding: 5px 12px;
   border-radius: var(--radius-pill);
-  font-size: 12px;
+  font-size: var(--fs-2xs);
   font-weight: 700;
-  color: var(--c-text-light);
+  color: var(--text-on-dark-subtle);
   background: rgba(79, 168, 208, 0.16);
   border: 1px solid rgba(79, 168, 208, 0.35);
 }
@@ -1688,12 +1705,12 @@ a.sport-card__name:hover { color: var(--c-red); }
   box-shadow: 0 18px 42px rgba(0, 0, 0, 0.30),
               inset 0 1px 1px rgba(255, 255, 255, 0.18);
 }
-.tl-item:hover .tl-card__title { color: var(--c-gold); }
+.tl-item:hover .tl-card__title { color: var(--text-accent-default); }
 .tl-item:hover .tl-card__media img { transform: scale(1.04); }
 /* le nœud de la timeline s'allume au survol de la carte */
 .tl-item:hover .tl-node {
-  background: var(--c-gold);
-  border-color: var(--c-gold);
+  background: var(--bg-accent-default);
+  border-color: var(--border-accent-default);
   box-shadow: 0 0 16px rgba(255, 215, 0, 0.75);
   transform: scale(1.18);
 }
@@ -1730,12 +1747,12 @@ a.sport-card__name:hover { color: var(--c-red); }
   font-weight: 900;
   font-size: 64px;
   line-height: 1;
-  color: var(--c-blue);
+  color: var(--text-brand-cortina);
   transition: color .45s ease;
 }
-.stat-card:hover .stat-card__num { color: var(--c-gold); }
-.stat-card__label { margin-top: 10px; font-weight: 700; font-size: 24px; color: var(--c-white); }
-.stat-card__sub { margin-top: 6px; font-size: 13px; color: var(--c-legend); }
+.stat-card:hover .stat-card__num { color: var(--text-accent-default); }
+.stat-card__label { margin-top: 10px; font-weight: 700; font-size: var(--fs-3xl); color: var(--text-on-dark-default); }
+.stat-card__sub { margin-top: 6px; font-size: var(--fs-xs); color: var(--text-neutral-subtle); }
 
 /* =========================================================
    PAGE « APPLICATION » — composants
@@ -1785,7 +1802,7 @@ a.sport-card__name:hover { color: var(--c-red); }
 }
 .culture__group {
   width: 100%; max-width: var(--container); margin: 40px auto 14px; padding-inline: 50px;
-  font-weight: 900; font-size: 26px; color: var(--c-dark);
+  font-weight: 900; font-size: 26px; color: var(--text-primary-default);
 }
 .culture-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
 
@@ -1807,11 +1824,11 @@ a.sport-card__name:hover { color: var(--c-red); }
 .culture-card__tag { position: absolute; top: 14px; left: 14px; }
 .culture-card__body { display: flex; flex-direction: column; gap: 6px; padding: 18px 20px 22px; }
 .culture-card__label {
-  font-size: 11px; font-weight: 700; letter-spacing: .08em;
-  text-transform: uppercase; color: var(--c-legend);
+  font-size: var(--fs-3xs); font-weight: 700; letter-spacing: .08em;
+  text-transform: uppercase; color: var(--text-neutral-subtle);
 }
-.culture-card__title { font-weight: 900; font-size: 19px; color: var(--c-dark); }
-.culture-card__desc { font-size: 14px; line-height: 1.5; color: var(--text-primary-muted); }
+.culture-card__title { font-weight: 900; font-size: 19px; color: var(--text-primary-default); }
+.culture-card__desc { font-size: var(--fs-sm); line-height: 1.5; color: var(--text-primary-muted); }
 
 /* --- Les valeurs (bandeau navy, 3 colonnes) --- */
 .values {
@@ -1820,14 +1837,14 @@ a.sport-card__name:hover { color: var(--c-red); }
 }
 .values__inner { max-width: var(--container); margin-inline: auto; padding-inline: 50px; }
 .values__eyebrow {
-  color: var(--c-blue); font-weight: 700; font-size: 16px; letter-spacing: 2px;
+  color: var(--text-brand-cortina); font-weight: 700; font-size: var(--fs-base); letter-spacing: 2px;
   text-transform: uppercase; text-align: center; margin-bottom: 38px;
 }
 .values__grid { display: grid; grid-template-columns: repeat(3, 1fr); list-style: none; }
 .values__item { padding: 6px 42px; }
 .values__item + .values__item { border-left: 1px solid rgba(255, 255, 255, 0.14); }
-.values__title { color: var(--c-blue); font-weight: 900; font-size: 26px; margin-bottom: 14px; }
-.values__text { color: var(--c-text-light); font-size: 15px; line-height: 1.6; opacity: .85; }
+.values__title { color: var(--text-brand-cortina); font-weight: 900; font-size: 26px; margin-bottom: 14px; }
+.values__text { color: var(--text-on-dark-subtle); font-size: var(--fs-md); line-height: 1.6; opacity: .85; }
 
 /* --- Bandeau citation (photo + voile navy + texte) --- */
 .quote-banner {
@@ -1845,7 +1862,7 @@ a.sport-card__name:hover { color: var(--c-red); }
 .quote-banner__text {
   position: relative; z-index: 2;
   width: 100%; max-width: var(--container); margin-inline: auto; padding-inline: 50px;
-  color: var(--c-white); font-weight: 900; font-size: 38px; line-height: 1.25;
+  color: var(--text-on-dark-default); font-weight: 900; font-size: 38px; line-height: 1.25;
 }
 
 /* =========================================================
@@ -1864,12 +1881,12 @@ a.sport-card__name:hover { color: var(--c-red); }
 .sport-intro__main { flex: 1 1 480px; min-width: 0; }
 .sport-intro__title {
   display: flex; flex-direction: column;
-  font-weight: 900; font-size: 44px; line-height: 1.05; color: var(--c-white);
+  font-weight: 900; font-size: 44px; line-height: 1.05; color: var(--text-on-dark-default);
 }
-.sport-intro__sub { color: var(--c-blue); }
+.sport-intro__sub { color: var(--text-brand-cortina); }
 .sport-meta { list-style: none; display: flex; flex-wrap: wrap; gap: 14px 28px; margin-top: 26px; }
-.sport-meta li { display: inline-flex; align-items: center; gap: 10px; color: var(--c-text-light); font-weight: 600; font-size: 15px; }
-.sport-meta__ico { font-size: 18px; }
+.sport-meta li { display: inline-flex; align-items: center; gap: 10px; color: var(--text-on-dark-subtle); font-weight: 600; font-size: var(--fs-md); }
+.sport-meta__ico { font-size: var(--fs-lg); }
 
 .sport-intro__stats { display: flex; flex-direction: column; gap: 16px; flex: 0 0 256px; }
 .sport-stat {
@@ -1889,9 +1906,9 @@ a.sport-card__name:hover { color: var(--c-red); }
   box-shadow: 0 14px 32px rgba(0, 0, 0, 0.32),
               inset 0 1px 1px rgba(255, 255, 255, 0.55);
 }
-.sport-stat__num { font-weight: 900; font-size: 40px; line-height: 1; color: var(--c-gold); }
-.sport-stat__num span { font-size: 22px; }
-.sport-stat__label { margin-top: 8px; font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--c-text-light); opacity: .85; }
+.sport-stat__num { font-weight: 900; font-size: 40px; line-height: 1; color: var(--text-accent-default); }
+.sport-stat__num span { font-size: var(--fs-2xl); }
+.sport-stat__label { margin-top: 8px; font-size: var(--fs-2xs); font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--text-on-dark-subtle); opacity: .85; }
 
 /* --- Prochaines épreuves : liste sur bandeau navy --- */
 .epreuves { display: flex; flex-direction: column; gap: 25px; padding-top: 40px; }
@@ -1920,16 +1937,16 @@ a.sport-card__name:hover { color: var(--c-red); }
   background: rgba(255, 255, 255, 0.10);
   box-shadow: var(--glass-sheen), 0 0 14px rgba(255, 215, 0, 0.12);
 }
-.epreuve__phase { color: var(--c-blue); font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: .04em; }
-.epreuve__name { color: var(--c-white); font-weight: 700; font-size: 16px; }
-.epreuve__date { color: var(--c-text-light); font-size: 14px; opacity: .85; }
+.epreuve__phase { color: var(--text-brand-cortina); font-weight: 700; font-size: var(--fs-2xs); text-transform: uppercase; letter-spacing: .04em; }
+.epreuve__name { color: var(--text-on-dark-default); font-weight: 700; font-size: var(--fs-base); }
+.epreuve__date { color: var(--text-on-dark-subtle); font-size: var(--fs-sm); opacity: .85; }
 .epreuve__btn { justify-self: end; }
 
 /* --- La discipline : texte + image --- */
 .discipline { padding: 56px 0; }
 .discipline__inner { max-width: 1000px; margin-inline: auto; padding-inline: 50px; display: flex; flex-direction: column; gap: 30px; }
-.discipline__text h3 { font-weight: 900; font-size: 28px; color: var(--c-dark); margin-bottom: 18px; }
-.discipline__text p { color: var(--text-primary-subtle); font-size: 16px; line-height: 1.6; margin-bottom: 14px; max-width: 72ch; }
+.discipline__text h3 { font-weight: 900; font-size: 28px; color: var(--text-primary-default); margin-bottom: 18px; }
+.discipline__text p { color: var(--text-primary-subtle); font-size: var(--fs-base); line-height: 1.6; margin-bottom: 14px; max-width: 72ch; }
 .discipline__media { border-radius: var(--radius); overflow: hidden; aspect-ratio: 21 / 9; box-shadow: 0 12px 30px rgba(0, 0, 0, .18); }
 .discipline__media img { width: 100%; height: 100%; object-fit: cover; }
 
@@ -1946,14 +1963,14 @@ a.sport-card__name:hover { color: var(--c-red); }
 }
 .rule-card::before {
   content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 5px;
-  background: var(--c-blue); border-radius: 0 4px 4px 0;
+  background: var(--bg-brand-cortina); border-radius: 0 4px 4px 0;
   transition: background-color .45s ease, box-shadow .45s ease;
 }
 .rule-card:hover { transform: translateY(-4px); border-color: var(--border-accent-hover); box-shadow: 0 16px 32px rgba(0, 0, 0, .12); }
-.rule-card:hover::before { background: var(--c-gold); box-shadow: 0 0 12px rgba(255, 215, 0, .45); }
-.rule-card__ico { display: block; font-size: 30px; margin-bottom: 14px; }
-.rule-card__title { font-weight: 900; font-size: 18px; text-transform: uppercase; letter-spacing: .02em; color: var(--c-dark); margin-bottom: 8px; }
-.rule-card__desc { color: var(--text-primary-muted); font-size: 14px; line-height: 1.55; }
+.rule-card:hover::before { background: var(--bg-accent-default); box-shadow: 0 0 12px rgba(255, 215, 0, .45); }
+.rule-card__ico { display: block; font-size: var(--fs-4xl); margin-bottom: 14px; }
+.rule-card__title { font-weight: 900; font-size: var(--fs-lg); text-transform: uppercase; letter-spacing: .02em; color: var(--text-primary-default); margin-bottom: 8px; }
+.rule-card__desc { color: var(--text-primary-muted); font-size: var(--fs-sm); line-height: 1.55; }
 
 /* --- Informations pratiques : lignes icône + label + valeur --- */
 .facts { padding: 16px 0 56px; }
@@ -1965,9 +1982,9 @@ a.sport-card__name:hover { color: var(--c-red); }
   background: #fff; border: 1px solid var(--border-neutral-subtle);
   box-shadow: 0 6px 16px rgba(0, 0, 0, .05);
 }
-.fact__ico { flex: none; font-size: 24px; }
-.fact__label { color: var(--c-blue); font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: .05em; }
-.fact__value { color: var(--c-dark); font-size: 15px; font-weight: 600; margin-top: 2px; }
+.fact__ico { flex: none; font-size: var(--fs-3xl); }
+.fact__label { color: var(--text-brand-cortina); font-weight: 700; font-size: var(--fs-2xs); text-transform: uppercase; letter-spacing: .05em; }
+.fact__value { color: var(--text-primary-default); font-size: var(--fs-md); font-weight: 600; margin-top: 2px; }
 
 /* --- Les athlètes : bandeau navy + cartes photo --- */
 .athletes { display: flex; flex-direction: column; gap: 25px; padding-top: 16px; }
@@ -1997,8 +2014,8 @@ a.sport-card__name:hover { color: var(--c-red); }
 .athlete-card__media img { width: 100%; height: 100%; object-fit: cover; object-position: center top; transition: transform 1s cubic-bezier(.22, .61, .36, 1); }
 .athlete-card:hover .athlete-card__media img { transform: scale(1.05); }
 .athlete-card__foot { display: flex; flex-direction: column; gap: 2px; padding: 14px 16px; }
-.athlete-card__name { color: var(--c-white); font-weight: 700; font-size: 15px; }
-.athlete-card__country { display: flex; align-items: center; gap: 7px; color: var(--c-text-light); font-size: 12px; opacity: .85; }
+.athlete-card__name { color: var(--text-on-dark-default); font-weight: 700; font-size: var(--fs-md); }
+.athlete-card__country { display: flex; align-items: center; gap: 7px; color: var(--text-on-dark-subtle); font-size: var(--fs-2xs); opacity: .85; }
 /* drapeau du pays (image) */
 .athlete-card__flag {
   flex: none; width: 20px; height: 14px;
@@ -2035,13 +2052,13 @@ a.sport-card__name:hover { color: var(--c-red); }
    ========================================================= */
 
 /* Pastille hero aux couleurs de l'ambiance (Milan = rouge, Cortina = bleu) */
-.hero__pill--amb { background: var(--c-red); }
-.amb--cortina .hero__pill--amb { background: var(--c-blue); }
+.hero__pill--amb { background: var(--bg-brand-milan); }
+.amb--cortina .hero__pill--amb { background: var(--bg-brand-cortina); }
 
 /* --- Les sites olympiques : intro + carte + grille de sites --- */
 .sites { padding: 44px 0 56px; }
 .sites__inner { max-width: var(--container); margin-inline: auto; padding-inline: 50px; }
-.sites__intro { margin-top: 16px; max-width: none; color: var(--text-primary-subtle); font-size: 16px; line-height: 1.6; }
+.sites__intro { margin-top: 16px; max-width: none; color: var(--text-primary-subtle); font-size: var(--fs-base); line-height: 1.6; }
 .sites__map { margin: 30px 0 36px; border-radius: var(--radius); overflow: hidden; box-shadow: 0 10px 28px rgba(0, 0, 0, .12); }
 .sites__map img { display: block; width: 100%; height: auto; }
 
@@ -2058,11 +2075,11 @@ a.sport-card__name:hover { color: var(--c-red); }
 .venue-card:hover .venue-card__media img { transform: scale(1.05); }
 .venue-card__tag { position: absolute; top: 16px; left: 16px; }
 .venue-card__body { display: flex; flex-direction: column; padding: 20px 24px 24px; }
-.venue-card__sport { color: var(--c-blue); font-weight: 700; font-size: 14px; }
-.venue-card__name { color: var(--c-dark); font-weight: 900; font-size: 24px; margin: 4px 0 16px; }
+.venue-card__sport { color: var(--text-brand-cortina); font-weight: 700; font-size: var(--fs-sm); }
+.venue-card__name { color: var(--text-primary-default); font-weight: 900; font-size: var(--fs-3xl); margin: 4px 0 16px; }
 .venue-card__meta { display: flex; flex-wrap: wrap; gap: 8px 24px; padding-bottom: 14px; border-bottom: 1px solid rgba(33, 49, 81, .12); }
-.venue-card__stat { color: var(--c-dark); font-weight: 600; font-size: 14px; }
-.venue-card__access { margin-top: 14px; color: var(--text-primary-muted); font-size: 13px; line-height: 1.5; }
+.venue-card__stat { color: var(--text-primary-default); font-weight: 600; font-size: var(--fs-sm); }
+.venue-card__access { margin-top: 14px; color: var(--text-primary-muted); font-size: var(--fs-xs); line-height: 1.5; }
 
 /* --- Informations pratique : 3 cartes sur le bandeau d'ambiance --- */
 .practical { display: flex; flex-direction: column; gap: 25px; padding-top: 40px; }
@@ -2101,24 +2118,24 @@ a.sport-card__name:hover { color: var(--c-red); }
   background: rgba(33, 49, 81, 0.06);
   border: 1px solid var(--border-neutral-subtle);
 }
-.practical-card__title { color: var(--c-dark); font-weight: 900; font-size: 19px; }
+.practical-card__title { color: var(--text-primary-default); font-weight: 900; font-size: 19px; }
 .practical-card__body {
   flex: 1 1 auto;                              /* s'étire -> bas des cartes alignés */
   display: flex; flex-direction: column; gap: 16px;
   padding: 22px 24px 26px;
 }
 .practical-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
-.practical-list li { position: relative; padding-left: 26px; color: var(--text-primary-subtle); font-size: 14px; line-height: 1.5; }
-.practical-list li::before { content: "\2192"; position: absolute; left: 0; top: 0; color: var(--c-red); font-weight: 700; }
-.amb--cortina .practical-list li::before { color: var(--c-blue); }
+.practical-list li { position: relative; padding-left: 26px; color: var(--text-primary-subtle); font-size: var(--fs-sm); line-height: 1.5; }
+.practical-list li::before { content: "\2192"; position: absolute; left: 0; top: 0; color: var(--text-brand-milan); font-weight: 700; }
+.amb--cortina .practical-list li::before { color: var(--text-brand-cortina); }
 /* grille météo : pastilles douces */
 .weather-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
 .weather-stat {
   text-align: center; padding: 14px 8px; border-radius: var(--radius-sm);
   background: rgba(33, 49, 81, 0.05); border: 1px solid rgba(33, 49, 81, 0.06);
 }
-.weather-stat__num { font-weight: 900; font-size: 26px; color: var(--c-dark); line-height: 1; }
-.weather-stat__label { margin-top: 4px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; color: var(--c-legend); }
+.weather-stat__num { font-weight: 900; font-size: 26px; color: var(--text-primary-default); line-height: 1; }
+.weather-stat__label { margin-top: 4px; font-size: var(--fs-3xs); font-weight: 700; text-transform: uppercase; letter-spacing: .04em; color: var(--text-neutral-subtle); }
 
 /* --- Atmosphère : galerie photos (masonry) --- */
 .atmo { display: flex; flex-direction: column; gap: 25px; padding: 16px 0 60px; }
@@ -2185,7 +2202,7 @@ a.sport-card__name:hover { color: var(--c-red); }
 .auth-card__avatar svg { width: 40px; height: 40px; fill: #fff; }
 .auth-card__title {
   margin: 0;
-  font-weight: 900; font-size: 30px; line-height: 1.2; text-align: center;
+  font-weight: 900; font-size: var(--fs-4xl); line-height: 1.2; text-align: center;
   text-transform: uppercase;
 }
 .auth-social { display: flex; gap: 14px; }
@@ -2209,15 +2226,15 @@ a.sport-card__name:hover { color: var(--c-red); }
 }
 
 /* séparateur « Ou » */
-.auth-divider { display: flex; align-items: center; gap: 18px; color: var(--c-legend); }
+.auth-divider { display: flex; align-items: center; gap: 18px; color: var(--text-neutral-subtle); }
 .auth-divider::before,
 .auth-divider::after { content: ""; flex: 1; height: 1px; background: rgba(255, 255, 255, 0.25); }
-.auth-divider span { font-weight: 900; font-size: 15px; }
+.auth-divider span { font-weight: 900; font-size: var(--fs-md); }
 
 /* formulaire */
 .auth-form { display: flex; flex-direction: column; gap: 32px; }
 .field { display: flex; flex-direction: column; gap: 14px; }
-.field__label { font-weight: 500; font-size: 20px; color: #fff; }
+.field__label { font-weight: 500; font-size: var(--fs-xl); color: #fff; }
 .field__control {
   display: flex; align-items: center; gap: 16px;
   height: 48px; padding: 0 19px;
@@ -2227,31 +2244,31 @@ a.sport-card__name:hover { color: var(--c-red); }
   transition: border-color var(--dur-hover) ease, box-shadow var(--dur-hover) ease;
 }
 .field__control:focus-within {
-  border-color: var(--c-blue);
+  border-color: var(--border-brand-cortina);
   box-shadow: var(--ring-focus);
 }
-.field__ico { flex: none; width: 20px; height: 20px; fill: var(--c-legend); }
+.field__ico { flex: none; width: 20px; height: 20px; fill: var(--icon-neutral); }
 .field__input {
   flex: 1; min-width: 0;
   background: transparent; border: 0; outline: none;
-  color: #fff; font: inherit; font-size: 16px;
+  color: #fff; font: inherit; font-size: var(--fs-base);
 }
-.field__input::placeholder { color: var(--c-legend); }
+.field__input::placeholder { color: var(--text-neutral-subtle); }
 
 .auth-form__row { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
-.checkbox { display: inline-flex; align-items: center; gap: 13px; color: var(--c-legend); font-size: 16px; cursor: pointer; }
-.checkbox input { width: 16px; height: 16px; accent-color: var(--c-blue); cursor: pointer; }
-.auth-form__forgot { color: var(--c-legend); font-size: 16px; transition: color var(--dur-hover) ease; }
+.checkbox { display: inline-flex; align-items: center; gap: 13px; color: var(--text-neutral-subtle); font-size: var(--fs-base); cursor: pointer; }
+.checkbox input { width: 16px; height: 16px; accent-color: var(--text-brand-cortina); cursor: pointer; }
+.auth-form__forgot { color: var(--text-neutral-subtle); font-size: var(--fs-base); transition: color var(--dur-hover) ease; }
 .auth-form__forgot:hover { color: #fff; }
 
 .auth-form__submit {
   width: 100%; justify-content: center;
   padding: 15px;
   border-radius: var(--radius-sm);
-  font-weight: 700; font-size: 16px;
+  font-weight: 700; font-size: var(--fs-base);
 }
 
-.auth__copy { color: #fff; font-size: 13px; font-weight: 900; text-align: center; }
+.auth__copy { color: #fff; font-size: var(--fs-xs); font-weight: 900; text-align: center; }
 
 /* animations sobres : entrée en fondu + léger glissement */
 @keyframes auth-rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
@@ -2276,9 +2293,9 @@ a.sport-card__name:hover { color: var(--c-red); }
 }
 .stats-grid--4 { grid-template-columns: repeat(4, 1fr); max-width: var(--container); }
 .tickets__stats .stat-card { padding: 26px 20px; }
-.tickets__stats .stat-card__num { color: var(--c-gold); font-size: 54px; }
+.tickets__stats .stat-card__num { color: var(--text-accent-default); font-size: 54px; }
 .tickets__stats .stat-card__num--date { font-size: 44px; }
-.tickets__stats .stat-card__label { font-size: 16px; text-transform: uppercase; letter-spacing: .04em; color: var(--c-text-light); }
+.tickets__stats .stat-card__label { font-size: var(--fs-base); text-transform: uppercase; letter-spacing: .04em; color: var(--text-on-dark-subtle); }
 
 .tickets__inner { max-width: var(--container); margin: 40px auto 70px; padding-inline: 50px; }
 
@@ -2290,15 +2307,15 @@ a.sport-card__name:hover { color: var(--c-red); }
   padding: 28px 32px;
   display: flex; flex-direction: column; gap: 22px;
 }
-.tickets__filters-title { font-weight: 900; font-size: 22px; color: var(--c-dark); }
+.tickets__filters-title { font-weight: 900; font-size: var(--fs-2xl); color: var(--text-primary-default); }
 .filter-group { display: flex; flex-direction: column; gap: 12px; }
-.filter-group__label { font-weight: 700; font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--c-legend); }
+.filter-group__label { font-weight: 700; font-size: var(--fs-2xs); letter-spacing: .06em; text-transform: uppercase; color: var(--text-neutral-subtle); }
 
 .tickets__sort { display: flex; align-items: center; justify-content: flex-end; gap: 14px; }
-.tickets__sort label { color: var(--c-legend); font-size: 15px; }
+.tickets__sort label { color: var(--text-neutral-subtle); font-size: var(--fs-md); }
 .select {
   appearance: none; -webkit-appearance: none;
-  font: inherit; font-size: 15px; font-weight: 700; color: var(--c-dark);
+  font: inherit; font-size: var(--fs-md); font-weight: 700; color: var(--text-primary-default);
   padding: 11px 44px 11px 18px;
   border: 1px solid var(--border-neutral-default); border-radius: var(--radius-sm);
   background-color: #fff;
@@ -2321,24 +2338,24 @@ a.sport-card__name:hover { color: var(--c-red); }
   flex: none; width: 118px;
   display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
   padding: 18px 10px; text-align: center;
-  background: var(--c-gold); color: var(--c-dark);
+  background: var(--bg-accent-default); color: var(--text-primary-default);
 }
 .ticket__day { font-weight: 900; font-size: 36px; line-height: 1; }
-.ticket__month { font-weight: 900; font-size: 13px; text-transform: uppercase; letter-spacing: .04em; }
-.ticket__time { font-weight: 700; font-size: 13px; opacity: .75; }
+.ticket__month { font-weight: 900; font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: .04em; }
+.ticket__time { font-weight: 700; font-size: var(--fs-xs); opacity: .75; }
 .ticket__body { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 12px; padding: 22px 26px; justify-content: center; }
 .ticket__tags { display: flex; flex-wrap: wrap; gap: 8px; }
-.ticket__title { font-weight: 900; font-size: 20px; color: var(--c-dark); }
-.ticket__meta { display: flex; flex-wrap: wrap; gap: 10px 26px; color: var(--text-primary-muted); font-size: 14px; }
-.ticket__cta { flex: none; align-self: center; margin-right: 26px; padding: 13px 26px; border-radius: var(--radius-sm); font-size: 15px; }
+.ticket__title { font-weight: 900; font-size: var(--fs-xl); color: var(--text-primary-default); }
+.ticket__meta { display: flex; flex-wrap: wrap; gap: 10px 26px; color: var(--text-primary-muted); font-size: var(--fs-sm); }
+.ticket__cta { flex: none; align-self: center; margin-right: 26px; padding: 13px 26px; border-radius: var(--radius-sm); font-size: var(--fs-md); }
 
 /* tags « soft » (fond teinté + texte coloré) propres à la billetterie */
 .tag--soft-milan  { background: var(--bg-soft-milan);   color: var(--text-brand-milan); }
-.tag--soft-cortina{ background: var(--bg-soft-cortina); color: var(--text-brand-cortina); }
-.tag--soft-sport  { background: var(--bg-soft-cortina); color: var(--text-brand-cortina); }
+.tag--soft-cortina{ background: var(--bg-soft-cortina); color: var(--text-brand-cortina-soft); }
+.tag--soft-sport  { background: var(--bg-soft-cortina); color: var(--text-brand-cortina-soft); }
 .tag--soft-gold   { background: var(--bg-soft-accent);  color: var(--text-accent-strong); }
 
-.tickets__empty { padding: 40px 0; text-align: center; color: var(--c-legend); font-weight: 700; }
+.tickets__empty { padding: 40px 0; text-align: center; color: var(--text-neutral-subtle); font-weight: 700; }
 
 /* =========================================================
    RESPONSIVE — mobile / petite tablette (≤ 820px)
@@ -2348,7 +2365,7 @@ a.sport-card__name:hover { color: var(--c-red); }
 
   /* ---------- Header / navigation ---------- */
   .topbar { flex-direction: column; gap: 6px; padding: 10px 16px; text-align: center; }
-  .topbar__dates { font-size: 11px; line-height: 1.4; }
+  .topbar__dates { font-size: var(--fs-3xs); line-height: 1.4; }
   .header__inner { padding: 56px 16px 0; }
 
   .main-nav { margin-bottom: 60px; }
@@ -2376,22 +2393,22 @@ a.sport-card__name:hover { color: var(--c-red); }
   .nav-drawer__nav { display: flex; flex-direction: column; width: 100%; }
   .nav-drawer__nav a {
     position: relative;
-    color: #fff; font-weight: 800; font-size: 34px; line-height: 1.55;
+    color: #fff; font-weight: 800; font-size: var(--fs-5xl); line-height: 1.55;
     text-decoration: none;
     transition: color .25s ease, padding-left .3s ease;
   }
   .nav-drawer__nav a::before {
     content: ""; position: absolute; left: 0; top: 50%; transform: translateY(-50%);
-    width: 0; height: 3px; border-radius: 2px; background: var(--c-blue);
+    width: 0; height: 3px; border-radius: 2px; background: var(--bg-brand-cortina);
     transition: width .3s ease;
   }
-  .nav-drawer__nav a.is-active, .nav-drawer__nav a:hover { color: var(--c-blue); padding-left: 24px; }
+  .nav-drawer__nav a.is-active, .nav-drawer__nav a:hover { color: var(--text-brand-cortina); padding-left: 24px; }
   .nav-drawer__nav a.is-active::before, .nav-drawer__nav a:hover::before { width: 16px; }
 
-  .nav-drawer__cta { align-self: flex-start; margin-top: 30px; color: var(--c-dark); font-size: 17px; padding: 14px 32px; }
+  .nav-drawer__cta { align-self: flex-start; margin-top: 30px; color: var(--text-primary-default); font-size: 17px; padding: 14px 32px; }
 
   .nav-drawer__lang { list-style: none; display: flex; gap: 24px; margin-top: 46px; }
-  .nav-drawer__lang a { color: rgba(255, 255, 255, 0.55); font-weight: 700; font-size: 15px; text-decoration: none; }
+  .nav-drawer__lang a { color: rgba(255, 255, 255, 0.55); font-weight: 700; font-size: var(--fs-md); text-decoration: none; }
   .nav-drawer__lang .is-active a { color: #fff; }
 
   .nav-drawer__logo { position: absolute; top: 20px; left: 30px; }
@@ -2418,8 +2435,8 @@ a.sport-card__name:hover { color: var(--c-red); }
 
   /* ---------- Titres de section ---------- */
   .section-title__logo { width: 92px; margin-right: -36px; }
-  .section-title__big { font-size: 30px; }
-  .section-title__small { font-size: 13px; }
+  .section-title__big { font-size: var(--fs-4xl); }
+  .section-title__small { font-size: var(--fs-xs); }
   .section-title__text { white-space: normal; }   /* les longs titres reviennent à la ligne */
   .section-title--sm .section-title__big { font-size: 32px; }
 
@@ -2476,9 +2493,9 @@ a.sport-card__name:hover { color: var(--c-red); }
   .app-logo__top { font-size: 36px; }
   .app-logo__main { font-size: 40px; }
   .app-logo__sub { font-size: 17px; }
-  .app__quote { font-size: 18px; }
+  .app__quote { font-size: var(--fs-lg); }
   .app__steps { flex: none; width: 100%; }
-  .btn--lg { font-size: 18px; padding: 16px; }
+  .btn--lg { font-size: var(--fs-lg); padding: 16px; }
 
   /* ---------- Calendrier officiel ---------- */
   .calendar { padding: 40px 0; gap: 32px; }
@@ -2486,7 +2503,7 @@ a.sport-card__name:hover { color: var(--c-red); }
   .calendar__dates { gap: 26px 18px; }
   .cal-date { flex: 1 1 42%; gap: 16px; }
   .cal-date__num { font-size: 52px; }
-  .cal-date__month { font-size: 24px; }
+  .cal-date__month { font-size: var(--fs-3xl); }
 
   /* ---------- Durabilité ---------- */
   .durability__head { padding-inline: 20px; }
@@ -2496,7 +2513,7 @@ a.sport-card__name:hover { color: var(--c-red); }
   /* ---------- FAQ ---------- */
   .faq__head { padding-inline: 20px; }
   .faq__list { padding-inline: 16px; }
-  .faq-item__q { font-size: 16px; gap: 10px; }
+  .faq-item__q { font-size: var(--fs-base); gap: 10px; }
 
   /* ---------- Footer ---------- */
   .footer-partners { justify-content: center; gap: 14px 18px; padding: 18px; }
@@ -2513,14 +2530,14 @@ a.sport-card__name:hover { color: var(--c-red); }
 
   /* ---------- Accessibilité : lisibilité du texte + cibles tactiles ---------- */
   /* Remontée des petits textes (≥ 13-14px) */
-  .topbar__dates { font-size: 12px; }
-  .event__detail, .footer-bar__copy { font-size: 13px; }
-  .footer-col a { font-size: 14px; padding-block: 6px; }   /* + cible tactile */
-  .faq-item__a { font-size: 14px; line-height: 1.6; }
+  .topbar__dates { font-size: var(--fs-2xs); }
+  .event__detail, .footer-bar__copy { font-size: var(--fs-xs); }
+  .footer-col a { font-size: var(--fs-sm); padding-block: 6px; }   /* + cible tactile */
+  .faq-item__a { font-size: var(--fs-sm); line-height: 1.6; }
   .faq-item__a p { margin-bottom: 10px; }
-  .info-card--steps .info-card__desc { font-size: 14px; }
-  .info-card--steps .info-card__title { font-size: 13px; }
-  .medals { font-size: 13px; }
+  .info-card--steps .info-card__desc { font-size: var(--fs-sm); }
+  .info-card--steps .info-card__title { font-size: var(--fs-xs); }
+  .medals { font-size: var(--fs-xs); }
 
   /* Cibles tactiles élargies (~44px) */
   .nav-icon { padding: 11px; }
@@ -2543,8 +2560,8 @@ a.sport-card__name:hover { color: var(--c-red); }
 
   .heritage { padding: 46px 0 44px; }
   .heritage__inner { padding-inline: 16px; }
-  .section-header__eyebrow { font-size: 14px; }
-  .section-header__title { font-size: 30px; }
+  .section-header__eyebrow { font-size: var(--fs-sm); }
+  .section-header__title { font-size: var(--fs-4xl); }
 
   /* timeline : colonne unique, ligne à gauche */
   .timeline { margin-top: 36px; }
@@ -2564,7 +2581,7 @@ a.sport-card__name:hover { color: var(--c-red); }
   .culture__head { padding-inline: 16px; }
   .culture__ribbon { padding-block: 40px; }
   .culture__inner { padding-inline: 16px; }
-  .culture__group { font-size: 22px; padding-inline: 16px; margin-top: 30px; }
+  .culture__group { font-size: var(--fs-2xl); padding-inline: 16px; margin-top: 30px; }
   .culture-grid { grid-template-columns: 1fr; gap: 16px; }
 
   .values { padding: 46px 0; }
@@ -2579,7 +2596,7 @@ a.sport-card__name:hover { color: var(--c-red); }
   /* ---------- Page « Sport » (curling) ---------- */
   .sport-intro { padding: 40px 0; }
   .sport-intro__inner { flex-direction: column; align-items: stretch; gap: 28px; padding-inline: 16px; }
-  .sport-intro__title { font-size: 30px; }
+  .sport-intro__title { font-size: var(--fs-4xl); }
   .sport-intro__stats { flex: auto; }
 
   .epreuves__head, .epreuves__list,
@@ -2589,7 +2606,7 @@ a.sport-card__name:hover { color: var(--c-red); }
   .epreuve__btn { justify-self: start; margin-top: 10px; }
 
   .discipline { padding: 40px 0; }
-  .discipline__text h3 { font-size: 24px; }
+  .discipline__text h3 { font-size: var(--fs-3xl); }
   .discipline__media { aspect-ratio: 16 / 10; }
 
   .rule-grid { grid-template-columns: 1fr; gap: 16px; }
@@ -2627,15 +2644,15 @@ a.sport-card__name:hover { color: var(--c-red); }
   .auth__screen { gap: 30px; padding: 32px 16px; background-attachment: scroll; }
   .auth__logo img { height: 104px; }
   .auth-card { padding: 34px 22px; gap: 32px; }
-  .auth-card__title { font-size: 24px; }
-  .field__label { font-size: 18px; }
+  .auth-card__title { font-size: var(--fs-3xl); }
+  .field__label { font-size: var(--fs-lg); }
 
   /* ---------- Page Billetterie ---------- */
   .tickets__head, .tickets__inner { padding-inline: 16px; }
   .tickets__stats { padding: 30px 16px; }
   .stats-grid--4 { grid-template-columns: 1fr 1fr; }
   .tickets__stats .stat-card__num { font-size: 42px; }
-  .tickets__stats .stat-card__num--date { font-size: 34px; }
+  .tickets__stats .stat-card__num--date { font-size: var(--fs-5xl); }
   .tickets__filters { padding: 20px; }
   .tickets__sort { justify-content: flex-start; }
   .ticket { flex-direction: column; }
