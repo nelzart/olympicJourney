@@ -2084,6 +2084,125 @@ a.sport-card__name:hover { color: var(--c-red); }
 .nav-drawer { display: none; }
 
 /* =========================================================
+   PAGE COMPTE / CONNEXION (auth) — carte en verre givré sur fond Milan/Cortina
+   Réutilise : .glass, .btn--light, sprite #ic-account. Animations sobres.
+   ========================================================= */
+.auth__screen {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 44px;
+  padding: 40px 20px;
+  background:
+    linear-gradient(180deg, rgba(20, 28, 52, 0.30), rgba(20, 28, 52, 0.45)),
+    url("../assets/img/auth-bg.jpg") center / cover no-repeat fixed;
+}
+.auth__logo img { height: 132px; width: auto; }
+
+/* carte (verre givré, teinte claire translucide comme la maquette) */
+.auth-card {
+  width: min(685px, 100%);
+  display: flex;
+  flex-direction: column;
+  gap: 42px;
+  padding: 48px 56px;
+  border-radius: var(--radius-sm);
+  background: rgba(238, 247, 255, 0.15);   /* teinte maquette ; .glass apporte flou + liseré */
+  color: #fff;
+}
+
+/* tête : avatar + titre + réseaux */
+.auth-card__head { display: flex; flex-direction: column; align-items: center; gap: 32px; }
+.auth-card__avatar {
+  display: grid; place-items: center;
+  width: 80px; height: 80px;
+  border: 3px solid #fff;
+  border-radius: 50%;
+}
+.auth-card__avatar svg { width: 40px; height: 40px; fill: #fff; }
+.auth-card__title {
+  margin: 0;
+  font-weight: 900; font-size: 30px; line-height: 1.2; text-align: center;
+  text-transform: uppercase;
+}
+.auth-social { display: flex; gap: 14px; }
+.auth-social__btn {
+  display: grid; place-items: center;
+  width: 46px; height: 46px;
+  border-radius: 50%;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  transition: transform var(--dur-hover) var(--ease-hover),
+              background-color var(--dur-hover) ease,
+              border-color var(--dur-hover) ease;
+}
+.auth-social__btn svg { width: 20px; height: 20px; fill: currentColor; }
+.auth-social__btn:hover,
+.auth-social__btn:focus-visible {
+  transform: translateY(-3px);
+  background: rgba(255, 255, 255, 0.18);
+  border-color: var(--hover-edge);
+}
+
+/* séparateur « Ou » */
+.auth-divider { display: flex; align-items: center; gap: 18px; color: var(--c-legend); }
+.auth-divider::before,
+.auth-divider::after { content: ""; flex: 1; height: 1px; background: rgba(255, 255, 255, 0.25); }
+.auth-divider span { font-weight: 900; font-size: 15px; }
+
+/* formulaire */
+.auth-form { display: flex; flex-direction: column; gap: 32px; }
+.field { display: flex; flex-direction: column; gap: 14px; }
+.field__label { font-weight: 500; font-size: 20px; color: #fff; }
+.field__control {
+  display: flex; align-items: center; gap: 16px;
+  height: 48px; padding: 0 19px;
+  border: 1px solid var(--c-legend);
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.04);
+  transition: border-color var(--dur-hover) ease, box-shadow var(--dur-hover) ease;
+}
+.field__control:focus-within {
+  border-color: var(--c-blue);
+  box-shadow: 0 0 0 3px rgba(79, 168, 208, 0.25);
+}
+.field__ico { flex: none; width: 20px; height: 20px; fill: var(--c-legend); }
+.field__input {
+  flex: 1; min-width: 0;
+  background: transparent; border: 0; outline: none;
+  color: #fff; font: inherit; font-size: 16px;
+}
+.field__input::placeholder { color: var(--c-legend); }
+
+.auth-form__row { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.checkbox { display: inline-flex; align-items: center; gap: 13px; color: var(--c-legend); font-size: 16px; cursor: pointer; }
+.checkbox input { width: 16px; height: 16px; accent-color: var(--c-blue); cursor: pointer; }
+.auth-form__forgot { color: var(--c-legend); font-size: 16px; transition: color var(--dur-hover) ease; }
+.auth-form__forgot:hover { color: #fff; }
+
+.auth-form__submit {
+  width: 100%; justify-content: center;
+  padding: 15px;
+  border-radius: var(--radius-sm);
+  font-weight: 700; font-size: 16px;
+}
+
+.auth__copy { color: #fff; font-size: 13px; font-weight: 900; text-align: center; }
+
+/* animations sobres : entrée en fondu + léger glissement */
+@keyframes auth-rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+.js .auth__logo  { animation: auth-rise .5s ease both; }
+.js .auth-card   { animation: auth-rise .6s var(--ease-hover) .06s both; }
+.js .auth__copy  { animation: auth-rise .7s ease .12s both; }
+@media (prefers-reduced-motion: reduce) {
+  .js .auth__logo, .js .auth-card, .js .auth__copy { animation: none; }
+}
+
+/* =========================================================
    RESPONSIVE — mobile / petite tablette (≤ 820px)
    ========================================================= */
 @media (max-width: 820px) {
@@ -2365,4 +2484,11 @@ a.sport-card__name:hover { color: var(--c-red); }
   }
   .atmo__gallery { grid-template-columns: 1fr 1fr; grid-auto-rows: 150px; }
   .atmo__gallery img:first-child { grid-column: span 2; grid-row: span 1; }
+
+  /* ---------- Page Compte / Connexion ---------- */
+  .auth__screen { gap: 30px; padding: 32px 16px; background-attachment: scroll; }
+  .auth__logo img { height: 104px; }
+  .auth-card { padding: 34px 22px; gap: 32px; }
+  .auth-card__title { font-size: 24px; }
+  .field__label { font-size: 18px; }
 }
