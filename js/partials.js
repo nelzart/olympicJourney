@@ -100,10 +100,22 @@
       </div>
 
       <div class="nav-drawer" id="nav-drawer">
-        <a href="les-jeux.html" data-nav="les-jeux">Les jeux</a>
-        <a href="application.html" data-nav="application">L'application</a>
-        <a href="#" data-nav="billetterie">Billeterie</a>
-        <a class="btn btn--light" href="#">S'inscrire</a>
+        <a class="nav-drawer__logo" href="index.html" aria-label="Accueil — Milano Cortina 2026">
+          <img src="assets/img/logo-nav.png" alt="Milano Cortina 2026">
+        </a>
+        <button class="nav-drawer__close" type="button" aria-label="Fermer le menu"></button>
+        <nav class="nav-drawer__nav" aria-label="Menu mobile">
+          <a href="index.html" data-nav="accueil">Accueil</a>
+          <a href="les-jeux.html" data-nav="les-jeux">Les jeux</a>
+          <a href="application.html" data-nav="application">L'application</a>
+          <a href="#" data-nav="billetterie">Billeterie</a>
+        </nav>
+        <a class="btn btn--light nav-drawer__cta" href="#">S'inscrire</a>
+        <ul class="nav-drawer__lang" aria-label="Choix de la langue">
+          <li><a href="#">IT</a></li>
+          <li><a href="#">EN</a></li>
+          <li class="is-active"><a href="#" aria-current="true">FR</a></li>
+        </ul>
       </div>
     </nav>`,
 

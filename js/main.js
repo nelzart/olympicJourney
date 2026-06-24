@@ -13,9 +13,21 @@ var CAROUSEL_AUTOPLAY_MS = 4000;  // délai d'auto-défilement du carrousel des 
   const burger = document.querySelector('.nav-burger');
   const mainNav = document.querySelector('.main-nav');
   if (burger && mainNav) {
-    burger.addEventListener('click', function () {
-      const open = mainNav.classList.toggle('is-open');
+    const setMenu = function (open) {
+      mainNav.classList.toggle('is-open', open);
       burger.setAttribute('aria-expanded', open);
+      document.body.style.overflow = open ? 'hidden' : '';   // verrou du scroll quand l'overlay est ouvert
+    };
+    burger.addEventListener('click', function () { setMenu(!mainNav.classList.contains('is-open')); });
+    const closeBtn = mainNav.querySelector('.nav-drawer__close');
+    if (closeBtn) closeBtn.addEventListener('click', function () { setMenu(false); });
+    // fermer en cliquant un lien du menu
+    mainNav.querySelectorAll('.nav-drawer a').forEach(function (a) {
+      a.addEventListener('click', function () { setMenu(false); });
+    });
+    // fermer avec Échap
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && mainNav.classList.contains('is-open')) setMenu(false);
     });
   }
 

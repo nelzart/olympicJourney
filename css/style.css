@@ -1673,24 +1673,47 @@ a.sport-card__name:hover { color: var(--c-red); }
    ========================================================= */
 
 /* --- Les épreuves culturelles : bandeau rose (bords diagonaux) + cartes ville --- */
-.culture { display: flex; flex-direction: column; gap: 25px; padding-top: 40px; }
+.culture { display: flex; flex-direction: column; gap: 0; padding-top: 40px; }
 .culture__head {
   width: 100%; max-width: var(--container); margin-inline: auto; padding-inline: 50px;
 }
+/* deux bandeaux distincts, style « ruban incliné » de la home (sports/durabilité),
+   teintés aux couleurs DA en opacité : ROUGE de Milan / BLEU de Cortina */
 .culture__ribbon {
   position: relative;
-  padding-block: 66px;
+  padding-block: 54px;
   overflow: hidden;
-  background: linear-gradient(125deg, #f6d2d2 0%, #fbe7e7 50%, #f3caca 100%);
-  /* bords haut/bas en diagonale (robuste quelle que soit la hauteur) */
-  clip-path: polygon(0 30px, 100% 0, 100% 100%, 0 calc(100% - 30px));
 }
+.culture__band {
+  position: absolute;
+  left: 50%; top: 50%;
+  width: 160vw; min-width: 1806px; height: 116%;
+  transform: translate(-50%, -50%) rotate(-2.2deg) skewX(4deg);
+}
+/* fines bandes d'accent parallèles (comme les rubans de la home) */
+.culture__band::before, .culture__band::after {
+  content: ""; position: absolute; left: 0; width: 100%; height: 24px;
+}
+.culture__band::before { top: 8%; }
+.culture__band::after  { bottom: 8%; }
+.culture__ribbon--milan .culture__band {
+  background: linear-gradient(125deg, rgba(242, 60, 57, 0.16), rgba(242, 60, 57, 0.07) 55%, rgba(242, 60, 57, 0.17));
+}
+.culture__ribbon--milan .culture__band::before,
+.culture__ribbon--milan .culture__band::after { background: rgba(242, 60, 57, 0.09); }
+.culture__ribbon--cortina .culture__band {
+  background: linear-gradient(125deg, rgba(79, 168, 208, 0.20), rgba(79, 168, 208, 0.08) 55%, rgba(79, 168, 208, 0.21));
+}
+.culture__ribbon--cortina .culture__band::before,
+.culture__ribbon--cortina .culture__band::after { background: rgba(79, 168, 208, 0.11); }
 .culture__inner {
-  position: relative;
+  position: relative; z-index: 1;
   max-width: var(--container); margin-inline: auto; padding-inline: 50px;
-  display: flex; flex-direction: column; gap: 18px;
 }
-.culture__group { font-weight: 900; font-size: 26px; color: var(--c-dark); margin-top: 14px; }
+.culture__group {
+  width: 100%; max-width: var(--container); margin: 40px auto 14px; padding-inline: 50px;
+  font-weight: 900; font-size: 26px; color: var(--c-dark);
+}
 .culture-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
 
 .culture-card {
@@ -1955,23 +1978,57 @@ a.sport-card__name:hover { color: var(--c-red); }
   .nav-logo { margin-block: -28px; }
   .nav-logo img { height: 84px; width: auto; }
 
+  /* Menu mobile : overlay plein écran moderne (glass/navy + accent cyan) */
   .nav-drawer {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    margin-top: 12px;
-    padding-inline: 18px;
-    border-radius: 16px;
-    background: rgba(33, 49, 81, 0.96);
-    -webkit-backdrop-filter: var(--glass-blur);
-            backdrop-filter: var(--glass-blur);
-    border: 1px solid var(--glass-edge);
-    max-height: 0; padding-block: 0; opacity: 0; overflow: hidden;
-    transition: max-height .35s ease, padding-block .35s ease, opacity .3s ease;
+    position: fixed; inset: 0; z-index: 200;
+    display: flex; flex-direction: column; justify-content: center; align-items: flex-start;
+    gap: 2px; padding: 0 36px;
+    background:
+      radial-gradient(120% 75% at 100% 0%, rgba(79, 168, 208, 0.20), transparent 60%),
+      linear-gradient(160deg, #21314f 0%, #131b32 100%);
+    -webkit-backdrop-filter: blur(6px);
+            backdrop-filter: blur(6px);
+    opacity: 0; visibility: hidden; transform: scale(1.05);
+    transition: opacity .4s ease, transform .45s cubic-bezier(.22, .61, .36, 1), visibility .4s;
   }
-  .nav-drawer a { color: #fff; font-weight: 700; }
-  .nav-drawer .btn--light { align-self: flex-start; color: var(--c-dark); }
-  .main-nav.is-open .nav-drawer { max-height: 340px; padding-block: 18px; opacity: 1; }
+  .main-nav.is-open .nav-drawer { opacity: 1; visibility: visible; transform: none; }
+
+  .nav-drawer__nav { display: flex; flex-direction: column; width: 100%; }
+  .nav-drawer__nav a {
+    position: relative;
+    color: #fff; font-weight: 800; font-size: 34px; line-height: 1.55;
+    text-decoration: none;
+    transition: color .25s ease, padding-left .3s ease;
+  }
+  .nav-drawer__nav a::before {
+    content: ""; position: absolute; left: 0; top: 50%; transform: translateY(-50%);
+    width: 0; height: 3px; border-radius: 2px; background: var(--c-blue);
+    transition: width .3s ease;
+  }
+  .nav-drawer__nav a.is-active, .nav-drawer__nav a:hover { color: var(--c-blue); padding-left: 24px; }
+  .nav-drawer__nav a.is-active::before, .nav-drawer__nav a:hover::before { width: 16px; }
+
+  .nav-drawer__cta { align-self: flex-start; margin-top: 30px; color: var(--c-dark); font-size: 17px; padding: 14px 32px; }
+
+  .nav-drawer__lang { list-style: none; display: flex; gap: 24px; margin-top: 46px; }
+  .nav-drawer__lang a { color: rgba(255, 255, 255, 0.55); font-weight: 700; font-size: 15px; text-decoration: none; }
+  .nav-drawer__lang .is-active a { color: #fff; }
+
+  .nav-drawer__logo { position: absolute; top: 20px; left: 30px; }
+  .nav-drawer__logo img { display: block; height: 78px; width: auto; }
+
+  .nav-drawer__close {
+    position: absolute; top: 24px; right: 24px;
+    width: 46px; height: 46px; border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.18);
+    cursor: pointer;
+  }
+  .nav-drawer__close::before, .nav-drawer__close::after {
+    content: ""; position: absolute; left: 50%; top: 50%;
+    width: 18px; height: 2px; background: #fff; border-radius: 2px;
+  }
+  .nav-drawer__close::before { transform: translate(-50%, -50%) rotate(45deg); }
+  .nav-drawer__close::after  { transform: translate(-50%, -50%) rotate(-45deg); }
 
   .mininav__inner { padding: 8px 16px; gap: 14px; }
   .mininav__links { display: none; }
@@ -2089,7 +2146,7 @@ a.sport-card__name:hover { color: var(--c-red); }
   .nav-burger { padding: 12px; }
   .sport-card__fav { padding: 8px; }
   .lang-switch a { display: inline-block; padding: 6px 2px; }
-  .nav-drawer a { padding: 8px 0; }
+  .nav-drawer__lang a { padding: 6px 2px; }
   .footer-bar__links a { padding: 6px 4px; }
 
   /* ---------- Page « Les Jeux » ---------- */
@@ -2124,9 +2181,9 @@ a.sport-card__name:hover { color: var(--c-red); }
 
   /* ---------- Page « Application » ---------- */
   .culture__head { padding-inline: 16px; }
-  .culture__ribbon { padding-block: 40px; clip-path: polygon(0 18px, 100% 0, 100% 100%, 0 calc(100% - 18px)); }
+  .culture__ribbon { padding-block: 40px; }
   .culture__inner { padding-inline: 16px; }
-  .culture__group { font-size: 22px; }
+  .culture__group { font-size: 22px; padding-inline: 16px; margin-top: 30px; }
   .culture-grid { grid-template-columns: 1fr; gap: 16px; }
 
   .values { padding: 46px 0; }

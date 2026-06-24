@@ -46,7 +46,9 @@
       "Bash(cp .claude/ath/kennedy.png assets/img/athlete-kennedy.png)",
       "Bash(cp .claude/ath/gallant.png assets/img/athlete-gallant.png)",
       "Bash(cp .claude/ath/hebert.png  assets/img/athlete-hebert.png)",
-      "Bash(cp .claude/ath/tardi.png   assets/img/athlete-tardi.png)"
+      "Bash(cp .claude/ath/tardi.png   assets/img/athlete-tardi.png)",
+      "Bash(curl -s -o \".claude/p3b.png\" \"https://www.figma.com/api/mcp/asset/6212da9c-3d25-42e5-acfe-fcfe3391b8e4\")",
+      "Bash(curl -s -o \".claude/p5full.png\" \"https://www.figma.com/api/mcp/asset/dcaf1027-ec3c-4837-80a6-b36f7a6106f8\")"
     ]
   }
 }
