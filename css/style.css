@@ -3,44 +3,105 @@
    Feuille de style commune
    ========================================================= */
 
-/* ---------- 1. Tokens (variables) ---------- */
+/* =========================================================
+   DESIGN SYSTEM — jetons (tokens) & intentions
+   Convention de nommage :  --<élément>-<intention>-<état>
+     élément   : text | bg | icon | border | ring | shadow
+     intention : primary | brand-milan | brand-cortina | accent | neutral | info | danger
+     état      : default | subtle | muted | strong | hover | active | focus | on-dark
+   Les couleurs, fonds, bordures, ombres et animations sont des INTENTIONS :
+   on stylise via ces jetons sémantiques, jamais via les primitives brutes.
+   ========================================================= */
 :root {
-  /* Couleurs (issues des variables Figma) */
-  --bg-body:        #EEF7FF;   /* bg-body */
-  --c-dark:         #213151;   /* bg-user-interaction */
-  --c-red:          #F23C39;   /* tag-milan */
-  --c-blue:         #4FA8D0;   /* tag-cortina */
-  --c-gold:         #FFD700;   /* OR */
-  --c-legend:       #919497;   /* legend-color */
-  --c-epreuve-bg:   #FEECEC;   /* Tag-epreuve */
-  --c-text-light:   #F0F4F8;
-  --c-white:        #FFFFFF;
-  --glass:          rgba(255, 255, 255, 0.10);  /* effet glass clair */
 
-  /* Typographie */
-  --font:           'Lato', system-ui, -apple-system, sans-serif;
+  /* ---------- 1. Primitives (palette brute — NE PAS utiliser directement) ---------- */
+  --color-navy-900:   #1b2843;
+  --color-navy-800:   #213151;   /* interaction / texte principal */
+  --color-navy-600:   #2c3f68;
+  --color-navy-soft:  rgba(46, 62, 96, 0.4);
+  --color-red-500:    #F23C39;   /* Milan */
+  --color-red-bg:     #FEECEC;
+  --color-blue-500:   #4FA8D0;   /* Cortina */
+  --color-blue-700:   #2b7ea3;   /* cyan lisible sur fond clair */
+  --color-gold-500:   #FFD700;
+  --color-gold-700:   #8a7400;   /* or lisible sur fond clair */
+  --color-grey-500:   #919497;
+  --color-ink-500:    #46566f;
+  --color-ink-600:    #5a657a;
+  --color-white:      #FFFFFF;
+  --color-text-light: #F0F4F8;
+  --color-sky-50:     #EEF7FF;
 
-  /* Mise en page */
-  --container:      1281px;
-  --pad-x:          50px;
-  --radius:         30px;
-  --radius-sm:      10px;
+  /* ---------- 2. Texte ---------- */
+  --text-primary-default: var(--color-navy-800);
+  --text-primary-subtle:  var(--color-ink-500);
+  --text-primary-muted:   var(--color-ink-600);
+  --text-neutral-subtle:  var(--color-grey-500);
+  --text-on-dark-default: var(--color-white);
+  --text-on-dark-subtle:  var(--color-text-light);
+  --text-brand-milan:     var(--color-red-500);
+  --text-brand-cortina:   var(--color-blue-700);
+  --text-accent-default:  var(--color-gold-500);
+  --text-accent-strong:   var(--color-gold-700);
 
-  /* Animations (design system) */
-  --ease-bounce:    cubic-bezier(.34, 1.45, .5, 1);  /* rebond "Rapide" (Figma) — court, dépassement léger */
-  --dur-bounce:     .42s;
+  /* ---------- 3. Fonds (bg) ---------- */
+  --bg-page:              var(--color-sky-50);
+  --bg-primary-default:   var(--color-navy-800);
+  --bg-band-primary:      linear-gradient(125deg, var(--color-navy-600) 0%, var(--color-navy-800) 55%, var(--color-navy-900) 100%);
+  --bg-brand-milan:       var(--color-red-500);
+  --bg-brand-cortina:     var(--color-blue-500);
+  --bg-accent-default:    var(--color-gold-500);
+  --bg-surface-navy-soft: var(--color-navy-soft);
+  --bg-surface-frost:     linear-gradient(135deg, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0.02)), var(--color-navy-soft);
+  --bg-soft-milan:        rgba(242, 60, 57, 0.12);
+  --bg-soft-cortina:      rgba(79, 168, 208, 0.15);
+  --bg-soft-accent:       rgba(255, 215, 0, 0.20);
 
-  /* Glassmorphism (design system) — verre givré, à appliquer via .glass */
-  --glass-blur:     blur(14px) saturate(1.4);
-  --glass-edge:     rgba(255, 255, 255, 0.35);          /* liseré clair (bord de verre) */
-  --glass-sheen:    inset 0 1px 1px rgba(255, 255, 255, 0.5);  /* reflet supérieur */
+  /* ---------- 4. Bordures & anneaux ---------- */
+  --border-neutral-subtle:  rgba(33, 49, 81, 0.08);
+  --border-neutral-default: rgba(33, 49, 81, 0.18);
+  --border-glass:           rgba(255, 255, 255, 0.35);
+  --border-accent-hover:    rgba(255, 215, 0, 0.5);
+  --border-info-focus:      var(--color-blue-500);
+  --ring-focus:             0 0 0 3px rgba(79, 168, 208, 0.25);
 
-  /* Survol "carte" (design system) — soulèvement + liseré doré + ombre DOUCE, via .lift */
-  --ease-hover:     cubic-bezier(.33, 1, .68, 1);        /* ease-out doux */
-  --dur-hover:      .55s;                                 /* transition lente et fluide */
-  --hover-edge:     rgba(255, 215, 0, 0.5);              /* liseré doré au survol */
-  --shadow-soft:    0 8px 22px rgba(0, 0, 0, .10), inset 0 1px 1px rgba(255, 255, 255, .12);   /* repos */
-  --shadow-hover:   0 20px 48px rgba(0, 0, 0, .18), inset 0 1px 1px rgba(255, 255, 255, .16);  /* survol (diffuse) */
+  /* ---------- 5. Icônes ---------- */
+  --icon-on-dark: var(--color-white);
+  --icon-neutral: var(--color-grey-500);
+  --icon-accent:  var(--color-gold-500);
+
+  /* ---------- 6. Typographie & mise en page ---------- */
+  --font:      'Lato', system-ui, -apple-system, sans-serif;
+  --container: 1281px;
+  --pad-x:     50px;
+  --radius:    30px;
+  --radius-sm: 10px;
+
+  /* ---------- 7. Mouvement (intentions d'animation) ---------- */
+  --ease-bounce: cubic-bezier(.34, 1.45, .5, 1);  /* rebond court (Figma "Rapide") */
+  --dur-bounce:  .42s;
+  --ease-hover:  cubic-bezier(.33, 1, .68, 1);     /* ease-out doux (survol cartes) */
+  --dur-hover:   .55s;
+
+  /* ---------- 8. Verre givré & ombres (effets récurrents) ---------- */
+  --glass-blur:   blur(14px) saturate(1.4);
+  --glass-edge:   var(--border-glass);
+  --glass-sheen:  inset 0 1px 1px rgba(255, 255, 255, 0.5);
+  --shadow-soft:  0 8px 22px rgba(0, 0, 0, .10), inset 0 1px 1px rgba(255, 255, 255, .12);   /* repos */
+  --shadow-hover: 0 20px 48px rgba(0, 0, 0, .18), inset 0 1px 1px rgba(255, 255, 255, .16);  /* survol */
+
+  /* ---------- 9. Alias hérités (compat ascendante) ---------- */
+  --bg-body:      var(--bg-page);
+  --c-dark:       var(--color-navy-800);
+  --c-red:        var(--color-red-500);
+  --c-blue:       var(--color-blue-500);
+  --c-gold:       var(--color-gold-500);
+  --c-legend:     var(--color-grey-500);
+  --c-epreuve-bg: var(--color-red-bg);
+  --c-text-light: var(--color-text-light);
+  --c-white:      var(--color-white);
+  --glass:        rgba(255, 255, 255, 0.10);
+  --hover-edge:   var(--border-accent-hover);
 }
 
 /* ---------- 2. Reset léger ---------- */
@@ -517,7 +578,7 @@ button {
   height: 235px;
   transform: translate(-50%, -50%) rotate(-2.4deg) skewX(4.7deg);
   /* navy stylisé (même base que Olympic Journey) */
-  background: linear-gradient(125deg, #2c3f68 0%, var(--c-dark) 55%, #1b2843 100%);
+  background: var(--bg-band-primary);
 }
 /* fines bandes claires au-dessus / en dessous pour l'effet ruban */
 .sports__band::before,
@@ -875,7 +936,7 @@ a.sport-card__name:hover { color: var(--c-red); }
   gap: 20px;
   padding: 20px 26px;
   border-radius: 8px;
-  background: rgba(46, 62, 96, 0.4);
+  background: var(--bg-surface-navy-soft);
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);  /* liseré "verre" en haut */
   -webkit-backdrop-filter: blur(8px);
@@ -1047,7 +1108,7 @@ a.sport-card__name:hover { color: var(--c-red); }
   height: 250px;
   transform: translate(-50%, -50%) rotate(-2.4deg) skewX(4.7deg);
   /* navy stylisé (même base que Olympic Journey) */
-  background: linear-gradient(125deg, #2c3f68 0%, var(--c-dark) 55%, #1b2843 100%);
+  background: var(--bg-band-primary);
 }
 .durability__band::before,
 .durability__band::after {
@@ -1536,7 +1597,7 @@ a.sport-card__name:hover { color: var(--c-red); }
 /* === Section Héritage (bandeau navy) + Timeline + Stats === */
 .heritage {
   padding: 70px 0 66px;
-  background: linear-gradient(125deg, #2c3f68 0%, var(--c-dark) 55%, #1b2843 100%);
+  background: var(--bg-band-primary);
 }
 .heritage__inner { max-width: var(--container); margin-inline: auto; padding-inline: 50px; }
 
@@ -1569,9 +1630,8 @@ a.sport-card__name:hover { color: var(--c-red); }
   position: relative;
   border-radius: var(--radius-sm);
   overflow: hidden;
-  /* verre givré : teinte navy + dégradé frost (même langage que .info-card / .stat-card) */
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.03)),
-              rgba(46, 62, 96, 0.4);
+  /* verre givré navy (jeton design-system) */
+  background: var(--bg-surface-frost);
   border: 1px solid var(--glass-edge);
   -webkit-backdrop-filter: var(--glass-blur);
           backdrop-filter: var(--glass-blur);
@@ -1649,9 +1709,8 @@ a.sport-card__name:hover { color: var(--c-red); }
   padding: 34px;
   border-radius: var(--radius-sm);
   text-align: center;
-  /* verre givré : teinte navy + dégradé frost par-dessus (même langage que .info-card) */
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0.02)),
-              rgba(46, 62, 96, 0.4);
+  /* verre givré navy (jeton design-system) */
+  background: var(--bg-surface-frost);
   border: 1px solid var(--glass-edge);
   -webkit-backdrop-filter: var(--glass-blur);
           backdrop-filter: var(--glass-blur);
@@ -1756,7 +1815,7 @@ a.sport-card__name:hover { color: var(--c-red); }
 /* --- Les valeurs (bandeau navy, 3 colonnes) --- */
 .values {
   padding: 64px 0;
-  background: linear-gradient(125deg, #2c3f68 0%, var(--c-dark) 55%, #1b2843 100%);
+  background: var(--bg-band-primary);
 }
 .values__inner { max-width: var(--container); margin-inline: auto; padding-inline: 50px; }
 .values__eyebrow {
@@ -1795,7 +1854,7 @@ a.sport-card__name:hover { color: var(--c-red); }
 /* --- Intro sport (bandeau navy) : titre + méta + stats or --- */
 .sport-intro {
   padding: 56px 0;
-  background: linear-gradient(125deg, #2c3f68 0%, var(--c-dark) 55%, #1b2843 100%);
+  background: var(--bg-band-primary);
 }
 .sport-intro__inner {
   display: flex; flex-wrap: wrap; gap: 40px; justify-content: space-between; align-items: center;
@@ -1814,7 +1873,7 @@ a.sport-card__name:hover { color: var(--c-red); }
 .sport-intro__stats { display: flex; flex-direction: column; gap: 16px; flex: 0 0 256px; }
 .sport-stat {
   padding: 18px 24px; border-radius: var(--radius-sm); text-align: center;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0.02)), rgba(46, 62, 96, 0.4);
+  background: var(--bg-surface-frost);
   border: 1px solid var(--glass-edge);
   -webkit-backdrop-filter: var(--glass-blur); backdrop-filter: var(--glass-blur);
   box-shadow: var(--glass-sheen), 0 8px 22px rgba(0, 0, 0, 0.16);
@@ -1840,7 +1899,7 @@ a.sport-card__name:hover { color: var(--c-red); }
 .epreuves__band {
   position: absolute; left: 50%; top: 50%; width: 160vw; min-width: 1806px; height: 112%;
   transform: translate(-50%, -50%) rotate(-2deg);
-  background: linear-gradient(125deg, #2c3f68 0%, var(--c-dark) 55%, #1b2843 100%);
+  background: var(--bg-band-primary);
 }
 .epreuves__list {
   position: relative; z-index: 1;
@@ -1869,7 +1928,7 @@ a.sport-card__name:hover { color: var(--c-red); }
 .discipline { padding: 56px 0; }
 .discipline__inner { max-width: 1000px; margin-inline: auto; padding-inline: 50px; display: flex; flex-direction: column; gap: 30px; }
 .discipline__text h3 { font-weight: 900; font-size: 28px; color: var(--c-dark); margin-bottom: 18px; }
-.discipline__text p { color: #46566f; font-size: 16px; line-height: 1.6; margin-bottom: 14px; max-width: 72ch; }
+.discipline__text p { color: var(--text-primary-subtle); font-size: 16px; line-height: 1.6; margin-bottom: 14px; max-width: 72ch; }
 .discipline__media { border-radius: var(--radius); overflow: hidden; aspect-ratio: 21 / 9; box-shadow: 0 12px 30px rgba(0, 0, 0, .18); }
 .discipline__media img { width: 100%; height: 100%; object-fit: cover; }
 
@@ -1916,14 +1975,14 @@ a.sport-card__name:hover { color: var(--c-red); }
 .athletes__band {
   position: absolute; left: 50%; top: 50%; width: 160vw; min-width: 1806px; height: 112%;
   transform: translate(-50%, -50%) rotate(-2deg);
-  background: linear-gradient(125deg, #2c3f68 0%, var(--c-dark) 55%, #1b2843 100%);
+  background: var(--bg-band-primary);
 }
 /* carte athlète : item du carrousel (largeur fixe, comme .sport-card) */
 .athlete-card {
   flex: none; width: 212px;
   overflow: hidden; border-radius: var(--radius-sm);
   /* verre givré + même hover doré que les autres cartes */
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.03)), rgba(46, 62, 96, 0.4);
+  background: var(--bg-surface-frost);
   border: 1px solid var(--glass-edge);
   box-shadow: var(--glass-sheen);
   transition: transform .45s cubic-bezier(.22, .61, .36, 1), border-color .45s ease, box-shadow .45s ease;
@@ -1981,7 +2040,7 @@ a.sport-card__name:hover { color: var(--c-red); }
 /* --- Les sites olympiques : intro + carte + grille de sites --- */
 .sites { padding: 44px 0 56px; }
 .sites__inner { max-width: var(--container); margin-inline: auto; padding-inline: 50px; }
-.sites__intro { margin-top: 16px; max-width: none; color: #46566f; font-size: 16px; line-height: 1.6; }
+.sites__intro { margin-top: 16px; max-width: none; color: var(--text-primary-subtle); font-size: 16px; line-height: 1.6; }
 .sites__map { margin: 30px 0 36px; border-radius: var(--radius); overflow: hidden; box-shadow: 0 10px 28px rgba(0, 0, 0, .12); }
 .sites__map img { display: block; width: 100%; height: auto; }
 
@@ -2048,7 +2107,7 @@ a.sport-card__name:hover { color: var(--c-red); }
   padding: 22px 24px 26px;
 }
 .practical-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
-.practical-list li { position: relative; padding-left: 26px; color: #46566f; font-size: 14px; line-height: 1.5; }
+.practical-list li { position: relative; padding-left: 26px; color: var(--text-primary-subtle); font-size: 14px; line-height: 1.5; }
 .practical-list li::before { content: "\2192"; position: absolute; left: 0; top: 0; color: var(--c-red); font-weight: 700; }
 .amb--cortina .practical-list li::before { color: var(--c-blue); }
 /* grille météo : pastilles douces */
@@ -2168,7 +2227,7 @@ a.sport-card__name:hover { color: var(--c-red); }
 }
 .field__control:focus-within {
   border-color: var(--c-blue);
-  box-shadow: 0 0 0 3px rgba(79, 168, 208, 0.25);
+  box-shadow: var(--ring-focus);
 }
 .field__ico { flex: none; width: 20px; height: 20px; fill: var(--c-legend); }
 .field__input {
@@ -2212,7 +2271,7 @@ a.sport-card__name:hover { color: var(--c-red); }
 .tickets__stats {
   margin-top: 30px;
   padding: 48px 50px;
-  background: linear-gradient(125deg, #2c3f68 0%, var(--c-dark) 55%, #1b2843 100%);
+  background: var(--bg-band-primary);
 }
 .stats-grid--4 { grid-template-columns: repeat(4, 1fr); max-width: var(--container); }
 .tickets__stats .stat-card { padding: 26px 20px; }
@@ -2246,7 +2305,7 @@ a.sport-card__name:hover { color: var(--c-red); }
   background-repeat: no-repeat; background-position: right 16px center;
   cursor: pointer; transition: border-color var(--dur-hover) ease, box-shadow var(--dur-hover) ease;
 }
-.select:focus-visible { outline: none; border-color: var(--c-blue); box-shadow: 0 0 0 3px rgba(79, 168, 208, .25); }
+.select:focus-visible { outline: none; border-color: var(--border-info-focus); box-shadow: var(--ring-focus); }
 
 /* liste d'événements */
 .tickets__list { display: flex; flex-direction: column; gap: 18px; margin-top: 30px; }
@@ -2273,10 +2332,10 @@ a.sport-card__name:hover { color: var(--c-red); }
 .ticket__cta { flex: none; align-self: center; margin-right: 26px; padding: 13px 26px; border-radius: var(--radius-sm); font-size: 15px; }
 
 /* tags « soft » (fond teinté + texte coloré) propres à la billetterie */
-.tag--soft-milan  { background: rgba(242, 60, 57, .12);  color: var(--c-red); }
-.tag--soft-cortina{ background: rgba(79, 168, 208, .15); color: #2b7ea3; }
-.tag--soft-sport  { background: rgba(79, 168, 208, .15); color: #2b7ea3; }
-.tag--soft-gold   { background: rgba(255, 215, 0, .20);  color: #8a7400; }
+.tag--soft-milan  { background: var(--bg-soft-milan);   color: var(--text-brand-milan); }
+.tag--soft-cortina{ background: var(--bg-soft-cortina); color: var(--text-brand-cortina); }
+.tag--soft-sport  { background: var(--bg-soft-cortina); color: var(--text-brand-cortina); }
+.tag--soft-gold   { background: var(--bg-soft-accent);  color: var(--text-accent-strong); }
 
 .tickets__empty { padding: 40px 0; text-align: center; color: var(--c-legend); font-weight: 700; }
 
