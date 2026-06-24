@@ -535,7 +535,7 @@ button {
   color: #000;
 }
 .medals th {
-  font-family: 'Inter', var(--font);
+  font-family: var(--font);
   font-size: var(--fs-sm);
   font-weight: 500;
   color: #736a6a;
@@ -995,9 +995,9 @@ a.sport-card__name:hover { color: var(--text-brand-milan); }
 
 /* Variante chiffre / étapes (Olympic Journey) */
 .info-card--steps { min-height: 120px; }
-.info-card--steps .info-card__lead  { font-family: 'Inter', var(--font); font-weight: 700; font-size: 28px; }
-.info-card--steps .info-card__title { font-family: 'Inter', var(--font); font-weight: 700; font-size: var(--fs-2xs); letter-spacing: .03em; text-transform: uppercase; }
-.info-card--steps .info-card__desc  { font-family: 'Inter', var(--font); font-weight: 400; font-size: var(--fs-xs); }
+.info-card--steps .info-card__lead  { font-family: var(--font); font-weight: 700; font-size: 28px; }
+.info-card--steps .info-card__title { font-family: var(--font); font-weight: 700; font-size: var(--fs-2xs); letter-spacing: .03em; text-transform: uppercase; }
+.info-card--steps .info-card__desc  { font-family: var(--font); font-weight: 400; font-size: var(--fs-xs); }
 
 /* Variante icône / feature (Durabilité) — plus grande */
 .info-card--feature {
