@@ -19,54 +19,66 @@ var CAROUSEL_AUTOPLAY_MS = 4000;  // délai d'auto-défilement du carrousel des 
     });
   }
 
-  /* --- Carrousel des sports : pagination + rebond + autoplay (desktop).
-     Sur mobile, le défilement/swipe est natif (géré en CSS) -> on ne touche à rien ici. --- */
-  const rail = document.getElementById('sports-rail');
-  if (rail && !isMobile) {
-    const CARD_STEP = 242;                  // carte 212 + gap 30
-    const VISIBLE = 4;                       // 4 items affichés
-    const total = rail.children.length;
-    const maxIndex = Math.max(0, total - VISIBLE);
-    let index = 0, autoDir = 1, timer = null;
+  /* --- Carrousel réutilisable (Nos Sports, Les Athlètes…) : pagination par
+     translation + rebond + autoplay ping-pong (desktop) ; swipe natif (mobile).
+     Pilote TOUTES les instances .sports__carousel. Le pas est mesuré sur la 1re carte. --- */
+  const stepOf = function (rail) {
+    const first = rail.children[0];
+    if (!first) return 0;
+    const gap = parseFloat(getComputedStyle(rail).gap) || 0;
+    return first.getBoundingClientRect().width + gap;
+  };
 
-    const render = function () { rail.style.transform = 'translateX(' + (-index * CARD_STEP) + 'px)'; };
-    const go = function (delta) { index = Math.max(0, Math.min(maxIndex, index + delta)); render(); };
-    const autoStep = function () {
-      if (index >= maxIndex) autoDir = -1;
-      else if (index <= 0) autoDir = 1;
-      go(autoDir);
+  const initCarousel = function (carousel) {
+    const rail = carousel.querySelector('.sports__rail');
+    const track = carousel.querySelector('.sports__track');
+    const navs = carousel.querySelectorAll('.sports__nav');
+    if (!rail || !track) return;
+
+    if (isMobile) {
+      // mobile : la piste défile en natif (CSS), les flèches font défiler
+      navs.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          const dir = Number(btn.dataset.dir) || 1;
+          const maxScroll = track.scrollWidth - track.clientWidth;
+          if (dir > 0 && track.scrollLeft >= maxScroll - 4) track.scrollTo({ left: 0, behavior: 'smooth' });          // fin -> début
+          else if (dir < 0 && track.scrollLeft <= 4) track.scrollTo({ left: maxScroll, behavior: 'smooth' });          // début -> fin
+          else track.scrollBy({ left: dir * stepOf(rail), behavior: 'smooth' });
+        });
+      });
+      return;
+    }
+
+    let index = 0, timer = null;
+    const maxIndex = function () {
+      const step = stepOf(rail);
+      const visible = step ? Math.max(1, Math.round(track.clientWidth / step)) : 1;
+      return Math.max(0, rail.children.length - visible);
     };
+    const render = function () { rail.style.transform = 'translateX(' + (-index * stepOf(rail)) + 'px)'; };
+    const go = function (delta) {
+      const max = maxIndex();
+      index += delta;
+      if (index > max) index = 0;        // arrivé au bout -> on boucle au premier
+      else if (index < 0) index = max;   // au début -> on va à la fin
+      render();
+    };
+    const autoStep = function () { go(1); };   // avance en continu et boucle
     const startAuto = function () {
       clearInterval(timer);
       if (!reduceMotion) timer = setInterval(autoStep, CAROUSEL_AUTOPLAY_MS);
     };
 
-    document.querySelectorAll('.sports__nav').forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        go(Number(btn.dataset.dir) || 1);
-        startAuto();   // relance le minuteur au clic
-      });
+    navs.forEach(function (btn) {
+      btn.addEventListener('click', function () { go(Number(btn.dataset.dir) || 1); startAuto(); });
     });
-
-    // pause au survol du carrousel
-    const carousel = document.querySelector('.sports__carousel');
-    if (carousel) {
-      carousel.addEventListener('mouseenter', function () { clearInterval(timer); });
-      carousel.addEventListener('mouseleave', startAuto);
-    }
-
+    carousel.addEventListener('mouseenter', function () { clearInterval(timer); });
+    carousel.addEventListener('mouseleave', startAuto);
+    window.addEventListener('resize', render, { passive: true });
     startAuto();
-  }
+  };
 
-  /* --- Sur mobile : les flèches défilent la piste au scroll natif --- */
-  if (rail && isMobile) {
-    const track = document.querySelector('.sports__track');
-    document.querySelectorAll('.sports__nav').forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        track.scrollBy({ left: (Number(btn.dataset.dir) || 1) * 242, behavior: 'smooth' });
-      });
-    });
-  }
+  document.querySelectorAll('.sports__carousel').forEach(initCarousel);
 
   /* --- Cœur favori (toggle : rouge + rempli) --- */
   document.querySelectorAll('.sport-card__fav').forEach(function (btn) {

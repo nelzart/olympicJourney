@@ -34,6 +34,13 @@
   --glass-blur:     blur(14px) saturate(1.4);
   --glass-edge:     rgba(255, 255, 255, 0.35);          /* liseré clair (bord de verre) */
   --glass-sheen:    inset 0 1px 1px rgba(255, 255, 255, 0.5);  /* reflet supérieur */
+
+  /* Survol "carte" (design system) — soulèvement + liseré doré + ombre DOUCE, via .lift */
+  --ease-hover:     cubic-bezier(.33, 1, .68, 1);        /* ease-out doux */
+  --dur-hover:      .55s;                                 /* transition lente et fluide */
+  --hover-edge:     rgba(255, 215, 0, 0.5);              /* liseré doré au survol */
+  --shadow-soft:    0 8px 22px rgba(0, 0, 0, .10), inset 0 1px 1px rgba(255, 255, 255, .12);   /* repos */
+  --shadow-hover:   0 20px 48px rgba(0, 0, 0, .18), inset 0 1px 1px rgba(255, 255, 255, .16);  /* survol (diffuse) */
 }
 
 /* ---------- 2. Reset léger ---------- */
@@ -1875,12 +1882,9 @@ a.sport-card__name:hover { color: var(--c-red); }
   transform: translate(-50%, -50%) rotate(-2deg);
   background: linear-gradient(125deg, #2c3f68 0%, var(--c-dark) 55%, #1b2843 100%);
 }
-.athlete-grid {
-  position: relative; z-index: 1;
-  display: grid; grid-template-columns: repeat(5, 1fr); gap: 18px;
-  max-width: var(--container); margin-inline: auto; padding-inline: 50px;
-}
+/* carte athlète : item du carrousel (largeur fixe, comme .sport-card) */
 .athlete-card {
+  flex: none; width: 212px;
   overflow: hidden; border-radius: var(--radius-sm);
   /* verre givré + même hover doré que les autres cartes */
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.03)), rgba(46, 62, 96, 0.4);
@@ -1893,19 +1897,41 @@ a.sport-card__name:hover { color: var(--c-red); }
   border-color: rgba(255, 215, 0, 0.5);
   box-shadow: 0 14px 30px rgba(0, 0, 0, .32), inset 0 1px 1px rgba(255, 255, 255, 0.18);
 }
-.athlete-card__media { aspect-ratio: 3 / 4; overflow: hidden; }
-.athlete-card__media img { width: 100%; height: 100%; object-fit: cover; transition: transform 1s cubic-bezier(.22, .61, .36, 1); }
+.athlete-card__media { aspect-ratio: 1 / 1; overflow: hidden; }
+.athlete-card__media img { width: 100%; height: 100%; object-fit: cover; object-position: center top; transition: transform 1s cubic-bezier(.22, .61, .36, 1); }
 .athlete-card:hover .athlete-card__media img { transform: scale(1.05); }
 .athlete-card__foot { display: flex; flex-direction: column; gap: 2px; padding: 14px 16px; }
 .athlete-card__name { color: var(--c-white); font-weight: 700; font-size: 15px; }
 .athlete-card__country { display: flex; align-items: center; gap: 7px; color: var(--c-text-light); font-size: 12px; opacity: .85; }
-/* « drapeau » : bandes rouge-blanc-rouge (CSS) + feuille d'érable (emoji) au centre */
+/* drapeau du pays (image) */
 .athlete-card__flag {
-  display: inline-flex; align-items: center; justify-content: center;
-  flex: none; width: 22px; height: 15px; border-radius: 2px;
-  font-size: 9px; line-height: 1;
-  background: linear-gradient(to right, #d52b1e 0 25%, #fff 25% 75%, #d52b1e 75% 100%);
+  flex: none; width: 20px; height: 14px;
+  object-fit: cover; border-radius: 2px;
   box-shadow: 0 0 0 1px rgba(0, 0, 0, .12);
+}
+
+/* =========================================================
+   SURVOL « CARTE » — élément de design system
+   Soulèvement + liseré doré + ombre douce, transition lente et fluide.
+   Source unique : ajuster les tokens --shadow-hover / --dur-hover / --ease-hover.
+   Pour une nouvelle carte : ajouter la classe .lift. Les composants existants
+   sont retrofités via la liste ci-dessous (repos + survol unifiés).
+   ========================================================= */
+.lift,
+.stat-card, .sport-stat, .tl-card, .info-card,
+.athlete-card, .rule-card, .culture-card, .epreuve {
+  box-shadow: var(--shadow-soft);
+  transition: transform var(--dur-hover) var(--ease-hover),
+              border-color var(--dur-hover) ease,
+              background-color var(--dur-hover) ease,
+              box-shadow var(--dur-hover) var(--ease-hover);
+}
+.lift:hover,
+.stat-card:hover, .sport-stat:hover, .tl-item:hover .tl-card, .info-card:hover,
+.athlete-card:hover, .rule-card:hover, .culture-card:hover, .epreuve:hover {
+  transform: translateY(-4px);
+  border-color: var(--hover-edge);
+  box-shadow: var(--shadow-hover);
 }
 
 /* tiroir mobile : masqué en desktop */
@@ -2129,5 +2155,5 @@ a.sport-card__name:hover { color: var(--c-red); }
   .discipline__media { aspect-ratio: 16 / 10; }
 
   .rule-grid { grid-template-columns: 1fr; gap: 16px; }
-  .athlete-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .athlete-card { scroll-snap-align: center; }   /* carrousel swipe (comme les sports) */
 }
