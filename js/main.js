@@ -7,11 +7,22 @@ var CAROUSEL_AUTOPLAY_MS = 4000;  // délai d'auto-défilement du carrousel des 
   'use strict';
 
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const isMobile = window.matchMedia('(max-width: 820px)').matches;
 
-  /* --- Carrousel des sports : fenêtre de 4 cartes, défilement par translation
-     (rebond au clic) + auto-défilement (ping-pong) sur timeout global --- */
+  /* --- Menu mobile : le burger ouvre/ferme le tiroir --- */
+  const burger = document.querySelector('.nav-burger');
+  const mainNav = document.querySelector('.main-nav');
+  if (burger && mainNav) {
+    burger.addEventListener('click', function () {
+      const open = mainNav.classList.toggle('is-open');
+      burger.setAttribute('aria-expanded', open);
+    });
+  }
+
+  /* --- Carrousel des sports : pagination + rebond + autoplay (desktop).
+     Sur mobile, le défilement/swipe est natif (géré en CSS) -> on ne touche à rien ici. --- */
   const rail = document.getElementById('sports-rail');
-  if (rail) {
+  if (rail && !isMobile) {
     const CARD_STEP = 242;                  // carte 212 + gap 30
     const VISIBLE = 4;                       // 4 items affichés
     const total = rail.children.length;
@@ -45,6 +56,16 @@ var CAROUSEL_AUTOPLAY_MS = 4000;  // délai d'auto-défilement du carrousel des 
     }
 
     startAuto();
+  }
+
+  /* --- Sur mobile : les flèches défilent la piste au scroll natif --- */
+  if (rail && isMobile) {
+    const track = document.querySelector('.sports__track');
+    document.querySelectorAll('.sports__nav').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        track.scrollBy({ left: (Number(btn.dataset.dir) || 1) * 242, behavior: 'smooth' });
+      });
+    });
   }
 
   /* --- Cœur favori (toggle : rouge + rempli) --- */

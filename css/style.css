@@ -1411,3 +1411,162 @@ button {
   border: 1px solid var(--glass-edge);
   box-shadow: var(--glass-sheen);
 }
+
+/* tiroir mobile : masqué en desktop */
+.nav-drawer { display: none; }
+
+/* =========================================================
+   RESPONSIVE — mobile / petite tablette (≤ 820px)
+   ========================================================= */
+@media (max-width: 820px) {
+  body { overflow-x: hidden; }
+
+  /* ---------- Header / navigation ---------- */
+  .topbar { flex-direction: column; gap: 6px; padding: 10px 16px; text-align: center; }
+  .topbar__dates { font-size: 11px; line-height: 1.4; }
+  .header__inner { padding: 56px 16px 0; }
+
+  .main-nav { margin-bottom: 60px; }
+  .main-nav__bar { gap: 12px; padding: 6px 14px; }
+  .main-nav__bar .nav-links,
+  .main-nav__bar > .btn--light { display: none; }   /* -> tiroir */
+  .nav-logo { margin-block: -28px; }
+  .nav-logo img { height: 84px; width: auto; }
+
+  .nav-drawer {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 12px;
+    padding-inline: 18px;
+    border-radius: 16px;
+    background: rgba(33, 49, 81, 0.96);
+    -webkit-backdrop-filter: var(--glass-blur);
+            backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-edge);
+    max-height: 0; padding-block: 0; opacity: 0; overflow: hidden;
+    transition: max-height .35s ease, padding-block .35s ease, opacity .3s ease;
+  }
+  .nav-drawer a { color: #fff; font-weight: 700; }
+  .nav-drawer .btn--light { align-self: flex-start; color: var(--c-dark); }
+  .main-nav.is-open .nav-drawer { max-height: 340px; padding-block: 18px; opacity: 1; }
+
+  .mininav__inner { padding: 8px 16px; gap: 14px; }
+  .mininav__links { display: none; }
+
+  .hero { min-height: 66vh; padding: 22px; border-radius: 18px; }
+  .hero__title { font-size: 25px; max-width: 100%; }
+
+  /* ---------- Titres de section ---------- */
+  .section-title__logo { width: 92px; margin-right: -36px; }
+  .section-title__big { font-size: 38px; }
+  .section-title__small { font-size: 15px; }
+  .section-title--sm .section-title__big { font-size: 32px; }
+
+  /* ---------- Bandeaux diagonaux : pleine couverture sur mobile ---------- */
+  .sports__band, .durability__band, .ambiances__band {
+    width: 135%; height: 106%;
+    transform: translate(-50%, -50%) rotate(-1.5deg);
+  }
+  .sports__band::before, .sports__band::after,
+  .durability__band::before, .durability__band::after,
+  .ambiances__band::before, .ambiances__band::after { display: none; }
+
+  /* ---------- Nos actualités ---------- */
+  .actus__inner { flex-direction: column; gap: 22px; }
+  .actus__left { padding: 0 16px; gap: 28px; }
+  .actus__grid { grid-template-columns: 1fr; }
+  .actus__panel { width: auto; margin: 0 16px; border-radius: var(--radius-sm); padding: 26px 18px; gap: 28px; }
+  .events { width: 100%; }
+
+  /* ---------- Sports : carrousel tactile (swipe) ---------- */
+  .sports__carousel { padding-inline: 0; }
+  /* flèches en overlay au-dessus de la piste (la piste reste plein écran) */
+  .sports__nav {
+    display: inline-flex;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 3;
+    width: 40px;
+    height: 40px;
+  }
+  .sports__nav--prev { left: 6px; }
+  .sports__nav--next { right: 6px; }
+  .sports__track {
+    width: 100%; max-width: 100%;
+    overflow-x: auto; overflow-y: visible;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding: 8px 16px;
+    scrollbar-width: none;
+  }
+  .sports__track::-webkit-scrollbar { display: none; }
+  .sports__rail { transform: none !important; }     /* désactive la translation JS */
+  .sport-card { scroll-snap-align: center; }
+
+  /* ---------- Nos ambiances ---------- */
+  .ambiances__cities { flex-direction: column; align-items: center; gap: 22px; padding: 16px; }
+  .ambiances__cities figure { width: min(100%, 340px); }
+
+  /* ---------- Application / Olympic Journey ---------- */
+  .app { flex-direction: column; align-items: center; padding: 40px 20px; gap: 30px; }
+  .app__intro { width: 100%; gap: 28px; align-items: center; text-align: center; }
+  .app__actions { justify-content: center; }
+  .app-logo__top { font-size: 36px; }
+  .app-logo__main { font-size: 40px; }
+  .app-logo__sub { font-size: 17px; }
+  .app__quote { font-size: 18px; }
+  .app__steps { width: 100%; }
+  .btn--lg { font-size: 18px; padding: 16px; }
+
+  /* ---------- Calendrier officiel ---------- */
+  .calendar { padding: 40px 0; gap: 32px; }
+  .calendar > :not(.calendar__bg) { padding-inline: 20px; }
+  .calendar__dates { gap: 26px 18px; }
+  .cal-date { flex: 1 1 42%; gap: 16px; }
+  .cal-date__num { font-size: 52px; }
+  .cal-date__month { font-size: 24px; }
+
+  /* ---------- Durabilité ---------- */
+  .durability__head { padding-inline: 20px; }
+  .durability__cards { flex-direction: column; align-items: center; gap: 18px; padding: 14px; }
+  .info-card--feature { width: min(100%, 360px); }
+
+  /* ---------- FAQ ---------- */
+  .faq__head { padding-inline: 20px; }
+  .faq__list { padding-inline: 16px; }
+  .faq-item__q { font-size: 16px; gap: 10px; }
+
+  /* ---------- Footer ---------- */
+  .footer-partners { justify-content: center; gap: 14px 18px; padding: 18px; }
+  .footer-partners img { height: 38px; }
+  .footer-main { padding: 40px 0; }
+  .footer-main__inner { padding-inline: 20px; gap: 30px; }
+  .footer-cta { align-self: center; }
+  .footer-content { flex-direction: column; align-items: center; gap: 30px; }
+  .footer-brand { justify-content: center; }
+  .footer-nav { flex-direction: column; align-items: center; gap: 26px; width: 100%; }
+  .footer-col { text-align: center; }
+  .footer-bar { flex-direction: column; gap: 14px; text-align: center; padding: 16px 20px; }
+  .footer-bar__links { justify-content: center; }
+
+  /* ---------- Accessibilité : lisibilité du texte + cibles tactiles ---------- */
+  /* Remontée des petits textes (≥ 13-14px) */
+  .topbar__dates { font-size: 12px; }
+  .event__detail, .footer-bar__copy { font-size: 13px; }
+  .footer-col a { font-size: 14px; padding-block: 6px; }   /* + cible tactile */
+  .faq-item__a { font-size: 14px; line-height: 1.6; }
+  .faq-item__a p { margin-bottom: 10px; }
+  .info-card--steps .info-card__desc { font-size: 14px; }
+  .info-card--steps .info-card__title { font-size: 13px; }
+  .medals { font-size: 13px; }
+
+  /* Cibles tactiles élargies (~44px) */
+  .nav-icon { padding: 11px; }
+  .nav-burger { padding: 12px; }
+  .sport-card__fav { padding: 8px; }
+  .lang-switch a { display: inline-block; padding: 6px 2px; }
+  .nav-drawer a { padding: 8px 0; }
+  .footer-bar__links a { padding: 6px 4px; }
+}
