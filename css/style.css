@@ -984,7 +984,7 @@ a.sport-card__name:hover { color: var(--c-red); }
 
 .calendar__intro {
   max-width: 1082px;
-  font-weight: 900;
+  font-weight: 400;
   font-size: 22px;
 }
 .calendar__dates {
@@ -1027,7 +1027,7 @@ a.sport-card__name:hover { color: var(--c-red); }
 }
 .durability__intro {
   max-width: 1188px;
-  font-weight: 900;
+  font-weight: 400;
   font-size: 22px;
   color: #000;
 }
@@ -1981,7 +1981,7 @@ a.sport-card__name:hover { color: var(--c-red); }
 /* --- Les sites olympiques : intro + carte + grille de sites --- */
 .sites { padding: 44px 0 56px; }
 .sites__inner { max-width: var(--container); margin-inline: auto; padding-inline: 50px; }
-.sites__intro { margin-top: 16px; max-width: 640px; color: #46566f; font-size: 16px; line-height: 1.6; text-wrap: balance; }
+.sites__intro { margin-top: 16px; max-width: none; color: #46566f; font-size: 16px; line-height: 1.6; }
 .sites__map { margin: 30px 0 36px; border-radius: var(--radius); overflow: hidden; box-shadow: 0 10px 28px rgba(0, 0, 0, .12); }
 .sites__map img { display: block; width: 100%; height: auto; }
 
