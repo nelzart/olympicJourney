@@ -769,7 +769,7 @@ a.sport-card__name:hover { color: var(--c-red); }
    ========================================================= */
 .app {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;        /* ne passe PAS à la ligne : les 2 colonnes rétrécissent (cf. .app__intro/__steps) */
   gap: 42px;
   align-items: center;
   justify-content: center;
@@ -782,8 +782,8 @@ a.sport-card__name:hover { color: var(--c-red); }
   flex-direction: column;
   gap: 50px;
   align-items: flex-start;
-  width: 607px;
-  max-width: 100%;
+  flex: 0 1 607px;          /* 607px = taille MAX ; rétrécit pour rester sur la même ligne */
+  min-width: 0;
 }
 
 /* logo Olympic Journey */
@@ -794,14 +794,14 @@ a.sport-card__name:hover { color: var(--c-red); }
 }
 .app-logo__mark {
   flex: none;
-  width: 120px;
+  width: clamp(86px, 9vw, 120px);   /* 120px = taille max ; rétrécit sur écrans étroits */
   aspect-ratio: 135 / 117;
   fill: var(--c-text-light);
 }
 .app-logo__text { display: flex; flex-direction: column; align-items: center; line-height: .9; }
-.app-logo__top { font-weight: 300; font-size: 54px; letter-spacing: 3px; color: var(--c-text-light); }
-.app-logo__main { font-weight: 900; font-size: 60px; color: var(--c-text-light); }
-.app-logo__sub { font-weight: 300; font-size: 26px; letter-spacing: 1px; color: var(--c-white); }
+.app-logo__top { font-weight: 300; font-size: clamp(36px, 4.4vw, 54px); letter-spacing: 3px; color: var(--c-text-light); }
+.app-logo__main { font-weight: 900; font-size: clamp(40px, 5vw, 60px); color: var(--c-text-light); }
+.app-logo__sub { font-weight: 300; font-size: clamp(17px, 2.1vw, 26px); letter-spacing: 1px; color: var(--c-white); }
 
 .app__quote {
   max-width: 430px;
@@ -858,8 +858,10 @@ a.sport-card__name:hover { color: var(--c-red); }
   display: flex;
   flex-direction: column;
   gap: 10px;
-  width: 540px;
-  max-width: 100%;
+  flex: 0 1 540px;          /* 540px = taille MAX ; rétrécit au lieu de passer à la ligne */
+  min-width: 0;
+  padding: 0;               /* <ol> : retire le retrait par défaut (non couvert par le reset ul) */
+  list-style: none;
 }
 /* =========================================================
    COMPOSANT RÉUTILISABLE : carte d'info en verre (chiffre OU icône)
@@ -1979,7 +1981,7 @@ a.sport-card__name:hover { color: var(--c-red); }
 /* --- Les sites olympiques : intro + carte + grille de sites --- */
 .sites { padding: 44px 0 56px; }
 .sites__inner { max-width: var(--container); margin-inline: auto; padding-inline: 50px; }
-.sites__intro { margin-top: 16px; max-width: 640px; color: #46566f; font-size: 16px; line-height: 1.6; }
+.sites__intro { margin-top: 16px; max-width: 640px; color: #46566f; font-size: 16px; line-height: 1.6; text-wrap: balance; }
 .sites__map { margin: 30px 0 36px; border-radius: var(--radius); overflow: hidden; box-shadow: 0 10px 28px rgba(0, 0, 0, .12); }
 .sites__map img { display: block; width: 100%; height: auto; }
 
@@ -2212,13 +2214,13 @@ a.sport-card__name:hover { color: var(--c-red); }
 
   /* ---------- Application / Olympic Journey ---------- */
   .app { flex-direction: column; align-items: center; padding: 40px 20px; gap: 30px; }
-  .app__intro { width: 100%; gap: 28px; align-items: center; text-align: center; }
+  .app__intro { flex: none; width: 100%; gap: 28px; align-items: center; text-align: center; }
   .app__actions { justify-content: center; }
   .app-logo__top { font-size: 36px; }
   .app-logo__main { font-size: 40px; }
   .app-logo__sub { font-size: 17px; }
   .app__quote { font-size: 18px; }
-  .app__steps { width: 100%; }
+  .app__steps { flex: none; width: 100%; }
   .btn--lg { font-size: 18px; padding: 16px; }
 
   /* ---------- Calendrier officiel ---------- */
