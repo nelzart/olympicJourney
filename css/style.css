@@ -1562,13 +1562,17 @@ button {
   border: 1px solid var(--glass-edge);
   -webkit-backdrop-filter: var(--glass-blur);
           backdrop-filter: var(--glass-blur);
-  box-shadow: var(--glass-sheen);
+  /* ombre portée subtile au repos -> même structure [ombre, inset] que le hover
+     pour une transition fluide (sinon inset <-> ombre = saut brut) */
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.16),
+              inset 0 1px 1px rgba(255, 255, 255, 0.35);
 }
 .tl-card__media { position: relative; height: 152px; }
 .tl-card__media img { width: 100%; height: 100%; object-fit: cover; }
 .tl-year {
   position: absolute;
   top: 0; left: 0;
+  z-index: 2;                 /* reste au-dessus de l'image qui zoome au survol */
   padding: 6px 16px;
   border-bottom-right-radius: var(--radius-sm);
   font-weight: 900;
@@ -1592,22 +1596,33 @@ button {
 }
 
 /* Hover des cartes de la timeline — même langage que les .info-card de la home
-   (léger soulèvement + liseré doré + glow + accent or sur le titre) */
+   (liseré doré + glow + accent or sur le titre + zoom image).
+   Déclenché sur .tl-item (zone stable) pour éviter tout scintillement des dates,
+   et pour pouvoir allumer le nœud (frère de la carte). */
 .tl-card {
-  transition: transform .45s cubic-bezier(.22, .61, .36, 1),
-              border-color .45s ease,
-              box-shadow .45s ease;
+  transition: border-color .6s ease, box-shadow .6s ease;
 }
-.tl-card__title { transition: color .45s ease; }
-.tl-card:hover {
-  transform: translateY(-4px);
+.tl-card__title { transition: color .6s ease; }
+.tl-card__media { overflow: hidden; }   /* clippe l'image zoomée proprement */
+.tl-card__media img { transition: transform 1s cubic-bezier(.22, .61, .36, 1); }
+.tl-node {
+  transition: background-color .5s ease, border-color .5s ease,
+              box-shadow .5s ease, transform .5s ease;
+}
+.tl-item:hover .tl-card {
   border-color: rgba(255, 215, 0, 0.5);
-  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.34),
-              inset 0 1px 0 rgba(255, 255, 255, 0.14);
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.30),
+              inset 0 1px 1px rgba(255, 255, 255, 0.18);
 }
-.tl-card:hover .tl-card__title { color: var(--c-gold); }
-.tl-card__media img { transition: transform .6s cubic-bezier(.22, .61, .36, 1); }
-.tl-card:hover .tl-card__media img { transform: scale(1.05); }
+.tl-item:hover .tl-card__title { color: var(--c-gold); }
+.tl-item:hover .tl-card__media img { transform: scale(1.04); }
+/* le nœud de la timeline s'allume au survol de la carte */
+.tl-item:hover .tl-node {
+  background: var(--c-gold);
+  border-color: var(--c-gold);
+  box-shadow: 0 0 16px rgba(255, 215, 0, 0.75);
+  transform: scale(1.18);
+}
 
 /* Statistiques clés (cartes en verre, compteurs animés) */
 .stats-grid {
