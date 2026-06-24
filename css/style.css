@@ -156,7 +156,7 @@ button {
   flex-direction: column;
   transform: rotate(-8.64deg);
   color: var(--c-dark);
-  line-height: .95;
+  line-height: 1.05;          /* interlignage unifié dans tout le site */
   text-transform: uppercase;
   white-space: nowrap;
 }
@@ -165,7 +165,7 @@ button {
 
 /* variante compacte (panneaux latéraux) */
 .section-title--sm .section-title__logo { width: 90px; margin-right: -42px; }
-.section-title--sm .section-title__text  { line-height: 1.08; gap: 2px; }
+.section-title--sm .section-title__text  { gap: 2px; }
 .section-title--sm .section-title__small { font-size: 13px; }
 .section-title--sm .section-title__big   { font-size: 46px; }
 
@@ -599,7 +599,10 @@ button {
   font-weight: 700;
   color: #000;
   line-height: 1.05;
+  text-decoration: none;
+  transition: color .15s ease;
 }
+a.sport-card__name:hover { color: var(--c-red); }
 .icon--heart   { width: 18px; height: 18px; }
 .icon--chevron { width: 11px; height: 17px; }
 
@@ -1742,6 +1745,169 @@ button {
   color: var(--c-white); font-weight: 900; font-size: 38px; line-height: 1.25;
 }
 
+/* =========================================================
+   PAGE « SPORT » (fiche détail, ex. Curling) — composants
+   ========================================================= */
+
+/* --- Intro sport (bandeau navy) : titre + méta + stats or --- */
+.sport-intro {
+  padding: 56px 0;
+  background: linear-gradient(125deg, #2c3f68 0%, var(--c-dark) 55%, #1b2843 100%);
+}
+.sport-intro__inner {
+  display: flex; flex-wrap: wrap; gap: 40px; justify-content: space-between; align-items: center;
+  max-width: var(--container); margin-inline: auto; padding-inline: 50px;
+}
+.sport-intro__main { flex: 1 1 480px; min-width: 0; }
+.sport-intro__title {
+  display: flex; flex-direction: column;
+  font-weight: 900; font-size: 44px; line-height: 1.05; color: var(--c-white);
+}
+.sport-intro__sub { color: var(--c-blue); }
+.sport-meta { list-style: none; display: flex; flex-wrap: wrap; gap: 14px 28px; margin-top: 26px; }
+.sport-meta li { display: inline-flex; align-items: center; gap: 10px; color: var(--c-text-light); font-weight: 600; font-size: 15px; }
+.sport-meta__ico { font-size: 18px; }
+
+.sport-intro__stats { display: flex; flex-direction: column; gap: 16px; flex: 0 0 256px; }
+.sport-stat {
+  padding: 18px 24px; border-radius: var(--radius-sm); text-align: center;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0.02)), rgba(46, 62, 96, 0.4);
+  border: 1px solid var(--glass-edge);
+  -webkit-backdrop-filter: var(--glass-blur); backdrop-filter: var(--glass-blur);
+  box-shadow: var(--glass-sheen), 0 8px 22px rgba(0, 0, 0, 0.16);
+  /* même hover que les .stat-card (bas de l'historique page Jeux) : lift + bordure dorée + glow */
+  transition: transform .45s cubic-bezier(.22, .61, .36, 1),
+              border-color .45s ease,
+              box-shadow .45s ease;
+}
+.sport-stat:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 215, 0, 0.5);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.32),
+              inset 0 1px 1px rgba(255, 255, 255, 0.55);
+}
+.sport-stat__num { font-weight: 900; font-size: 40px; line-height: 1; color: var(--c-gold); }
+.sport-stat__num span { font-size: 22px; }
+.sport-stat__label { margin-top: 8px; font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--c-text-light); opacity: .85; }
+
+/* --- Prochaines épreuves : liste sur bandeau navy --- */
+.epreuves { display: flex; flex-direction: column; gap: 25px; padding-top: 40px; }
+.epreuves__head { width: 100%; max-width: var(--container); margin-inline: auto; padding-inline: 50px; }
+.epreuves__ribbon { position: relative; padding-block: 52px; overflow: hidden; }
+.epreuves__band {
+  position: absolute; left: 50%; top: 50%; width: 160vw; min-width: 1806px; height: 112%;
+  transform: translate(-50%, -50%) rotate(-2deg);
+  background: linear-gradient(125deg, #2c3f68 0%, var(--c-dark) 55%, #1b2843 100%);
+}
+.epreuves__list {
+  position: relative; z-index: 1;
+  max-width: var(--container); margin-inline: auto; padding-inline: 50px;
+  display: flex; flex-direction: column; gap: 14px;
+}
+.epreuve {
+  display: grid; grid-template-columns: 1.1fr 1.5fr 1fr auto; align-items: center; gap: 20px;
+  padding: 16px 24px; border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.06); border: 1px solid var(--glass-edge);
+  -webkit-backdrop-filter: var(--glass-blur); backdrop-filter: var(--glass-blur);
+  box-shadow: var(--glass-sheen);
+  transition: border-color .4s ease, background-color .4s ease, box-shadow .4s ease;
+}
+.epreuve:hover {
+  border-color: rgba(255, 215, 0, 0.5);          /* liseret doré, comme les autres cartes */
+  background: rgba(255, 255, 255, 0.10);
+  box-shadow: var(--glass-sheen), 0 0 14px rgba(255, 215, 0, 0.12);
+}
+.epreuve__phase { color: var(--c-blue); font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: .04em; }
+.epreuve__name { color: var(--c-white); font-weight: 700; font-size: 16px; }
+.epreuve__date { color: var(--c-text-light); font-size: 14px; opacity: .85; }
+.epreuve__btn { justify-self: end; }
+
+/* --- La discipline : texte + image --- */
+.discipline { padding: 56px 0; }
+.discipline__inner { max-width: 1000px; margin-inline: auto; padding-inline: 50px; display: flex; flex-direction: column; gap: 30px; }
+.discipline__text h3 { font-weight: 900; font-size: 28px; color: var(--c-dark); margin-bottom: 18px; }
+.discipline__text p { color: #46566f; font-size: 16px; line-height: 1.6; margin-bottom: 14px; max-width: 72ch; }
+.discipline__media { border-radius: var(--radius); overflow: hidden; aspect-ratio: 21 / 9; box-shadow: 0 12px 30px rgba(0, 0, 0, .18); }
+.discipline__media img { width: 100%; height: 100%; object-fit: cover; }
+
+/* --- Les règles du jeu : cartes claires (icône + barre d'accent + hover) --- */
+.rules { padding: 16px 0 56px; }
+.rules__inner { max-width: var(--container); margin-inline: auto; padding-inline: 50px; }
+.rule-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 30px; }
+.rule-card {
+  position: relative; overflow: hidden;
+  padding: 26px 30px 26px 34px; border-radius: var(--radius-sm);
+  background: #fff; border: 1px solid rgba(33, 49, 81, .08);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, .07);
+  transition: transform .45s cubic-bezier(.22, .61, .36, 1), box-shadow .45s ease, border-color .45s ease;
+}
+.rule-card::before {
+  content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 5px;
+  background: var(--c-blue); border-radius: 0 4px 4px 0;
+  transition: background-color .45s ease, box-shadow .45s ease;
+}
+.rule-card:hover { transform: translateY(-4px); border-color: rgba(255, 215, 0, .5); box-shadow: 0 16px 32px rgba(0, 0, 0, .12); }
+.rule-card:hover::before { background: var(--c-gold); box-shadow: 0 0 12px rgba(255, 215, 0, .45); }
+.rule-card__ico { display: block; font-size: 30px; margin-bottom: 14px; }
+.rule-card__title { font-weight: 900; font-size: 18px; text-transform: uppercase; letter-spacing: .02em; color: var(--c-dark); margin-bottom: 8px; }
+.rule-card__desc { color: #5a657a; font-size: 14px; line-height: 1.55; }
+
+/* --- Informations pratiques : lignes icône + label + valeur --- */
+.facts { padding: 16px 0 56px; }
+.facts__inner { max-width: 1000px; margin-inline: auto; padding-inline: 50px; }
+.fact-list { list-style: none; display: flex; flex-direction: column; gap: 14px; margin-top: 30px; }
+.fact {
+  display: flex; align-items: center; gap: 18px;
+  padding: 18px 24px; border-radius: var(--radius-sm);
+  background: #fff; border: 1px solid rgba(33, 49, 81, .08);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, .05);
+}
+.fact__ico { flex: none; font-size: 24px; }
+.fact__label { color: var(--c-blue); font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: .05em; }
+.fact__value { color: var(--c-dark); font-size: 15px; font-weight: 600; margin-top: 2px; }
+
+/* --- Les athlètes : bandeau navy + cartes photo --- */
+.athletes { display: flex; flex-direction: column; gap: 25px; padding-top: 16px; }
+.athletes__head { width: 100%; max-width: var(--container); margin-inline: auto; padding-inline: 50px; }
+.athletes__ribbon { position: relative; padding-block: 52px; overflow: hidden; }
+.athletes__band {
+  position: absolute; left: 50%; top: 50%; width: 160vw; min-width: 1806px; height: 112%;
+  transform: translate(-50%, -50%) rotate(-2deg);
+  background: linear-gradient(125deg, #2c3f68 0%, var(--c-dark) 55%, #1b2843 100%);
+}
+.athlete-grid {
+  position: relative; z-index: 1;
+  display: grid; grid-template-columns: repeat(5, 1fr); gap: 18px;
+  max-width: var(--container); margin-inline: auto; padding-inline: 50px;
+}
+.athlete-card {
+  overflow: hidden; border-radius: var(--radius-sm);
+  /* verre givré + même hover doré que les autres cartes */
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.03)), rgba(46, 62, 96, 0.4);
+  border: 1px solid var(--glass-edge);
+  box-shadow: var(--glass-sheen);
+  transition: transform .45s cubic-bezier(.22, .61, .36, 1), border-color .45s ease, box-shadow .45s ease;
+}
+.athlete-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 215, 0, 0.5);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, .32), inset 0 1px 1px rgba(255, 255, 255, 0.18);
+}
+.athlete-card__media { aspect-ratio: 3 / 4; overflow: hidden; }
+.athlete-card__media img { width: 100%; height: 100%; object-fit: cover; transition: transform 1s cubic-bezier(.22, .61, .36, 1); }
+.athlete-card:hover .athlete-card__media img { transform: scale(1.05); }
+.athlete-card__foot { display: flex; flex-direction: column; gap: 2px; padding: 14px 16px; }
+.athlete-card__name { color: var(--c-white); font-weight: 700; font-size: 15px; }
+.athlete-card__country { display: flex; align-items: center; gap: 7px; color: var(--c-text-light); font-size: 12px; opacity: .85; }
+/* « drapeau » : bandes rouge-blanc-rouge (CSS) + feuille d'érable (emoji) au centre */
+.athlete-card__flag {
+  display: inline-flex; align-items: center; justify-content: center;
+  flex: none; width: 22px; height: 15px; border-radius: 2px;
+  font-size: 9px; line-height: 1;
+  background: linear-gradient(to right, #d52b1e 0 25%, #fff 25% 75%, #d52b1e 75% 100%);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, .12);
+}
+
 /* tiroir mobile : masqué en desktop */
 .nav-drawer { display: none; }
 
@@ -1945,4 +2111,23 @@ button {
 
   .quote-banner { min-height: 230px; }
   .quote-banner__text { font-size: 25px; padding-inline: 16px; }
+
+  /* ---------- Page « Sport » (curling) ---------- */
+  .sport-intro { padding: 40px 0; }
+  .sport-intro__inner { flex-direction: column; align-items: stretch; gap: 28px; padding-inline: 16px; }
+  .sport-intro__title { font-size: 30px; }
+  .sport-intro__stats { flex: auto; }
+
+  .epreuves__head, .epreuves__list,
+  .discipline__inner, .rules__inner, .facts__inner,
+  .athletes__head, .athlete-grid { padding-inline: 16px; }
+  .epreuve { grid-template-columns: 1fr; gap: 6px; padding: 16px 18px; }
+  .epreuve__btn { justify-self: start; margin-top: 10px; }
+
+  .discipline { padding: 40px 0; }
+  .discipline__text h3 { font-size: 24px; }
+  .discipline__media { aspect-ratio: 16 / 10; }
+
+  .rule-grid { grid-template-columns: 1fr; gap: 16px; }
+  .athlete-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
 }
