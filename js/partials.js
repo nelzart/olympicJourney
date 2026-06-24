@@ -47,7 +47,7 @@
         <nav class="mininav__links" aria-label="Navigation compacte">
           <a href="les-jeux.html" data-nav="les-jeux">Les jeux</a>
           <a href="application.html" data-nav="application">L'application</a>
-          <a href="#" data-nav="billetterie">Billeterie</a>
+          <a href="billetterie.html" data-nav="billetterie">Billeterie</a>
         </nav>
         <a class="btn btn--light" href="connexion.html">S'inscrire</a>
       </div>
@@ -84,7 +84,7 @@
         </a>
 
         <ul class="nav-links">
-          <li><a href="#" data-nav="billetterie">Billeterie</a></li>
+          <li><a href="billetterie.html" data-nav="billetterie">Billeterie</a></li>
         </ul>
 
         <a class="btn btn--light" href="connexion.html">S'inscrire</a>
@@ -108,7 +108,7 @@
           <a href="index.html" data-nav="accueil">Accueil</a>
           <a href="les-jeux.html" data-nav="les-jeux">Les jeux</a>
           <a href="application.html" data-nav="application">L'application</a>
-          <a href="#" data-nav="billetterie">Billeterie</a>
+          <a href="billetterie.html" data-nav="billetterie">Billeterie</a>
         </nav>
         <a class="btn btn--light nav-drawer__cta" href="connexion.html">S'inscrire</a>
         <ul class="nav-drawer__lang" aria-label="Choix de la langue">

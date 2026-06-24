@@ -153,6 +153,63 @@ var CAROUSEL_AUTOPLAY_MS = 4000;  // délai d'auto-défilement du carrousel des 
     if (searchInput) searchInput.addEventListener('input', apply);
   }
 
+  /* --- Billetterie : filtres (villes / sports / types) + tri par date --- */
+  const tickets = document.querySelector('.tickets');
+  if (tickets) {
+    const chips = Array.prototype.slice.call(tickets.querySelectorAll('.filter'));
+    const items = Array.prototype.slice.call(tickets.querySelectorAll('.ticket'));
+    const empty = tickets.querySelector('.tickets__empty');
+    const sortSel = tickets.querySelector('.tickets__sort select');
+
+    const activeVals = function (group) {
+      return Array.prototype.slice
+        .call(tickets.querySelectorAll('.filter[data-group="' + group + '"].is-active'))
+        .map(function (c) { return c.dataset.val; })
+        .filter(function (v) { return v && v !== 'all'; });
+    };
+    const apply = function () {
+      const city = activeVals('city'), sport = activeVals('sport'), type = activeVals('type');
+      let visible = 0;
+      items.forEach(function (t) {
+        const ok = (!city.length  || city.indexOf(t.dataset.city)   !== -1)
+                && (!sport.length || sport.indexOf(t.dataset.sport) !== -1)
+                && (!type.length  || type.indexOf(t.dataset.type)   !== -1);
+        t.hidden = !ok;
+        if (ok) visible++;
+      });
+      if (empty) empty.hidden = visible > 0;
+    };
+
+    chips.forEach(function (chip) {
+      chip.addEventListener('click', function () {
+        const g = chip.dataset.group;
+        if (chip.dataset.val === 'all') {                 // chip "Toutes" : réinitialise le groupe
+          tickets.querySelectorAll('.filter[data-group="' + g + '"]').forEach(function (c) {
+            c.classList.toggle('is-active', c === chip);
+          });
+        } else {
+          chip.classList.toggle('is-active');
+          const allChip = tickets.querySelector('.filter[data-group="' + g + '"][data-val="all"]');
+          if (allChip) {
+            const anyOn = tickets.querySelectorAll('.filter[data-group="' + g + '"].is-active:not([data-val="all"])').length > 0;
+            allChip.classList.toggle('is-active', !anyOn);
+          }
+        }
+        apply();
+      });
+    });
+
+    if (sortSel) {
+      const list = tickets.querySelector('.tickets__list');
+      sortSel.addEventListener('change', function () {
+        const dir = sortSel.value === 'desc' ? -1 : 1;
+        items.slice().sort(function (a, b) {
+          return dir * a.dataset.date.localeCompare(b.dataset.date);
+        }).forEach(function (t) { list.insertBefore(t, empty); });
+      });
+    }
+  }
+
   /* --- Menu compact collant --- */
   const mininav = document.getElementById('mininav');
   if (mininav) {

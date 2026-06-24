@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Billetterie — Réservez vos places | Milano Cortina 2026</title>
+  <meta name="description" content="Réservez vos places pour les Jeux Olympiques d'hiver Milano Cortina 2026 : cérémonies, hockey, curling, patinage… Filtrez par ville, sport et type d'épreuve.">
+
+  <script>document.documentElement.classList.add('js');</script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="billetterie">
+
+  <div data-partial="sprite"></div>
+  <div data-partial="mininav"></div>
+
+  <!-- ===================== HEADER ===================== -->
+  <header class="site-header">
+    <div data-partial="topbar"></div>
+
+    <div class="header__inner">
+      <div data-partial="nav"></div>
+
+      <section class="hero hero--jeux">
+        <div class="hero__media">
+          <img src="assets/img/billetterie-hero.jpg" alt="Snowboardeur en course — Milano Cortina 2026">
+        </div>
+        <div class="hero__content">
+          <span class="hero__pill">Billetterie</span>
+        </div>
+      </section>
+    </div>
+  </header>
+
+  <!-- ===================== CONTENU ===================== -->
+  <main class="tickets">
+
+    <!-- En-tête de section -->
+    <section class="tickets__head" aria-labelledby="tickets-titre">
+      <h1 class="section-title" id="tickets-titre">
+        <svg class="section-title__logo" aria-hidden="true"><use href="#ic-mountain"></use></svg>
+        <span class="section-title__text">
+          <span class="section-title__small">Réserver</span>
+          <span class="section-title__big">Vos places</span>
+        </span>
+      </h1>
+    </section>
+
+    <!-- ===================== STATISTIQUES ===================== -->
+    <section class="tickets__stats" aria-label="Chiffres clés de la billetterie">
+      <div class="stats-grid stats-grid--4">
+        <div class="stat-card">
+          <p class="stat-card__num">116</p>
+          <p class="stat-card__label">Épreuves</p>
+        </div>
+        <div class="stat-card">
+          <p class="stat-card__num">5</p>
+          <p class="stat-card__label">Sites</p>
+        </div>
+        <div class="stat-card">
+          <p class="stat-card__num">35€</p>
+          <p class="stat-card__label">À partir de</p>
+        </div>
+        <div class="stat-card">
+          <p class="stat-card__num stat-card__num--date">6 fév</p>
+          <p class="stat-card__label">1<sup>er</sup> jour</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== FILTRES + TRI ===================== -->
+    <div class="tickets__inner">
+      <div class="tickets__bar">
+        <section class="tickets__filters glass" aria-label="Filtres">
+          <h2 class="tickets__filters-title">Filtres</h2>
+
+          <div class="filter-group">
+            <span class="filter-group__label">Villes</span>
+            <div class="filters">
+              <button type="button" class="filter is-active" data-group="city" data-val="all">Toutes les villes</button>
+              <button type="button" class="filter" data-group="city" data-val="milan">🏙️ Milan</button>
+              <button type="button" class="filter" data-group="city" data-val="cortina">🏔️ Cortina</button>
+            </div>
+          </div>
+
+          <div class="filter-group">
+            <span class="filter-group__label">Sports</span>
+            <div class="filters">
+              <button type="button" class="filter" data-group="sport" data-val="ski-alpin">Ski alpin</button>
+              <button type="button" class="filter" data-group="sport" data-val="hockey">Hockey sur glace</button>
+              <button type="button" class="filter" data-group="sport" data-val="curling">Curling</button>
+              <button type="button" class="filter" data-group="sport" data-val="patinage">Patinage artistique</button>
+              <button type="button" class="filter" data-group="sport" data-val="biathlon">Biathlon</button>
+              <button type="button" class="filter" data-group="sport" data-val="bobsleigh">Bobsleigh</button>
+              <button type="button" class="filter" data-group="sport" data-val="snowboard">Snowboard</button>
+              <button type="button" class="filter" data-group="sport" data-val="ski-fond">Ski de fond</button>
+            </div>
+          </div>
+
+          <div class="filter-group">
+            <span class="filter-group__label">Types d'épreuves</span>
+            <div class="filters">
+              <button type="button" class="filter" data-group="type" data-val="qualif">Qualifications</button>
+              <button type="button" class="filter" data-group="type" data-val="demi">Demi-finales</button>
+              <button type="button" class="filter" data-group="type" data-val="finale">Finales 🏅</button>
+              <button type="button" class="filter" data-group="type" data-val="ceremonie">Cérémonie</button>
+            </div>
+          </div>
+        </section>
+
+        <div class="tickets__sort">
+          <label for="ticket-sort">Trié par</label>
+          <select id="ticket-sort" class="select">
+            <option value="asc">Dates (plus tôt)</option>
+            <option value="desc">Dates (plus tard)</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- ===================== LISTE DES ÉVÉNEMENTS ===================== -->
+      <div class="tickets__list">
+
+        <article class="ticket" data-date="2026-02-06 20:00" data-city="milan" data-sport="" data-type="ceremonie">
+          <div class="ticket__date">
+            <span class="ticket__day">6</span>
+            <span class="ticket__month">Févr.</span>
+            <span class="ticket__time">20h00</span>
+          </div>
+          <div class="ticket__body">
+            <div class="ticket__tags">
+              <span class="tag tag--soft-milan">Milan</span>
+              <span class="tag tag--soft-gold">Cérémonie</span>
+            </div>
+            <h3 class="ticket__title">Cérémonie d'ouverture — Stadio San Siro</h3>
+            <div class="ticket__meta">
+              <span class="ticket__loc">📍 Milan</span>
+              <span class="ticket__cap">👥 75 000 places</span>
+            </div>
+          </div>
+          <a class="ticket__cta btn btn--gold" href="#">Réserver</a>
+        </article>
+
+        <article class="ticket" data-date="2026-02-09 14:00" data-city="milan" data-sport="hockey" data-type="qualif">
+          <div class="ticket__date">
+            <span class="ticket__day">9</span>
+            <span class="ticket__month">Févr.</span>
+            <span class="ticket__time">14h00</span>
+          </div>
+          <div class="ticket__body">
+            <div class="ticket__tags">
+              <span class="tag tag--soft-milan">Milan</span>
+              <span class="tag tag--soft-sport">Hockey sur glace</span>
+            </div>
+            <h3 class="ticket__title">Hockey sur glace Hommes — Tour préliminaire</h3>
+            <div class="ticket__meta">
+              <span class="ticket__loc">📍 Palazzo del Ghiaccio, Milan</span>
+              <span class="ticket__cap">👥 10 000 places</span>
+            </div>
+          </div>
+          <a class="ticket__cta btn btn--gold" href="#">Réserver</a>
+        </article>
+
+        <article class="ticket" data-date="2026-02-20 19:30" data-city="milan" data-sport="patinage" data-type="finale">
+          <div class="ticket__date">
+            <span class="ticket__day">20</span>
+            <span class="ticket__month">Févr.</span>
+            <span class="ticket__time">19h30</span>
+          </div>
+          <div class="ticket__body">
+            <div class="ticket__tags">
+              <span class="tag tag--soft-milan">Milan</span>
+              <span class="tag tag--soft-sport">Patinage artistique</span>
+              <span class="tag tag--soft-gold">Finale</span>
+            </div>
+            <h3 class="ticket__title">Patinage artistique — Programme libre, danse sur glace</h3>
+            <div class="ticket__meta">
+              <span class="ticket__loc">📍 Mediolanum Forum, Assago</span>
+              <span class="ticket__cap">👥 12 700 places</span>
+            </div>
+          </div>
+          <a class="ticket__cta btn btn--gold" href="#">Réserver</a>
+        </article>
+
+        <article class="ticket" data-date="2026-02-21 19:00" data-city="milan" data-sport="curling" data-type="finale">
+          <div class="ticket__date">
+            <span class="ticket__day">21</span>
+            <span class="ticket__month">Févr.</span>
+            <span class="ticket__time">19h00</span>
+          </div>
+          <div class="ticket__body">
+            <div class="ticket__tags">
+              <span class="tag tag--soft-milan">Milan</span>
+              <span class="tag tag--soft-sport">Curling</span>
+              <span class="tag tag--soft-gold">Finale</span>
+            </div>
+            <h3 class="ticket__title">Curling Hommes — Finale</h3>
+            <div class="ticket__meta">
+              <span class="ticket__loc">📍 Mediolanum Forum, Assago</span>
+              <span class="ticket__cap">👥 12 700 places</span>
+            </div>
+          </div>
+          <a class="ticket__cta btn btn--gold" href="#">Réserver</a>
+        </article>
+
+        <article class="ticket" data-date="2026-02-22 16:00" data-city="milan" data-sport="hockey" data-type="finale">
+          <div class="ticket__date">
+            <span class="ticket__day">22</span>
+            <span class="ticket__month">Févr.</span>
+            <span class="ticket__time">16h00</span>
+          </div>
+          <div class="ticket__body">
+            <div class="ticket__tags">
+              <span class="tag tag--soft-milan">Milan</span>
+              <span class="tag tag--soft-sport">Hockey sur glace</span>
+              <span class="tag tag--soft-gold">Finale</span>
+            </div>
+            <h3 class="ticket__title">Hockey sur glace Hommes — Finale pour l'or</h3>
+            <div class="ticket__meta">
+              <span class="ticket__loc">📍 Palazzo del Ghiaccio, Milan</span>
+              <span class="ticket__cap">👥 10 000 places</span>
+            </div>
+          </div>
+          <a class="ticket__cta btn btn--gold" href="#">Réserver</a>
+        </article>
+
+        <article class="ticket" data-date="2026-02-22 21:00" data-city="milan" data-sport="" data-type="ceremonie">
+          <div class="ticket__date">
+            <span class="ticket__day">22</span>
+            <span class="ticket__month">Févr.</span>
+            <span class="ticket__time">21h00</span>
+          </div>
+          <div class="ticket__body">
+            <div class="ticket__tags">
+              <span class="tag tag--soft-milan">Milan</span>
+              <span class="tag tag--soft-gold">Cérémonie</span>
+            </div>
+            <h3 class="ticket__title">Cérémonie de clôture — Stadio San Siro</h3>
+            <div class="ticket__meta">
+              <span class="ticket__loc">📍 San Siro, Milan</span>
+              <span class="ticket__cap">👥 75 000 places</span>
+            </div>
+          </div>
+          <a class="ticket__cta btn btn--gold" href="#">Réserver</a>
+        </article>
+
+        <p class="tickets__empty" hidden>Aucune épreuve ne correspond à ces filtres.</p>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ===================== FOOTER (partagé) ===================== -->
+  <div data-partial="footer"></div>
+
+  <script src="js/partials.js" defer></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>
