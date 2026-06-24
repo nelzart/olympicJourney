@@ -102,8 +102,8 @@ var CAROUSEL_AUTOPLAY_MS = 4000;  // délai d'auto-défilement du carrousel des 
     });
   });
 
-  /* --- Filtre dynamique des sports (page Les Jeux) --- */
-  const filterBar = document.querySelector('.filters');
+  /* --- Filtre dynamique des sports (page Les Jeux uniquement : nécessite des .sport-grid) --- */
+  const filterBar = document.querySelector('.sport-grid') ? document.querySelector('.filters') : null;
   if (filterBar) {
     const buttons = filterBar.querySelectorAll('.filter');
     const searchInput = filterBar.querySelector('input');
