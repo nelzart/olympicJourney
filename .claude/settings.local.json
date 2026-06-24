@@ -21,7 +21,12 @@
       "Read(//c/c/Users/Dorian/Documents/YNOV/BLOC 6/website/.claude/**)",
       "Bash(curl -s -o \"assets/img/cover-jeux.png\" \"https://www.figma.com/api/mcp/asset/7fda3d11-2948-41d2-b237-d37347cb0a15\")",
       "Bash(file assets/img/cover-jeux.png)",
-      "Bash(node -e 'const b=require\\(\"fs\"\\).readFileSync\\(\"assets/img/cover-jeux.png\"\\);console.log\\(\"PNG?\",b.slice\\(1,4\\).toString\\(\\)===\"PNG\",\"bytes\",b.length\\)')"
+      "Bash(node -e 'const b=require\\(\"fs\"\\).readFileSync\\(\"assets/img/cover-jeux.png\"\\);console.log\\(\"PNG?\",b.slice\\(1,4\\).toString\\(\\)===\"PNG\",\"bytes\",b.length\\)')",
+      "Bash(curl -s -o \".claude/p3full.png\" \"https://www.figma.com/api/mcp/asset/b07df65f-3be5-44e8-9d65-9ef2e5bf45d9\")",
+      "Bash(node -e 'const b=require\\(\"fs\"\\).readFileSync\\(\"assets/img/culture-duomo.png\"\\); console.log\\(\"magic:\", b.slice\\(0,4\\).toString\\(\"hex\"\\), \"| jpeg?\", b[0]===0xFF&&b[1]===0xD8\\)')",
+      "Bash(curl -s -o \".claude/cand_hero.png\" \"https://www.figma.com/api/mcp/asset/807694fb-f52a-4c55-a5f0-7a6fc1683860\")",
+      "Bash(node -e 'const b=require\\(\"fs\"\\).readFileSync\\(\".claude/cand_hero.png\"\\);console.log\\(\"bytes\",b.length\\)')",
+      "Bash(grep -vE '^\\(node_modules\\)$')"
     ]
   }
 }

@@ -114,25 +114,25 @@ button {
 .icon--book    { width: 22px; height: 22px; }
 
 /* Badge / tag */
-.badge {
+/* TAG / étiquette — composant réutilisable
+   (hero « à la une », tuiles actualités, cartes culturelles Milan/Cortina…) */
+.tag {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 8px 18px;
+  padding: 7px 18px;
   border-radius: var(--radius-sm);
   font-size: 13px;
-  font-weight: 600;
-  line-height: 20px;
-  letter-spacing: .02em;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: .03em;
+  text-transform: uppercase;
   color: var(--c-white);
+  background: var(--c-blue);          /* cyan par défaut */
 }
-.badge--cortina { background: var(--c-blue); }
-.badge--milan   { background: var(--c-red); }
-.badge__sep {
-  width: 9px;
-  height: 1px;
-  background: currentColor;
-}
+.tag--milan   { background: var(--c-red); }
+.tag--cortina { background: var(--c-blue); }
+.tag__sep { width: 9px; height: 1px; background: currentColor; opacity: .85; }
 
 /* =========================================================
    TITRE DE SECTION (logo montagne estompé + texte penché)
@@ -375,17 +375,11 @@ button {
   height: 100%;
   object-fit: cover;
 }
+/* tuile actu : positionnement du .tag (le visuel/casse viennent du composant .tag) */
 .news-card__tag {
   position: absolute;
   top: 23px;
   left: 20px;
-  padding: 3px 20px;
-  border-radius: 3px;
-  font-size: 14px;
-  font-weight: 600;
-  text-transform: uppercase;
-  color: var(--c-white);
-  background: var(--c-blue);
 }
 .news-card__title {
   position: absolute;
@@ -1664,6 +1658,90 @@ button {
 .stat-card__label { margin-top: 10px; font-weight: 700; font-size: 24px; color: var(--c-white); }
 .stat-card__sub { margin-top: 6px; font-size: 13px; color: var(--c-legend); }
 
+/* =========================================================
+   PAGE « APPLICATION » — composants
+   ========================================================= */
+
+/* --- Les épreuves culturelles : bandeau rose (bords diagonaux) + cartes ville --- */
+.culture { display: flex; flex-direction: column; gap: 25px; padding-top: 40px; }
+.culture__head {
+  width: 100%; max-width: var(--container); margin-inline: auto; padding-inline: 50px;
+}
+.culture__ribbon {
+  position: relative;
+  padding-block: 66px;
+  overflow: hidden;
+  background: linear-gradient(125deg, #f6d2d2 0%, #fbe7e7 50%, #f3caca 100%);
+  /* bords haut/bas en diagonale (robuste quelle que soit la hauteur) */
+  clip-path: polygon(0 30px, 100% 0, 100% 100%, 0 calc(100% - 30px));
+}
+.culture__inner {
+  position: relative;
+  max-width: var(--container); margin-inline: auto; padding-inline: 50px;
+  display: flex; flex-direction: column; gap: 18px;
+}
+.culture__group { font-weight: 900; font-size: 26px; color: var(--c-dark); margin-top: 14px; }
+.culture-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+
+.culture-card {
+  display: flex; flex-direction: column;
+  background: #fff;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.10);
+  transition: transform .45s cubic-bezier(.22, .61, .36, 1), box-shadow .45s ease;
+}
+.culture-card:hover { transform: translateY(-4px); box-shadow: 0 16px 34px rgba(0, 0, 0, 0.16); }
+.culture-card__media { position: relative; aspect-ratio: 16 / 10; overflow: hidden; }
+.culture-card__media img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 1s cubic-bezier(.22, .61, .36, 1);
+}
+.culture-card:hover .culture-card__media img { transform: scale(1.05); }
+.culture-card__tag { position: absolute; top: 14px; left: 14px; }
+.culture-card__body { display: flex; flex-direction: column; gap: 6px; padding: 18px 20px 22px; }
+.culture-card__label {
+  font-size: 11px; font-weight: 700; letter-spacing: .08em;
+  text-transform: uppercase; color: var(--c-legend);
+}
+.culture-card__title { font-weight: 900; font-size: 19px; color: var(--c-dark); }
+.culture-card__desc { font-size: 14px; line-height: 1.5; color: #5a657a; }
+
+/* --- Les valeurs (bandeau navy, 3 colonnes) --- */
+.values {
+  padding: 64px 0;
+  background: linear-gradient(125deg, #2c3f68 0%, var(--c-dark) 55%, #1b2843 100%);
+}
+.values__inner { max-width: var(--container); margin-inline: auto; padding-inline: 50px; }
+.values__eyebrow {
+  color: var(--c-blue); font-weight: 700; font-size: 16px; letter-spacing: 2px;
+  text-transform: uppercase; text-align: center; margin-bottom: 38px;
+}
+.values__grid { display: grid; grid-template-columns: repeat(3, 1fr); list-style: none; }
+.values__item { padding: 6px 42px; }
+.values__item + .values__item { border-left: 1px solid rgba(255, 255, 255, 0.14); }
+.values__title { color: var(--c-blue); font-weight: 900; font-size: 26px; margin-bottom: 14px; }
+.values__text { color: var(--c-text-light); font-size: 15px; line-height: 1.6; opacity: .85; }
+
+/* --- Bandeau citation (photo + voile navy + texte) --- */
+.quote-banner {
+  position: relative;
+  display: flex; align-items: center;
+  min-height: 340px;
+  overflow: hidden;
+}
+.quote-banner__media { position: absolute; inset: 0; z-index: 0; }
+.quote-banner__media img { width: 100%; height: 100%; object-fit: cover; }
+.quote-banner::after {
+  content: ""; position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(90deg, rgba(20, 28, 52, 0.88) 0%, rgba(20, 28, 52, 0.55) 55%, rgba(20, 28, 52, 0.25) 100%);
+}
+.quote-banner__text {
+  position: relative; z-index: 2;
+  width: 100%; max-width: var(--container); margin-inline: auto; padding-inline: 50px;
+  color: var(--c-white); font-weight: 900; font-size: 38px; line-height: 1.25;
+}
+
 /* tiroir mobile : masqué en desktop */
 .nav-drawer { display: none; }
 
@@ -1851,4 +1929,20 @@ button {
   .stat-card { padding: 26px; }
   .stat-card__num { font-size: 52px; }
   .stat-card__label { font-size: 21px; }
+
+  /* ---------- Page « Application » ---------- */
+  .culture__head { padding-inline: 16px; }
+  .culture__ribbon { padding-block: 40px; clip-path: polygon(0 18px, 100% 0, 100% 100%, 0 calc(100% - 18px)); }
+  .culture__inner { padding-inline: 16px; }
+  .culture__group { font-size: 22px; }
+  .culture-grid { grid-template-columns: 1fr; gap: 16px; }
+
+  .values { padding: 46px 0; }
+  .values__inner { padding-inline: 16px; }
+  .values__grid { grid-template-columns: 1fr; gap: 4px; }
+  .values__item { padding: 18px 0; }
+  .values__item + .values__item { border-left: 0; border-top: 1px solid rgba(255, 255, 255, 0.14); }
+
+  .quote-banner { min-height: 230px; }
+  .quote-banner__text { font-size: 25px; padding-inline: 16px; }
 }

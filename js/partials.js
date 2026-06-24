@@ -46,7 +46,7 @@
         </a>
         <nav class="mininav__links" aria-label="Navigation compacte">
           <a href="les-jeux.html" data-nav="les-jeux">Les jeux</a>
-          <a href="#" data-nav="application">L'application</a>
+          <a href="application.html" data-nav="application">L'application</a>
           <a href="#" data-nav="billetterie">Billeterie</a>
         </nav>
         <a class="btn btn--light" href="#">S'inscrire</a>
@@ -76,7 +76,7 @@
 
         <ul class="nav-links">
           <li><a href="les-jeux.html" data-nav="les-jeux">Les jeux</a></li>
-          <li><a href="#" data-nav="application">L'application</a></li>
+          <li><a href="application.html" data-nav="application">L'application</a></li>
         </ul>
 
         <a class="nav-logo" href="index.html" aria-label="Accueil — Milano Cortina 2026">
@@ -101,7 +101,7 @@
 
       <div class="nav-drawer" id="nav-drawer">
         <a href="les-jeux.html" data-nav="les-jeux">Les jeux</a>
-        <a href="#" data-nav="application">L'application</a>
+        <a href="application.html" data-nav="application">L'application</a>
         <a href="#" data-nav="billetterie">Billeterie</a>
         <a class="btn btn--light" href="#">S'inscrire</a>
       </div>
@@ -175,7 +175,61 @@
           </div>
         </div>
       </div>
-    </footer>`
+    </footer>`,
+
+    /* --- Section Olympic Journey (application) — réutilisée sur plusieurs pages --- */
+    'olympic-journey': `
+    <section class="app" aria-label="L'application Olympic Journey">
+      <div class="app__intro">
+        <div class="app-logo">
+          <svg class="app-logo__mark" aria-hidden="true"><use href="#ic-mountain"></use></svg>
+          <span class="app-logo__text">
+            <span class="app-logo__top">OLYMPIC</span>
+            <span class="app-logo__main">JOURNEY</span>
+            <span class="app-logo__sub">Milano Cortina 2026</span>
+          </span>
+        </div>
+
+        <p class="app__quote">« Les Jeux ne sont plus seulement regardés. Ils sont vécus. »</p>
+        <p class="app__desc">Constituez votre délégation, choisissez vos épreuves culturelles et sportives, collectez des médailles.</p>
+
+        <div class="app__actions">
+          <a class="btn btn--lg btn--gold" href="#">Télécharger l'application</a>
+          <a class="btn btn--lg btn--outline" href="application.html">Découvrir Olympic Journey</a>
+        </div>
+      </div>
+
+      <ol class="app__steps">
+        <li class="info-card info-card--steps">
+          <span class="info-card__lead info-card__lead--num">01</span>
+          <div class="info-card__body">
+            <p class="info-card__title">Constituez votre délégation</p>
+            <p class="info-card__desc">Invitez famille et amis.</p>
+          </div>
+        </li>
+        <li class="info-card info-card--steps">
+          <span class="info-card__lead info-card__lead--num">02</span>
+          <div class="info-card__body">
+            <p class="info-card__title">Choisissez vos épreuves</p>
+            <p class="info-card__desc">Chaque lieu lié à une discipline.</p>
+          </div>
+        </li>
+        <li class="info-card info-card--steps">
+          <span class="info-card__lead info-card__lead--num">03</span>
+          <div class="info-card__body">
+            <p class="info-card__title">Révélez l'angle invisible</p>
+            <p class="info-card__desc">Le regard de l'athlète sur la ville.</p>
+          </div>
+        </li>
+        <li class="info-card info-card--steps">
+          <span class="info-card__lead info-card__lead--num">04</span>
+          <div class="info-card__body">
+            <p class="info-card__title">Décrochez vos médailles</p>
+            <p class="info-card__desc">Bronze, Argent, Or — votre palmarès.</p>
+          </div>
+        </li>
+      </ol>
+    </section>`
   };
 
   /* Remplace chaque placeholder [data-partial="x"] par le markup correspondant.

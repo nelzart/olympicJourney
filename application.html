@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>L'application — Olympic Journey | Milano Cortina 2026</title>
+  <meta name="description" content="Olympic Journey, l'application officielle des Jeux Milano Cortina 2026 : constituez votre délégation, vivez les épreuves culturelles de Milan et Cortina, collectez des médailles.">
+
+  <script>document.documentElement.classList.add('js');</script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="application">
+
+  <!-- Sprite SVG + mini-nav partagés -->
+  <div data-partial="sprite"></div>
+  <div data-partial="mininav"></div>
+
+  <!-- ===================== HEADER ===================== -->
+  <header class="site-header">
+    <div data-partial="topbar"></div>
+
+    <div class="header__inner">
+      <div data-partial="nav"></div>
+
+      <section class="hero hero--jeux">
+        <div class="hero__media">
+          <img src="assets/img/cover-application.png" alt="Cortina d'Ampezzo et les Dolomites sous la neige">
+        </div>
+        <div class="hero__content">
+          <span class="hero__pill">OLYMPIC JOURNEY</span>
+        </div>
+      </section>
+    </div>
+  </header>
+
+  <!-- ===================== CONTENU ===================== -->
+  <main>
+
+    <!-- Section Olympic Journey (partagée, extraite de la home) -->
+    <div data-partial="olympic-journey"></div>
+
+    <!-- ===================== LES ÉPREUVES CULTURELLES ===================== -->
+    <section class="culture" aria-labelledby="culture-titre">
+      <div class="culture__head">
+        <h2 class="section-title" id="culture-titre">
+          <svg class="section-title__logo" aria-hidden="true"><use href="#ic-mountain"></use></svg>
+          <span class="section-title__text">
+            <span class="section-title__small">Les épreuves</span>
+            <span class="section-title__big">Culturelles</span>
+          </span>
+        </h2>
+      </div>
+
+      <div class="culture__ribbon">
+        <div class="culture__inner">
+
+          <h3 class="culture__group">Milan</h3>
+          <div class="culture-grid">
+            <article class="culture-card">
+              <div class="culture-card__media">
+                <img src="assets/img/culture-duomo.jpg" alt="Duomo di Milano">
+                <span class="tag tag--milan culture-card__tag">Milan</span>
+              </div>
+              <div class="culture-card__body">
+                <p class="culture-card__label">Épreuve culturelle</p>
+                <h4 class="culture-card__title">Duomo di Milano</h4>
+                <p class="culture-card__desc">La cathédrale gothique au cœur de la ville — concerts et expositions au programme.</p>
+              </div>
+            </article>
+            <article class="culture-card">
+              <div class="culture-card__media">
+                <img src="assets/img/culture-scala.png" alt="Teatro alla Scala">
+                <span class="tag tag--milan culture-card__tag">Milan</span>
+              </div>
+              <div class="culture-card__body">
+                <p class="culture-card__label">Épreuve culturelle</p>
+                <h4 class="culture-card__title">Teatro alla Scala</h4>
+                <p class="culture-card__desc">Le temple de l'opéra accueille galas et créations pendant les Jeux.</p>
+              </div>
+            </article>
+            <article class="culture-card">
+              <div class="culture-card__media">
+                <img src="assets/img/culture-falzarego.png" alt="Col Falzarego">
+                <span class="tag tag--milan culture-card__tag">Milan</span>
+              </div>
+              <div class="culture-card__body">
+                <p class="culture-card__label">Épreuve culturelle</p>
+                <h4 class="culture-card__title">Col Falzarego</h4>
+                <p class="culture-card__desc">Panoramas des Dolomites et art en altitude, entre deux épreuves de glisse.</p>
+              </div>
+            </article>
+          </div>
+
+          <h3 class="culture__group">Cortina</h3>
+          <div class="culture-grid">
+            <article class="culture-card">
+              <div class="culture-card__media">
+                <img src="assets/img/culture-falzarego.png" alt="Col Falzarego">
+                <span class="tag tag--cortina culture-card__tag">Cortina</span>
+              </div>
+              <div class="culture-card__body">
+                <p class="culture-card__label">Épreuve culturelle</p>
+                <h4 class="culture-card__title">Col Falzarego</h4>
+                <p class="culture-card__desc">Le belvédère des Dolomites, théâtre d'installations à ciel ouvert.</p>
+              </div>
+            </article>
+            <article class="culture-card">
+              <div class="culture-card__media">
+                <img src="assets/img/culture-scala.png" alt="Teatro Stabile">
+                <span class="tag tag--cortina culture-card__tag">Cortina</span>
+              </div>
+              <div class="culture-card__body">
+                <p class="culture-card__label">Épreuve culturelle</p>
+                <h4 class="culture-card__title">Teatro Stabile</h4>
+                <p class="culture-card__desc">Spectacles et rencontres au cœur de la perle des Dolomites.</p>
+              </div>
+            </article>
+            <article class="culture-card">
+              <div class="culture-card__media">
+                <img src="assets/img/culture-duomo.jpg" alt="Basilica dei Santi">
+                <span class="tag tag--cortina culture-card__tag">Cortina</span>
+              </div>
+              <div class="culture-card__body">
+                <p class="culture-card__label">Épreuve culturelle</p>
+                <h4 class="culture-card__title">Basilica dei Santi</h4>
+                <p class="culture-card__desc">Patrimoine et musique sacrée, à quelques pas des pistes olympiques.</p>
+              </div>
+            </article>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== NOS AMBIANCES (réutilisée de la home) ===================== -->
+    <section class="ambiances" aria-labelledby="ambiances-titre">
+      <div class="ambiances__head">
+        <h2 class="section-title" id="ambiances-titre">
+          <svg class="section-title__logo" aria-hidden="true"><use href="#ic-mountain"></use></svg>
+          <span class="section-title__text">
+            <span class="section-title__small">Nos</span>
+            <span class="section-title__big">Ambiances</span>
+          </span>
+        </h2>
+      </div>
+
+      <div class="ambiances__ribbon">
+        <div class="ambiances__band" aria-hidden="true"></div>
+        <div class="ambiances__cities">
+          <figure class="ville ville--milan" tabindex="0">
+            <img src="assets/img/ville-milan-color.png" alt="Milan — Piazza del Duomo">
+            <span class="ville__tint" aria-hidden="true"></span>
+            <figcaption class="ville__name">Milan</figcaption>
+          </figure>
+          <figure class="ville ville--cortina" tabindex="0">
+            <img src="assets/img/ville-cortina-color.png" alt="Cortina d'Ampezzo sous la neige">
+            <span class="ville__tint" aria-hidden="true"></span>
+            <figcaption class="ville__name">Cortina d'Ampezzo</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== LES VALEURS ===================== -->
+    <section class="values" aria-labelledby="values-titre">
+      <div class="values__inner">
+        <p class="values__eyebrow" id="values-titre">Les valeurs olympiques</p>
+        <ul class="values__grid">
+          <li class="values__item">
+            <h3 class="values__title">Excellence</h3>
+            <p class="values__text">Donner le meilleur de soi-même, sur le terrain comme dans la vie — la victoire sur soi avant celle sur l'adversaire.</p>
+          </li>
+          <li class="values__item">
+            <h3 class="values__title">Amitié</h3>
+            <p class="values__text">Bâtir un monde meilleur par la solidarité, le partage et l'esprit d'équipe entre les peuples.</p>
+          </li>
+          <li class="values__item">
+            <h3 class="values__title">Respect</h3>
+            <p class="values__text">Le respect de soi, des autres, des règles du jeu et de l'environnement qui nous accueille.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===================== BANDEAU CITATION ===================== -->
+    <section class="quote-banner" aria-label="Citation">
+      <div class="quote-banner__media" aria-hidden="true">
+        <img src="assets/img/cover.png" alt="">
+      </div>
+      <p class="quote-banner__text">« Les Jeux ne sont plus seulement regardés.<br>Ils sont vécus. »</p>
+    </section>
+
+  </main>
+
+  <!-- ===================== FOOTER (partagé) ===================== -->
+  <div data-partial="footer"></div>
+
+  <script src="js/partials.js" defer></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>
