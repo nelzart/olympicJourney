@@ -14,7 +14,14 @@
       "Bash(curl -s -o \"calendar-bg.png\" \"https://www.figma.com/api/mcp/asset/dc320cca-75df-4754-855e-e12124c77ffc\")",
       "Bash(curl -s -o \"ville-milan-color.png\"   \"https://www.figma.com/api/mcp/asset/80979916-39c6-4e21-8b4e-1510e250bd33\")",
       "Bash(curl -s -o \"ville-cortina-color.png\" \"https://www.figma.com/api/mcp/asset/2543343b-ae6b-4f41-9de7-f259604d22e1\")",
-      "Bash(curl -s -o \"_fig_cards.png\" \"https://www.figma.com/api/mcp/asset/4d9312af-27ea-42f7-93bf-42f2f97ce492\")"
+      "Bash(curl -s -o \"_fig_cards.png\" \"https://www.figma.com/api/mcp/asset/4d9312af-27ea-42f7-93bf-42f2f97ce492\")",
+      "Bash(curl -s -o \".claude/page2.png\" \"https://www.figma.com/api/mcp/asset/bdfec29d-2b43-4acf-83cb-6d3138c7536d\")",
+      "Bash(python -c \"from PIL import Image; im=Image.open\\('.claude/page2.png'\\); print\\(im.size\\)\")",
+      "Bash(curl -s -o \".claude/p2full.png\" \"https://www.figma.com/api/mcp/asset/b4b97c08-ae1a-4723-a4fb-528779b67c6a\")",
+      "Read(//c/c/Users/Dorian/Documents/YNOV/BLOC 6/website/.claude/**)",
+      "Bash(curl -s -o \"assets/img/cover-jeux.png\" \"https://www.figma.com/api/mcp/asset/7fda3d11-2948-41d2-b237-d37347cb0a15\")",
+      "Bash(file assets/img/cover-jeux.png)",
+      "Bash(node -e 'const b=require\\(\"fs\"\\).readFileSync\\(\"assets/img/cover-jeux.png\"\\);console.log\\(\"PNG?\",b.slice\\(1,4\\).toString\\(\\)===\"PNG\",\"bytes\",b.length\\)')"
     ]
   }
 }

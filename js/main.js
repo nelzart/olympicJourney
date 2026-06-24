@@ -78,6 +78,57 @@ var CAROUSEL_AUTOPLAY_MS = 4000;  // délai d'auto-défilement du carrousel des 
     });
   });
 
+  /* --- Filtre dynamique des sports (page Les Jeux) --- */
+  const filterBar = document.querySelector('.filters');
+  if (filterBar) {
+    const buttons = filterBar.querySelectorAll('.filter');
+    const searchInput = filterBar.querySelector('input');
+    const grids = Array.prototype.slice.call(document.querySelectorAll('.sport-grid'));
+    const divider = document.querySelector('.jeux__divider');
+    const emptyMsg = document.querySelector('.sport-empty');
+    const GLISSE = ['biathlon', 'bobsleigh', 'luge', 'saut à ski', 'skeleton', 'ski acrobatique', 'ski de fond', 'snowboard', 'combiné nordique', 'para biathlon', 'para snowboard', 'para ski alpin', 'para ski de fond'];
+    const VITESSE = ['bobsleigh', 'luge', 'patinage de vitesse', 'skeleton', 'para ski alpin'];
+    let activeCat = 'tous';
+
+    const nameOf = function (card) {
+      const el = card.querySelector('.sport-card__name');
+      return el ? el.textContent.trim().toLowerCase() : '';
+    };
+
+    const apply = function () {
+      const q = (searchInput ? searchInput.value : '').trim().toLowerCase();
+      let totalVisible = 0;
+      grids.forEach(function (grid, gi) {
+        const cat = gi === 0 ? 'olympique' : 'paralympique';   // 1re grille = olympique, 2e = paralympique
+        const cards = grid.querySelectorAll('.sport-card');
+        cards.forEach(function (card) {
+          const name = nameOf(card);
+          const catOk = activeCat === 'tous'
+            || activeCat === cat
+            || (activeCat === 'glisse'  && GLISSE.indexOf(name) !== -1)
+            || (activeCat === 'vitesse' && VITESSE.indexOf(name) !== -1);
+          const searchOk = !q || name.indexOf(q) !== -1;
+          card.hidden = !(catOk && searchOk);
+          if (!card.hidden) totalVisible++;
+        });
+        grid.hidden = !Array.prototype.some.call(cards, function (c) { return !c.hidden; });
+      });
+      if (divider) divider.hidden = grids.length < 2 || grids[0].hidden || grids[1].hidden;
+      if (emptyMsg) emptyMsg.hidden = totalVisible > 0;
+    };
+
+    buttons.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        buttons.forEach(function (b) { b.classList.remove('is-active'); b.setAttribute('aria-pressed', 'false'); });
+        btn.classList.add('is-active');
+        btn.setAttribute('aria-pressed', 'true');
+        activeCat = btn.getAttribute('data-filter') || 'tous';
+        apply();
+      });
+    });
+    if (searchInput) searchInput.addEventListener('input', apply);
+  }
+
   /* --- Menu compact collant --- */
   const mininav = document.getElementById('mininav');
   if (mininav) {
@@ -93,7 +144,8 @@ var CAROUSEL_AUTOPLAY_MS = 4000;  // délai d'auto-défilement du carrousel des 
     '.section-title', '.news-card', '.actus__panel',
     '.ambiances__cities figure', '.app__intro',
     '.info-card', '.cal-date',
-    '.faq-item', '.footer-content', '.footer-bar'
+    '.faq-item', '.footer-content', '.footer-bar',
+    '.section-header--center', '.tl-item'   /* page Les Jeux (stat-card exclu : compteur + hover) */
   ].join(',');
 
   const revealEls = Array.prototype.slice.call(document.querySelectorAll(revealSelectors));
@@ -125,7 +177,7 @@ var CAROUSEL_AUTOPLAY_MS = 4000;  // délai d'auto-défilement du carrousel des 
 
   /* --- Compteurs animés (dates du calendrier + tableau des médailles) --- */
   const counters = [];
-  document.querySelectorAll('.cal-date__num, .medals tbody td:not(:first-child)').forEach(function (el) {
+  document.querySelectorAll('.cal-date__num, .stat-card__num, .medals tbody td:not(:first-child)').forEach(function (el) {
     const raw = el.textContent.trim();
     if (/^\d+$/.test(raw)) {
       el.dataset.count = raw;

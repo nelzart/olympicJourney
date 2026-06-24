@@ -1412,6 +1412,243 @@ button {
   box-shadow: var(--glass-sheen);
 }
 
+/* =========================================================
+   PAGE « LES JEUX » — composants réutilisables
+   ========================================================= */
+
+/* Hero variante : plus court, pastille « LES JEUX » */
+.hero--jeux { min-height: 320px; }
+.hero--jeux .hero__content { justify-content: center; }
+.hero__pill {
+  display: inline-block;
+  padding: 14px 36px;
+  border-radius: 999px;
+  background: var(--c-blue);
+  color: var(--c-white);
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: 1px;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.25);
+}
+
+/* Layout : contenu principal + panneau latéral collant */
+.jeux { padding: 44px 0 60px; }
+.jeux__inner {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: 50px;
+}
+.jeux__main { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 26px; }
+.jeux__side {
+  flex: none;
+  width: 392px;
+  position: sticky;
+  top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Barre de filtres */
+.filters { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.filter {
+  padding: 9px 22px;
+  border-radius: 999px;
+  border: 1px solid rgba(33, 49, 81, 0.25);
+  background: transparent;
+  color: var(--c-dark);
+  font: 700 15px var(--font);
+  cursor: pointer;
+  transition: background .15s ease, color .15s ease, border-color .15s ease;
+}
+.filter:hover { border-color: var(--c-blue); color: var(--c-blue); }
+.filter.is-active { background: var(--c-blue); border-color: var(--c-blue); color: var(--c-white); }
+.filters__search {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 16px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(33, 49, 81, 0.15);
+}
+.filters__search input {
+  border: 0; background: transparent; outline: none;
+  font: 400 14px var(--font); color: var(--c-dark); width: 150px;
+}
+.filters__search .icon--search { width: 15px; height: 17px; color: var(--c-legend); }
+
+/* Grille de sports — réutilise .sport-card (remplit la colonne) */
+.sport-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.sport-grid .sport-card { width: auto; height: auto; aspect-ratio: 13 / 14; }
+/* masquage fiable pour le filtre (prime sur display:grid/none) */
+.sport-grid[hidden], .jeux__divider[hidden], .sport-card[hidden] { display: none; }
+.sport-empty { color: var(--c-legend); font-weight: 700; padding: 8px 2px; }
+
+/* Séparateur « Sports paralympiques » */
+.jeux__divider {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 10px;
+  color: var(--c-dark);
+  font-weight: 700;
+  font-size: 15px;
+}
+.jeux__divider::after { content: ""; flex: 1; height: 1px; background: rgba(33, 49, 81, 0.18); }
+
+/* En-tête de section centré (sur fond sombre) */
+.section-header--center { text-align: center; max-width: 720px; margin-inline: auto; }
+.section-header__eyebrow {
+  display: block;
+  color: var(--c-blue);
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.section-header__title {
+  margin-top: 16px;
+  color: var(--c-white);
+  font-weight: 900;
+  font-size: 54px;
+  line-height: 1.08;
+}
+.section-header__sub { margin-top: 16px; color: var(--c-legend); font-size: 16px; }
+
+/* === Section Héritage (bandeau navy) + Timeline + Stats === */
+.heritage {
+  padding: 70px 0 66px;
+  background: linear-gradient(125deg, #2c3f68 0%, var(--c-dark) 55%, #1b2843 100%);
+}
+.heritage__inner { max-width: var(--container); margin-inline: auto; padding-inline: 50px; }
+
+/* Chronologie alternée reliée par une ligne centrale à nœuds */
+.timeline { position: relative; max-width: 1000px; margin: 58px auto 0; }
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 50%; top: 8px; bottom: 8px;
+  width: 2px;
+  background: rgba(255, 255, 255, 0.18);
+  transform: translateX(-50%);
+}
+.tl-item { position: relative; width: 50%; box-sizing: border-box; margin-bottom: 44px; }
+.tl-item--left  { left: 0;   padding-right: 54px; }
+.tl-item--right { left: 50%; padding-left: 54px; }
+.tl-node {
+  position: absolute;
+  top: 26px;
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: var(--c-dark);
+  border: 4px solid var(--c-blue);
+  z-index: 2;
+}
+.tl-item--left  .tl-node { right: -11px; }
+.tl-item--right .tl-node { left: -11px; }
+
+.tl-card {
+  position: relative;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  /* verre givré : teinte navy + dégradé frost (même langage que .info-card / .stat-card) */
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.03)),
+              rgba(46, 62, 96, 0.4);
+  border: 1px solid var(--glass-edge);
+  -webkit-backdrop-filter: var(--glass-blur);
+          backdrop-filter: var(--glass-blur);
+  box-shadow: var(--glass-sheen);
+}
+.tl-card__media { position: relative; height: 152px; }
+.tl-card__media img { width: 100%; height: 100%; object-fit: cover; }
+.tl-year {
+  position: absolute;
+  top: 0; left: 0;
+  padding: 6px 16px;
+  border-bottom-right-radius: var(--radius-sm);
+  font-weight: 900;
+  color: var(--c-white);
+  background: var(--c-blue);
+}
+.tl-year--gold { background: var(--c-gold); color: var(--c-dark); }
+.tl-year--red  { background: var(--c-red); }
+.tl-card__body { padding: 18px 20px 22px; }
+.tl-card__title { color: var(--c-white); font-weight: 700; font-size: 17px; }
+.tl-card__text { margin-top: 8px; color: var(--c-text-light); font-size: 13px; line-height: 1.55; opacity: .82; }
+.tl-stats { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.tl-stat {
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--c-text-light);
+  background: rgba(79, 168, 208, 0.16);
+  border: 1px solid rgba(79, 168, 208, 0.35);
+}
+
+/* Hover des cartes de la timeline — même langage que les .info-card de la home
+   (léger soulèvement + liseré doré + glow + accent or sur le titre) */
+.tl-card {
+  transition: transform .45s cubic-bezier(.22, .61, .36, 1),
+              border-color .45s ease,
+              box-shadow .45s ease;
+}
+.tl-card__title { transition: color .45s ease; }
+.tl-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 215, 0, 0.5);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.34),
+              inset 0 1px 0 rgba(255, 255, 255, 0.14);
+}
+.tl-card:hover .tl-card__title { color: var(--c-gold); }
+.tl-card__media img { transition: transform .6s cubic-bezier(.22, .61, .36, 1); }
+.tl-card:hover .tl-card__media img { transform: scale(1.05); }
+
+/* Statistiques clés (cartes en verre, compteurs animés) */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  max-width: 1000px;
+  margin: 44px auto 0;
+}
+.stat-card {
+  padding: 34px;
+  border-radius: var(--radius-sm);
+  text-align: center;
+  /* verre givré : teinte navy + dégradé frost par-dessus (même langage que .info-card) */
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0.02)),
+              rgba(46, 62, 96, 0.4);
+  border: 1px solid var(--glass-edge);
+  -webkit-backdrop-filter: var(--glass-blur);
+          backdrop-filter: var(--glass-blur);
+  box-shadow: var(--glass-sheen), 0 8px 24px rgba(0, 0, 0, 0.18);
+  transition: transform .45s cubic-bezier(.22, .61, .36, 1),
+              border-color .45s ease,
+              box-shadow .45s ease;
+}
+.stat-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 215, 0, 0.5);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.32),
+              inset 0 1px 1px rgba(255, 255, 255, 0.55);
+}
+.stat-card__num {
+  font-weight: 900;
+  font-size: 64px;
+  line-height: 1;
+  color: var(--c-blue);
+  transition: color .45s ease;
+}
+.stat-card:hover .stat-card__num { color: var(--c-gold); }
+.stat-card__label { margin-top: 10px; font-weight: 700; font-size: 24px; color: var(--c-white); }
+.stat-card__sub { margin-top: 6px; font-size: 13px; color: var(--c-legend); }
+
 /* tiroir mobile : masqué en desktop */
 .nav-drawer { display: none; }
 
@@ -1569,4 +1806,34 @@ button {
   .lang-switch a { display: inline-block; padding: 6px 2px; }
   .nav-drawer a { padding: 8px 0; }
   .footer-bar__links a { padding: 6px 4px; }
+
+  /* ---------- Page « Les Jeux » ---------- */
+  .hero--jeux { min-height: 230px; }
+  .jeux { padding: 28px 0 40px; }
+  .jeux__inner { flex-direction: column; gap: 28px; padding-inline: 16px; }
+  .jeux__side { width: auto; position: static; }
+  .jeux__side .actus__panel { width: auto; margin: 0; }
+  .filters { gap: 8px; }
+  .filters__search { margin-left: 0; width: 100%; }
+  .filters__search input { width: 100%; }
+  .sport-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+
+  .heritage { padding: 46px 0 44px; }
+  .heritage__inner { padding-inline: 16px; }
+  .section-header__eyebrow { font-size: 14px; }
+  .section-header__title { font-size: 30px; }
+
+  /* timeline : colonne unique, ligne à gauche */
+  .timeline { margin-top: 36px; }
+  .timeline::before { left: 11px; }
+  .tl-item,
+  .tl-item--left,
+  .tl-item--right { width: 100%; left: 0; padding-left: 44px; padding-right: 0; margin-bottom: 30px; }
+  .tl-item--left .tl-node,
+  .tl-item--right .tl-node { left: 0; right: auto; }
+
+  .stats-grid { grid-template-columns: 1fr; gap: 14px; margin-top: 32px; }
+  .stat-card { padding: 26px; }
+  .stat-card__num { font-size: 52px; }
+  .stat-card__label { font-size: 21px; }
 }

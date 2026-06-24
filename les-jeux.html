@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Les Jeux — Milano Cortina 2026</title>
+  <meta name="description" content="Tous les sports olympiques et paralympiques des Jeux d'hiver Milano Cortina 2026, le tableau des médailles et l'histoire des JO d'hiver en Italie.">
+
+  <!-- marque l'activation de JS au plus tôt (évite tout clignotement des animations) -->
+  <script>document.documentElement.classList.add('js');</script>
+
+  <!-- Police Lato -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="les-jeux">
+
+  <!-- Sprite SVG + mini-nav partagés — injectés par js/partials.js -->
+  <div data-partial="sprite"></div>
+  <div data-partial="mininav"></div>
+
+  <!-- ===================== HEADER ===================== -->
+  <header class="site-header">
+
+    <!-- Bandeau rouge (partagé) -->
+    <div data-partial="topbar"></div>
+
+    <div class="header__inner">
+
+      <!-- Menu de navigation (partagé) -->
+      <div data-partial="nav"></div>
+
+      <!-- Cover / Hero -->
+      <section class="hero hero--jeux">
+        <div class="hero__media">
+          <img src="assets/img/cover-jeux.png" alt="Les Jeux Olympiques d'hiver Milano Cortina 2026">
+        </div>
+        <div class="hero__content">
+          <span class="hero__pill">LES JEUX</span>
+        </div>
+      </section>
+
+    </div>
+  </header>
+
+  <!-- ===================== CONTENU ===================== -->
+  <main>
+
+    <!-- ===================== SPORTS (grille + filtres + panneau) ===================== -->
+    <section class="jeux" aria-label="Tous les sports">
+      <div class="jeux__inner">
+
+        <div class="jeux__main">
+
+          <!-- Filtres -->
+          <div class="filters" aria-label="Filtrer les sports">
+            <button class="filter is-active" type="button" data-filter="tous" aria-pressed="true">Tous les sports</button>
+            <button class="filter" type="button" data-filter="olympique" aria-pressed="false">Olympique</button>
+            <button class="filter" type="button" data-filter="paralympique" aria-pressed="false">Paralympique</button>
+            <button class="filter" type="button" data-filter="glisse" aria-pressed="false">Glisse</button>
+            <button class="filter" type="button" data-filter="vitesse" aria-pressed="false">Vitesse</button>
+            <label class="filters__search">
+              <svg class="icon icon--search" aria-hidden="true"><use href="#ic-search"></use></svg>
+              <input type="search" placeholder="Sport olympique" aria-label="Rechercher un sport">
+            </label>
+          </div>
+
+          <!-- message quand aucun sport ne correspond -->
+          <p class="sport-empty" hidden>Aucun sport ne correspond à votre recherche.</p>
+
+          <!-- Grille des sports olympiques -->
+          <div class="sport-grid">
+            <div class="sport-card"><div class="sport-card__media"><img src="assets/img/sport-biathlon.png" alt="Biathlon"></div><div class="sport-card__foot"><button class="sport-card__fav" type="button" aria-label="Ajouter Biathlon aux favoris"><svg class="icon icon--heart" aria-hidden="true"><use href="#ic-heart"></use></svg></button><span class="sport-card__name">Biathlon</span></div></div>
+            <div class="sport-card"><div class="sport-card__media"><img src="assets/img/sport-bobsleigh.png" alt="Bobsleigh"></div><div class="sport-card__foot"><button class="sport-card__fav" type="button" aria-label="Ajouter Bobsleigh aux favoris"><svg class="icon icon--heart" aria-hidden="true"><use href="#ic-heart"></use></svg></button><span class="sport-card__name">Bobsleigh</span></div></div>
+            <div class="sport-card"><div class="sport-card__media"><img src="assets/img/sport-curling.png" alt="Curling"></div><div class="sport-card__foot"><button class="sport-card__fav" type="button" aria-label="Ajouter Curling aux favoris"><svg class="icon icon--heart" aria-hidden="true"><use href="#ic-heart"></use></svg></button><span class="sport-card__name">Curling</span></div></div>
+            <div class="sport-card"><div class="sport-card__media"><img src="assets/img/sport-hockey.png" alt="Hockey sur glace"></div><div class="sport-card__foot"><button class="sport-card__fav" type="button" aria-label="Ajouter Hockey sur glace aux favoris"><svg class="icon icon--heart" aria-hidden="true"><use href="#ic-heart"></use></svg></button><span class="sport-card__name">Hockey sur glace</span></div></div>
+            <div class="sport-card"><div class="sport-card__media"></div><div class="sport-card__foot"><button class="sport-card__fav" type="button" aria-label="Ajouter Luge aux favoris"><svg class="icon icon--heart" aria-hidden="true"><use href="#ic-heart"></use></svg></button><span class="sport-card__name">Luge</span></div></div>
+            <div class="sport-card"><div class="sport-card__media"><img src="assets/img/sport-patinage.png" alt="Patinage artistique"></div><div class="sport-card__foot"><button class="sport-card__fav" type="button" aria-label="Ajouter Patinage artistique aux favoris"><svg class="icon icon--heart" aria-hidden="true"><use href="#ic-heart"></use></svg></button><span class="sport-card__name">Patinage artistique</span></div></div>
+            <div class="sport-card"><div class="sport-card__media"></div><div class="sport-card__foot"><button class="sport-card__fav" type="button" aria-label="Ajouter Patinage de vitesse aux favoris"><svg class="icon icon--heart" aria-hidden="true"><use href="#ic-heart"></use></svg></button><span class="sport-card__name">Patinage de vitesse</span></div></div>
+            <div class="sport-card"><div class="sport-card__media"></div><div class="sport-card__foot"><button class="sport-card__fav" type="button" aria-label="Ajouter Saut à ski aux favoris"><svg class="icon icon--heart" aria-hidden="true"><use href="#ic-heart"></use></svg></button><span class="sport-card__name">Saut à ski</span></div></div>
+            <div class="sport-card"><div class="sport-card__media"></div><div class="sport-card__foot"><button class="sport-card__fav" type="button" aria-label="Ajouter Skeleton aux favoris"><svg class="icon icon--heart" aria-hidden="true"><use href="#ic-heart"></use></svg></button><span class="sport-card__name">Skeleton</span></div></div>
+            <div class="sport-card"><div class="sport-card__media"></div><div class="sport-card__foot"><button class="sport-card__fav" type="button" aria-label="Ajouter Ski acrobatique aux favoris"><svg class="icon icon--heart" aria-hidden="true"><use href="#ic-heart"></use></svg></button><span class="sport-card__name">Ski acrobatique</span></div></div>
+            <div class="sport-card"><div class="sport-card__media"></div><div class="sport-card__foot"><button class="sport-card__fav" type="button" aria-label="Ajouter Ski de fond aux favoris"><svg class="icon icon--heart" aria-hidden="true"><use href="#ic-heart"></use></svg></button><span class="sport-card__name">Ski de fond</span></div></div>
+            <div class="sport-card"><div class="sport-card__media"></div><div class="sport-card__foot"><button class="sport-card__fav" type="button" aria-label="Ajouter Snowboard aux favoris"><svg class="icon icon--heart" aria-hidden="true"><use href="#ic-heart"></use></svg></button><span class="sport-card__name">Snowboard</span></div></div>
+            <div class="sport-card"><div class="sport-card__media"></div><div class="sport-card__foot"><button class="sport-card__fav" type="button" aria-label="Ajouter Combiné nordique aux favoris"><svg class="icon icon--heart" aria-hidden="true"><use href="#ic-heart"></use></svg></button><span class="sport-card__name">Combiné nordique</span></div></div>
+          </div>
+
+          <!-- Séparateur paralympique -->
+          <p class="jeux__divider">Sports paralympiques</p>
+
+          <!-- Grille des sports paralympiques -->
+          <div class="sport-grid">
+            <div class="sport-card"><div class="sport-card__media"><img src="assets/img/sport-biathlon.png" alt="Para biathlon"></div><div class="sport-card__foot"><button class="sport-card__fav" type="button" aria-label="Ajouter Para biathlon aux favoris"><svg class="icon icon--heart" aria-hidden="true"><use href="#ic-heart"></use></svg></button><span class="sport-card__name">Para biathlon</span></div></div>
+            <div class="sport-card"><div class="sport-card__media"><img src="assets/img/sport-hockey.png" alt="Para hockey sur glace"></div><div class="sport-card__foot"><button class="sport-card__fav" type="button" aria-label="Ajouter Para hockey sur glace aux favoris"><svg class="icon icon--heart" aria-hidden="true"><use href="#ic-heart"></use></svg></button><span class="sport-card__name">Para hockey sur glace</span></div></div>
+            <div class="sport-card"><div class="sport-card__media"></div><div class="sport-card__foot"><button class="sport-card__fav" type="button" aria-label="Ajouter Para snowboard aux favoris"><svg class="icon icon--heart" aria-hidden="true"><use href="#ic-heart"></use></svg></button><span class="sport-card__name">Para snowboard</span></div></div>
+            <div class="sport-card"><div class="sport-card__media"><img src="assets/img/sport-curling.png" alt="Curling fauteuil"></div><div class="sport-card__foot"><button class="sport-card__fav" type="button" aria-label="Ajouter Curling fauteuil aux favoris"><svg class="icon icon--heart" aria-hidden="true"><use href="#ic-heart"></use></svg></button><span class="sport-card__name">Curling fauteuil</span></div></div>
+            <div class="sport-card"><div class="sport-card__media"></div><div class="sport-card__foot"><button class="sport-card__fav" type="button" aria-label="Ajouter Para ski alpin aux favoris"><svg class="icon icon--heart" aria-hidden="true"><use href="#ic-heart"></use></svg></button><span class="sport-card__name">Para ski alpin</span></div></div>
+            <div class="sport-card"><div class="sport-card__media"></div><div class="sport-card__foot"><button class="sport-card__fav" type="button" aria-label="Ajouter Para ski de fond aux favoris"><svg class="icon icon--heart" aria-hidden="true"><use href="#ic-heart"></use></svg></button><span class="sport-card__name">Para ski de fond</span></div></div>
+          </div>
+
+        </div>
+
+        <!-- Panneau latéral : prochaines épreuves + tableau des médailles (composant réutilisé de la page 1) -->
+        <aside class="jeux__side">
+          <aside class="actus__panel glass" aria-label="Prochaines épreuves et tableau des médailles">
+
+            <!-- Prochaines épreuves -->
+            <h2 class="section-title section-title--sm">
+              <svg class="section-title__logo" aria-hidden="true"><use href="#ic-mountain"></use></svg>
+              <span class="section-title__text">
+                <span class="section-title__small">Prochaines</span>
+                <span class="section-title__big">Épreuves</span>
+              </span>
+            </h2>
+
+            <div class="events glass">
+              <div class="event">
+                <div class="event__date"><span class="event__day">17</span><span class="event__month">FEVR.</span></div>
+                <div class="event__info"><p class="event__name">Ski alpin homme</p><p class="event__detail">Slalom Géant - 10:10</p></div>
+              </div>
+              <div class="event">
+                <div class="event__date"><span class="event__day">22</span><span class="event__month">FEVR.</span></div>
+                <div class="event__info"><p class="event__name">Patinage artistique</p><p class="event__detail">Programme libre - 14:30</p></div>
+              </div>
+              <div class="event">
+                <div class="event__date"><span class="event__day">24</span><span class="event__month">FEVR.</span></div>
+                <div class="event__info"><p class="event__name">Biathlon relais</p><p class="event__detail">Mass start - 11:00</p></div>
+              </div>
+              <div class="event">
+                <div class="event__date"><span class="event__day">26</span><span class="event__month">FEVR.</span></div>
+                <div class="event__info"><p class="event__name">Bobsleigh homme</p><p class="event__detail">Finale - 09:45</p></div>
+              </div>
+              <div class="event">
+                <div class="event__date"><span class="event__day">02</span><span class="event__month">MARS</span></div>
+                <div class="event__info"><p class="event__name">Para ski alpin</p><p class="event__detail">Descente - 10:10</p></div>
+              </div>
+            </div>
+
+            <!-- Tableau des médailles -->
+            <h2 class="section-title section-title--sm">
+              <svg class="section-title__logo" aria-hidden="true"><use href="#ic-mountain"></use></svg>
+              <span class="section-title__text">
+                <span class="section-title__small">Tableau des</span>
+                <span class="section-title__big">Médailles</span>
+              </span>
+            </h2>
+
+            <table class="medals">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Pays</th>
+                  <th><span class="medal-dot medal-dot--gold" title="Or"></span></th>
+                  <th><span class="medal-dot medal-dot--silver" title="Argent"></span></th>
+                  <th><span class="medal-dot medal-dot--bronze" title="Bronze"></span></th>
+                  <th><img class="icon-total" src="assets/img/icon-medals.svg" alt="Total"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>1</td><td><span class="medals__country"><img src="assets/img/flag-no.png" alt="Norvège">Norvège</span></td><td>18</td><td>12</td><td>11</td><td class="is-total">41</td></tr>
+                <tr><td>2</td><td><span class="medals__country"><img src="assets/img/flag-us.png" alt="États-Unis">USA</span></td><td>18</td><td>12</td><td>11</td><td class="is-total">41</td></tr>
+                <tr><td>3</td><td><span class="medals__country"><img src="assets/img/flag-it.png" alt="Italie">Italie</span></td><td>18</td><td>12</td><td>11</td><td class="is-total">41</td></tr>
+                <tr><td>4</td><td><span class="medals__country"><img src="assets/img/flag-de.png" alt="Allemagne">Allemagne</span></td><td>18</td><td>12</td><td>11</td><td class="is-total">41</td></tr>
+                <tr><td>5</td><td><span class="medals__country"><img src="assets/img/flag-jp.png" alt="Japon">Japon</span></td><td>18</td><td>12</td><td>11</td><td class="is-total">41</td></tr>
+              </tbody>
+            </table>
+
+          </aside>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ===================== HÉRITAGE OLYMPIQUE (timeline + stats) ===================== -->
+    <section class="heritage" aria-labelledby="heritage-titre">
+      <div class="heritage__inner">
+
+        <header class="section-header--center">
+          <span class="section-header__eyebrow">Héritage olympique</span>
+          <h2 class="section-header__title" id="heritage-titre">L'histoire des JO d'hiver à Milan Cortina</h2>
+          <p class="section-header__sub">une première dans l'histoire olympique</p>
+        </header>
+
+        <!-- Chronologie -->
+        <div class="timeline">
+
+          <div class="tl-item tl-item--left">
+            <span class="tl-node" aria-hidden="true"></span>
+            <article class="tl-card">
+              <div class="tl-card__media">
+                <span class="tl-year">1956</span>
+                <img src="assets/img/ville-cortina-color.png" alt="Cortina d'Ampezzo">
+              </div>
+              <div class="tl-card__body">
+                <h3 class="tl-card__title">Cortina 1956 — Les VIIes Jeux Olympiques d'hiver</h3>
+                <p class="tl-card__text">Les premiers Jeux d'hiver télévisés. Cortina d'Ampezzo accueille la flamme olympique au cœur des Dolomites et fait entrer les Jeux dans l'ère moderne.</p>
+                <div class="tl-stats">
+                  <span class="tl-stat">32 nations</span>
+                  <span class="tl-stat">24 épreuves</span>
+                  <span class="tl-stat">821 athlètes</span>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div class="tl-item tl-item--right">
+            <span class="tl-node" aria-hidden="true"></span>
+            <article class="tl-card">
+              <div class="tl-card__media">
+                <span class="tl-year tl-year--red">1984</span>
+                <img src="assets/img/news-skialp.png" alt="Ski alpin">
+              </div>
+              <div class="tl-card__body">
+                <h3 class="tl-card__title">Sarajevo 1984 — Le ski alpin s'impose</h3>
+                <p class="tl-card__text">Premiers Jeux d'hiver organisés dans les Balkans. Le ski alpin s'impose comme discipline reine et révèle une nouvelle génération de champions.</p>
+                <div class="tl-stats">
+                  <span class="tl-stat">49 nations</span>
+                  <span class="tl-stat">39 épreuves</span>
+                  <span class="tl-stat">1 272 athlètes</span>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div class="tl-item tl-item--left">
+            <span class="tl-node" aria-hidden="true"></span>
+            <article class="tl-card">
+              <div class="tl-card__media">
+                <span class="tl-year">2006</span>
+                <img src="assets/img/cover.png" alt="Turin 2006">
+              </div>
+              <div class="tl-card__body">
+                <h3 class="tl-card__title">Turin 2006 — L'Italie sur le podium</h3>
+                <p class="tl-card__text">L'Italie renoue avec l'olympisme d'hiver cinquante ans après Cortina. Des Jeux spectaculaires portés par une ferveur populaire immense.</p>
+                <div class="tl-stats">
+                  <span class="tl-stat">80 nations</span>
+                  <span class="tl-stat">84 épreuves</span>
+                  <span class="tl-stat">2 508 athlètes</span>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div class="tl-item tl-item--right">
+            <span class="tl-node" aria-hidden="true"></span>
+            <article class="tl-card">
+              <div class="tl-card__media">
+                <span class="tl-year tl-year--gold">2026</span>
+                <img src="assets/img/ville-milan-color.png" alt="Milano Cortina 2026">
+              </div>
+              <div class="tl-card__body">
+                <h3 class="tl-card__title">Milano Cortina 2026 — Le retour</h3>
+                <p class="tl-card__text">Le grand retour des Jeux en Italie, partagés pour la première fois entre deux villes hôtes : Milan et Cortina, des lacs lombards aux sommets des Dolomites.</p>
+                <div class="tl-stats">
+                  <span class="tl-stat">93 nations</span>
+                  <span class="tl-stat">116 épreuves</span>
+                  <span class="tl-stat">2 900 athlètes</span>
+                </div>
+              </div>
+            </article>
+          </div>
+
+        </div>
+
+        <!-- Statistiques clés -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <p class="stat-card__num">70</p>
+            <p class="stat-card__label">ans</p>
+            <p class="stat-card__sub">depuis Cortina 1956</p>
+          </div>
+          <div class="stat-card">
+            <p class="stat-card__num">116</p>
+            <p class="stat-card__label">épreuves</p>
+            <p class="stat-card__sub">record pour des JO d'hiver</p>
+          </div>
+          <div class="stat-card">
+            <p class="stat-card__num">5</p>
+            <p class="stat-card__label">sites</p>
+            <p class="stat-card__sub">Milan, Cortina, Livigno, Anterselva, Val di Fiemme</p>
+          </div>
+          <div class="stat-card">
+            <p class="stat-card__num">2</p>
+            <p class="stat-card__label">villes hôtes</p>
+            <p class="stat-card__sub">une première dans l'histoire olympique</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===================== FOOTER (partagé) ===================== -->
+  <div data-partial="footer"></div>
+
+  <script src="js/partials.js" defer></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>
