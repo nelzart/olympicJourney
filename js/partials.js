@@ -49,7 +49,7 @@
           <a href="application.html" data-nav="application">L'application</a>
           <a href="#" data-nav="billetterie">Billeterie</a>
         </nav>
-        <a class="btn btn--light" href="#">S'inscrire</a>
+        <a class="btn btn--light" href="connexion.html">S'inscrire</a>
       </div>
     </div>`,
 
@@ -87,13 +87,13 @@
           <li><a href="#" data-nav="billetterie">Billeterie</a></li>
         </ul>
 
-        <a class="btn btn--light" href="#">S'inscrire</a>
+        <a class="btn btn--light" href="connexion.html">S'inscrire</a>
 
         <div class="nav-actions">
           <a href="#" class="nav-icon" aria-label="Rechercher">
             <svg class="icon icon--search" aria-hidden="true"><use href="#ic-search"></use></svg>
           </a>
-          <a href="#" class="nav-icon" aria-label="Mon compte">
+          <a href="connexion.html" class="nav-icon" aria-label="Mon compte">
             <svg class="icon icon--account" aria-hidden="true"><use href="#ic-account"></use></svg>
           </a>
         </div>
@@ -110,7 +110,7 @@
           <a href="application.html" data-nav="application">L'application</a>
           <a href="#" data-nav="billetterie">Billeterie</a>
         </nav>
-        <a class="btn btn--light nav-drawer__cta" href="#">S'inscrire</a>
+        <a class="btn btn--light nav-drawer__cta" href="connexion.html">S'inscrire</a>
         <ul class="nav-drawer__lang" aria-label="Choix de la langue">
           <li><a href="#">IT</a></li>
           <li><a href="#">EN</a></li>
