@@ -277,7 +277,47 @@
     "-3 °C sur la glace · 12 °C dans les tribunes": "-3 °C sul ghiaccio · 12 °C sugli spalti",
     "Curleur canadien lançant une pierre sur la glace olympique": "Curler canadese che lancia una pietra sul ghiaccio olimpico",
     "Action de curling pendant un match": "Azione di curling durante una partita",
-    "Le curling aux Jeux Olympiques d'hiver Milano Cortina 2026 : épreuves, règles du jeu, informations pratiques au Mediolanum Forum de Milan et les athlètes à suivre.": "Il curling ai Giochi Olimpici invernali Milano Cortina 2026: prove, regole del gioco, informazioni pratiche al Mediolanum Forum di Milano e gli atleti da seguire."
+    "Le curling aux Jeux Olympiques d'hiver Milano Cortina 2026 : épreuves, règles du jeu, informations pratiques au Mediolanum Forum de Milan et les athlètes à suivre.": "Il curling ai Giochi Olimpici invernali Milano Cortina 2026: prove, regole del gioco, informazioni pratiche al Mediolanum Forum di Milano e gli atleti da seguire.",
+
+    /* ===================== BIATHLON ===================== */
+    "Présentation du biathlon": "Presentazione del biathlon",
+    "~30 nations engagées": "~30 nazioni in gara",
+    "Distance de tir": "Distanza di tiro",
+    "Anneau de pénalité": "Anello di penalità",
+    "La plus longue épreuve": "La prova più lunga",
+    "Relais": "Staffetta",
+    "Relais mixte": "Staffetta mista",
+    "Individuel": "Individuale",
+    "Sprint 7,5 km femmes": "Sprint 7,5 km femminile",
+    "Poursuite 12,5 km hommes": "Inseguimento 12,5 km maschile",
+    "Départ groupé 15 km hommes 🥇": "Partenza in linea 15 km maschile 🥇",
+    "Qu'est-ce que le biathlon ?": "Che cos'è il biathlon?",
+    "Le biathlon marie deux disciplines opposées : l'endurance explosive du": "Il biathlon unisce due discipline opposte: l'endurance esplosiva dello",
+    "ski de fond": "sci di fondo",
+    "et le sang-froid absolu du": "e il sangue freddo assoluto del",
+    "tir à la carabine": "tiro con la carabina",
+    ". Les athlètes enchaînent boucles de ski et passages au pas de tir, le cœur à plus de 180 pulsations, pour viser cinq cibles à 50 mètres.": ". Gli atleti alternano giri sugli sci e passaggi al poligono di tiro, con il cuore oltre i 180 battiti, per mirare a cinque bersagli a 50 metri.",
+    "Chaque cible manquée coûte cher : un tour de pénalité de 150 mètres ou une minute ajoutée selon le format. La moindre erreur de tir peut anéantir un effort parfait sur les skis — c'est tout le sel de ce sport.": "Ogni bersaglio mancato si paga caro: un giro di penalità di 150 metri o un minuto aggiunto a seconda del formato. Il minimo errore al tiro può vanificare uno sforzo perfetto sugli sci — è tutto il sale di questo sport.",
+    "Légende vivante de la discipline, le Français Martin Fourcade a marqué le biathlon de sept titres olympiques.": "Leggenda vivente della disciplina, il francese Martin Fourcade ha segnato il biathlon con sette titoli olimpici.",
+    "Le ski": "Lo sci",
+    "Du ski de fond en style libre (skating), sur des boucles entrecoupées de passages au stand de tir.": "Sci di fondo in tecnica libera (skating), su giri intervallati da passaggi al poligono di tiro.",
+    "Le tir": "Il tiro",
+    "Cinq cibles à abattre à 50 m, en position couchée puis debout, selon le format de course.": "Cinque bersagli da abbattere a 50 m, in posizione a terra poi in piedi, a seconda del formato di gara.",
+    "Couché & debout": "A terra e in piedi",
+    "Cible de 45 mm en couché, de 115 mm en debout : la position debout est bien plus exigeante.": "Bersaglio di 45 mm a terra, di 115 mm in piedi: la posizione in piedi è molto più impegnativa.",
+    "La pénalité": "La penalità",
+    "Chaque cible manquée impose un tour de pénalité de 150 m — ou une minute ajoutée en individuel.": "Ogni bersaglio mancato impone un giro di penalità di 150 m — o un minuto aggiunto nell'individuale.",
+    "La carabine": "La carabina",
+    "Une carabine .22 LR d'environ 3,5 kg, portée sur le dos pendant tout l'effort.": "Una carabina .22 LR di circa 3,5 kg, portata sulla schiena per tutta la gara.",
+    "Les formats": "I formati",
+    "Sprint, poursuite, individuel, mass start et relais : chacun a ses règles de tir et de pénalité.": "Sprint, inseguimento, individuale, mass start e staffetta: ognuno ha le sue regole di tiro e di penalità.",
+    "Südtirol Arena, Anterselva (Antholz) — Haut-Adige": "Südtirol Arena, Anterselva (Antholz) — Alto Adige",
+    "Navettes officielles depuis Brunico (Bruneck), à 25 min. Parkings relais fléchés.": "Navette ufficiali da Brunico (Bruneck), a 25 min. Parcheggi scambiatori segnalati.",
+    "À partir de 35 € (sprint) · 110 € (mass start)": "A partire da 35 € (sprint) · 110 € (mass start)",
+    "Froid d'altitude — prévoir -5 °C, 1 600 m d'altitude": "Freddo d'alta quota — prevedere -5 °C, 1 600 m di altitudine",
+    "Pas de tir et skieur lors d'une épreuve de biathlon": "Poligono di tiro e sciatore durante una gara di biathlon",
+    "Biathlètes au pas de tir, position couchée": "Biathleti al poligono di tiro, posizione a terra",
+    "Le biathlon aux Jeux Olympiques d'hiver Milano Cortina 2026 : épreuves, règles (ski de fond + tir), informations pratiques à Anterselva et les athlètes à suivre.": "Il biathlon ai Giochi Olimpici invernali Milano Cortina 2026: prove, regole (sci di fondo + tiro), informazioni pratiche ad Anterselva e gli atleti da seguire."
   };
 
   /* ===================== MOTEUR ===================== */
@@ -294,6 +334,8 @@
   function textPattern(key) {
     var m = key.match(/^(\d+) médailles? d'or en jeu$/);
     if (m) return m[1] + (m[1] === '1' ? " medaglia d'oro in palio" : " medaglie d'oro in palio");
+    m = key.match(/^(≈\s*)?([\d\s]+)\s*places$/);
+    if (m) return (m[1] || '') + m[2].trim() + ' posti';
     return undefined;
   }
 
