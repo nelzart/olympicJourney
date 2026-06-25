@@ -10,9 +10,12 @@
   var WORD_MAP = {
     'Lundi': 'Lunedì', 'Mardi': 'Martedì', 'Mercredi': 'Mercoledì', 'Jeudi': 'Giovedì',
     'Vendredi': 'Venerdì', 'Samedi': 'Sabato', 'Dimanche': 'Domenica',
-    'janvier': 'gennaio', 'février': 'febbraio', 'mars': 'marzo', 'mars 2026': 'marzo 2026'
+    'janvier': 'gennaio', 'février': 'febbraio', 'mars': 'marzo', 'avril': 'aprile',
+    'mai': 'maggio', 'juin': 'giugno', 'juillet': 'luglio', 'août': 'agosto',
+    'septembre': 'settembre', 'octobre': 'ottobre', 'novembre': 'novembre', 'décembre': 'dicembre'
   };
   var DAY_RE = /^(Lundi|Mardi|Mercredi|Jeudi|Vendredi|Samedi|Dimanche)\b/;
+  var MONTH_RE = /(janvier|février|mars|avril|mai|juin|juillet|août|septembre|octobre|novembre|décembre)/i;
 
   /* Dictionnaire FR (normalisé) -> IT. Étendu page par page. */
   var DICT = {
@@ -236,7 +239,45 @@
     "Découvrir l'ambiance et les sites de Cortina d'Ampezzo": "Scopri l'atmosfera e le sedi di Cortina d'Ampezzo",
     "Prochaines épreuves et tableau des médailles": "Prossime prove e tabella delle medaglie",
     "16 jours de compétition dans 16 disciplines olympiques": "16 giorni di gara in 16 discipline olimpiche",
-    "Deux semaines de compétition intense en février, suivies des Jeux Paralympiques en mars. Un programme chargé d'émotions et d'exploits.": "Due settimane di gare intense a febbraio, seguite dai Giochi Paralimpici a marzo. Un programma ricco di emozioni e di imprese."
+    "Deux semaines de compétition intense en février, suivies des Jeux Paralympiques en mars. Un programme chargé d'émotions et d'exploits.": "Due settimane di gare intense a febbraio, seguite dai Giochi Paralimpici a marzo. Un programma ricco di emozioni e di imprese.",
+
+    /* ===================== CURLING ===================== */
+    "Présentation du curling": "Presentazione del curling",
+    "10 équipes par épreuve": "10 squadre per prova",
+    "Milan — Mediolanum Forum": "Milano — Mediolanum Forum",
+    "Longueur de la piste": "Lunghezza della pista",
+    "Poids d'une pierre": "Peso di una pietra",
+    "Manches par match": "Mani per partita",
+    "Phase 1 : Le double mixte": "Fase 1: Il doppio misto",
+    "Lancement du tour préliminaire": "Inizio del turno preliminare",
+    "Matchs de poule en continu": "Partite del girone in continuo",
+    "Phase finale : Le double mixte": "Fase finale: Il doppio misto",
+    "Demi-finales": "Semifinali",
+    "Finale pour la médaille d'or 🥇": "Finale per la medaglia d'oro 🥇",
+    "Qu'est-ce que le curling ?": "Che cos'è il curling?",
+    "Le curling est un sport de précision sur glace opposant deux équipes de quatre joueurs. Chaque équipe fait glisser des pierres de granit de 19,1 kg sur une piste de 45 mètres vers une cible circulaire appelée la maison.": "Il curling è uno sport di precisione sul ghiaccio che oppone due squadre di quattro giocatori. Ogni squadra fa scivolare pietre di granito da 19,1 kg su una pista di 45 metri verso un bersaglio circolare chiamato casa.",
+    "L'objectif est simple : placer ses pierres le plus près possible du centre (le bouton). Mais la stratégie, la communication et le balayage (sweeping) en font un sport d'une richesse tactique exceptionnelle — souvent comparé aux échecs sur glace.": "L'obiettivo è semplice: piazzare le proprie pietre il più vicino possibile al centro (il bottone). Ma la strategia, la comunicazione e lo sweeping ne fanno uno sport di eccezionale ricchezza tattica — spesso paragonato agli scacchi sul ghiaccio.",
+    "Aux JO de Milano Cortina 2026, trois médailles d'or sont en jeu : hommes, femmes et double mixte.": "Ai Giochi di Milano Cortina 2026 sono in palio tre medaglie d'oro: uomini, donne e doppio misto.",
+    "La pierre": "La pietra",
+    "Chaque équipe dispose de 8 pierres de granit par manche. Les équipes jouent alternativement, une pierre à la fois.": "Ogni squadra dispone di 8 pietre di granito per mano. Le squadre giocano alternativamente, una pietra alla volta.",
+    "La maison": "La casa",
+    "La cible (maison) est un cercle de 3,66 m de diamètre. Seule l'équipe dont la pierre est la plus proche du bouton marque des points.": "Il bersaglio (casa) è un cerchio di 3,66 m di diametro. Solo la squadra la cui pietra è più vicina al bottone segna punti.",
+    "Le balayage": "Lo sweeping",
+    "Deux coéquipiers balaient la glace devant la pierre pour modifier sa trajectoire et sa distance de glissement.": "Due compagni spazzano il ghiaccio davanti alla pietra per modificarne la traiettoria e la distanza di scivolamento.",
+    "Le score": "Il punteggio",
+    "On compte le nombre de pierres plus proches du bouton que la meilleure pierre adverse. Maximum 8 points par manche.": "Si conta il numero di pietre più vicine al bottone rispetto alla migliore pietra avversaria. Massimo 8 punti per mano.",
+    "Le temps": "Il tempo",
+    "Chaque équipe dispose de 38 minutes de réflexion pour un match de 10 manches. Un dépassement peut coûter le match.": "Ogni squadra dispone di 38 minuti di riflessione per una partita di 10 mani. Un superamento può costare la partita.",
+    "La victoire": "La vittoria",
+    "L'équipe qui totalise le plus de points après 10 manches gagne. En cas d'égalité, des manches supplémentaires sont jouées.": "La squadra che totalizza più punti dopo 10 mani vince. In caso di parità, si giocano mani supplementari.",
+    "Mediolanum Forum, Assago — Milan": "Mediolanum Forum, Assago — Milano",
+    "12 700 places": "12 700 posti",
+    "Métro M2 — Assago Milanofiori Forum. Navette officielle depuis le Duomo (30 min).": "Metro M2 — Assago Milanofiori Forum. Navetta ufficiale dal Duomo (30 min).",
+    "À partir de 25 € (préliminaires) · 90 € (finales)": "A partire da 25 € (preliminari) · 90 € (finali)",
+    "-3 °C sur la glace · 12 °C dans les tribunes": "-3 °C sul ghiaccio · 12 °C sugli spalti",
+    "Curleur canadien lançant une pierre sur la glace olympique": "Curler canadese che lancia una pietra sul ghiaccio olimpico",
+    "Action de curling pendant un match": "Azione di curling durante una partita",
+    "Le curling aux Jeux Olympiques d'hiver Milano Cortina 2026 : épreuves, règles du jeu, informations pratiques au Mediolanum Forum de Milan et les athlètes à suivre.": "Il curling ai Giochi Olimpici invernali Milano Cortina 2026: prove, regole del gioco, informazioni pratiche al Mediolanum Forum di Milano e gli atleti da seguire."
   };
 
   /* ===================== MOTEUR ===================== */
@@ -247,6 +288,13 @@
     var out = key;
     for (var w in WORD_MAP) { out = out.split(w).join(WORD_MAP[w]); }
     return out;
+  }
+
+  /* Phrases templatisées récurrentes (évite une entrée par valeur). */
+  function textPattern(key) {
+    var m = key.match(/^(\d+) médailles? d'or en jeu$/);
+    if (m) return m[1] + (m[1] === '1' ? " medaglia d'oro in palio" : " medaglie d'oro in palio");
+    return undefined;
   }
 
   function translateText(root) {
@@ -261,7 +309,8 @@
     while ((n = w.nextNode())) nodes.push(n);
     nodes.forEach(function (node) {
       var raw = node.nodeValue, key = norm(raw), it = DICT[key];
-      if (it === undefined && DAY_RE.test(key)) it = translateDates(key);
+      if (it === undefined && (DAY_RE.test(key) || (/\d/.test(key) && MONTH_RE.test(key) && key.length < 48))) it = translateDates(key);
+      if (it === undefined) it = textPattern(key);
       if (it !== undefined && it !== key) {
         var lead = raw.match(/^\s*/)[0], trail = raw.match(/\s*$/)[0];
         node.nodeValue = lead + it + trail;
