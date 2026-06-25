@@ -60,9 +60,9 @@
         Jeux Olympiques d'hiver™ · Du 6 au 22 février 2026 | Jeux Paralympiques d'hiver™ · Du 6 au 15 mars 2026
       </p>
       <ul class="lang-switch" aria-label="Choix de la langue">
-        <li><a href="#">IT</a></li>
+        <li><a href="#" data-lang="it">IT</a></li>
         <li><a href="#">EN</a></li>
-        <li class="is-active"><a href="#" aria-current="true">FR</a></li>
+        <li class="is-active"><a href="#" data-lang="fr" aria-current="true">FR</a></li>
       </ul>
     </div>`,
 
@@ -112,9 +112,9 @@
         </nav>
         <a class="btn btn--light nav-drawer__cta" href="connexion.html">S'inscrire</a>
         <ul class="nav-drawer__lang" aria-label="Choix de la langue">
-          <li><a href="#">IT</a></li>
+          <li><a href="#" data-lang="it">IT</a></li>
           <li><a href="#">EN</a></li>
-          <li class="is-active"><a href="#" aria-current="true">FR</a></li>
+          <li class="is-active"><a href="#" data-lang="fr" aria-current="true">FR</a></li>
         </ul>
       </div>
     </nav>`,
@@ -260,4 +260,10 @@
       a.setAttribute('aria-current', 'page');
     });
   }
+
+  /* Charge le moteur i18n (FR -> IT) APRÈS l'injection des partials,
+     pour qu'il traduise aussi le chrome (nav, footer, topbar). */
+  var ojI18nScript = document.createElement('script');
+  ojI18nScript.src = 'js/i18n.js';
+  document.head.appendChild(ojI18nScript);
 })();
