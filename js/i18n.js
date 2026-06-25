@@ -8,17 +8,27 @@
 
   /* Jours / mois : appliqués uniquement aux chaînes de type "date" (libellés d'épreuves). */
   var WORD_MAP = {
-    'Lundi': 'Lunedì', 'Mardi': 'Martedì', 'Mercredi': 'Mercoledì', 'Jeudi': 'Giovedì',
-    'Vendredi': 'Venerdì', 'Samedi': 'Sabato', 'Dimanche': 'Domenica',
-    'janvier': 'gennaio', 'février': 'febbraio', 'mars': 'marzo', 'avril': 'aprile',
-    'mai': 'maggio', 'juin': 'giugno', 'juillet': 'luglio', 'août': 'agosto',
-    'septembre': 'settembre', 'octobre': 'ottobre', 'novembre': 'novembre', 'décembre': 'dicembre'
+    it: {
+      'Lundi': 'Lunedì', 'Mardi': 'Martedì', 'Mercredi': 'Mercoledì', 'Jeudi': 'Giovedì',
+      'Vendredi': 'Venerdì', 'Samedi': 'Sabato', 'Dimanche': 'Domenica',
+      'janvier': 'gennaio', 'février': 'febbraio', 'mars': 'marzo', 'avril': 'aprile',
+      'mai': 'maggio', 'juin': 'giugno', 'juillet': 'luglio', 'août': 'agosto',
+      'septembre': 'settembre', 'octobre': 'ottobre', 'novembre': 'novembre', 'décembre': 'dicembre'
+    },
+    en: {
+      'Lundi': 'Monday', 'Mardi': 'Tuesday', 'Mercredi': 'Wednesday', 'Jeudi': 'Thursday',
+      'Vendredi': 'Friday', 'Samedi': 'Saturday', 'Dimanche': 'Sunday',
+      'janvier': 'January', 'février': 'February', 'mars': 'March', 'avril': 'April',
+      'mai': 'May', 'juin': 'June', 'juillet': 'July', 'août': 'August',
+      'septembre': 'September', 'octobre': 'October', 'novembre': 'November', 'décembre': 'December'
+    }
   };
   var DAY_RE = /^(Lundi|Mardi|Mercredi|Jeudi|Vendredi|Samedi|Dimanche)\b/;
   var MONTH_RE = /(janvier|février|mars|avril|mai|juin|juillet|août|septembre|octobre|novembre|décembre)/i;
 
-  /* Dictionnaire FR (normalisé) -> IT. Étendu page par page. */
-  var DICT = {
+  /* Dictionnaires FR (normalisé) -> { it, en }. Étendus page par page. */
+  var T = {
+  it: {
 
     /* ---------- TOPBAR ---------- */
     "Jeux Olympiques d'hiver™ · Du 6 au 22 février 2026 | Jeux Paralympiques d'hiver™ · Du 6 au 15 mars 2026":
@@ -318,24 +328,82 @@
     "Pas de tir et skieur lors d'une épreuve de biathlon": "Poligono di tiro e sciatore durante una gara di biathlon",
     "Biathlètes au pas de tir, position couchée": "Biathleti al poligono di tiro, posizione a terra",
     "Le biathlon aux Jeux Olympiques d'hiver Milano Cortina 2026 : épreuves, règles (ski de fond + tir), informations pratiques à Anterselva et les athlètes à suivre.": "Il biathlon ai Giochi Olimpici invernali Milano Cortina 2026: prove, regole (sci di fondo + tiro), informazioni pratiche ad Anterselva e gli atleti da seguire."
+  },
+
+  /* ===================== EN — ANGLAIS =====================
+     Socle partagé (chrome, ossature, sports, pays). La prose propre à chaque page
+     reste à compléter page par page (cf. prompt de reprise). */
+  en: {
+    /* TOPBAR */
+    "Jeux Olympiques d'hiver™ · Du 6 au 22 février 2026 | Jeux Paralympiques d'hiver™ · Du 6 au 15 mars 2026":
+      "Olympic Winter Games™ · 6–22 February 2026 | Paralympic Winter Games™ · 6–15 March 2026",
+    "Choix de la langue": "Language selection",
+    /* NAV */
+    "Les jeux": "The Games", "L'application": "The app", "Billeterie": "Tickets",
+    "S'inscrire": "Sign up", "Accueil": "Home", "Accueil — Milano Cortina 2026": "Home — Milano Cortina 2026",
+    "Navigation principale": "Main navigation", "Navigation compacte": "Compact navigation", "Menu mobile": "Mobile menu",
+    "Ouvrir le menu": "Open menu", "Fermer le menu": "Close menu", "Rechercher": "Search", "Mon compte": "My account",
+    /* FOOTER */
+    "Nos partenaires": "Our partners", "Télécharger l'appli": "Download the app", "Liens de pied de page": "Footer links",
+    "QR code de téléchargement de l'application": "App download QR code", "À propos": "About", "Nous rejoindre": "Join us",
+    "Sport": "Sport", "Programme": "Schedule", "Athlètes": "Athletes", "Sites": "Venues", "Calendrier": "Calendar",
+    "Organisation": "Organisation", "Histoire": "History", "Partenaires": "Partners", "Presse": "Press", "Résultats": "Results",
+    "Bénévolat": "Volunteering", "Carrières": "Careers", "Merchandising": "Merchandise", "Contact": "Contact", "Newsletter": "Newsletter",
+    "Boutique": "Shop", "Contactez-nous": "Contact us",
+    "© Milano Cortina 2026 — Tous droits réservés": "© Milano Cortina 2026 — All rights reserved",
+    /* APP */
+    "L'application Olympic Journey": "The Olympic Journey app",
+    "« Les Jeux ne sont plus seulement regardés. Ils sont vécus. »": "« The Games are no longer just watched. They are lived. »",
+    "Constituez votre délégation, choisissez vos épreuves culturelles et sportives, collectez des médailles.": "Build your delegation, choose your cultural and sporting events, collect medals.",
+    "Télécharger l'application": "Download the app", "Découvrir Olympic Journey": "Discover Olympic Journey",
+    "Constituez votre délégation": "Build your delegation", "Invitez famille et amis.": "Invite family and friends.",
+    "Choisissez vos épreuves": "Choose your events", "Chaque lieu lié à une discipline.": "Each venue linked to a discipline.",
+    "Révélez l'angle invisible": "Reveal the invisible angle", "Le regard de l'athlète sur la ville.": "The athlete's view of the city.",
+    "Décrochez vos médailles": "Win your medals", "Bronze, Argent, Or — votre palmarès.": "Bronze, Silver, Gold — your medal haul.",
+    /* OSSATURE PAGES SPORT */
+    "Prochaines": "Upcoming", "Épreuves": "Events", "Discipline": "Discipline",
+    "Les règles": "The rules", "Du jeu": "of the Game", "Informations": "Practical", "Pratiques": "Information",
+    "La": "The", "Les": "The",
+    "Jeux Olympiques d'hiver": "Olympic Winter Games", "Jeux Paralympiques d'hiver": "Paralympic Winter Games",
+    "Je réserve": "Book now", "Précédent": "Previous", "Suivant": "Next",
+    "Lieu": "Venue", "Lieux": "Venues", "Capacité": "Capacity", "Accès": "Access", "Billet": "Ticket",
+    "Température": "Temperature", "Ambiance": "Atmosphere",
+    /* PAYS */
+    "France": "France", "Italie": "Italy", "Norvège": "Norway", "Suède": "Sweden", "Allemagne": "Germany",
+    "Autriche": "Austria", "Suisse": "Switzerland", "États-Unis": "United States", "Japon": "Japan", "Canada": "Canada",
+    "Chine": "China", "Pays-Bas": "Netherlands", "Grande-Bretagne": "Great Britain", "Ukraine": "Ukraine", "Australie": "Australia",
+    /* NOMS DE SPORTS */
+    "Biathlon": "Biathlon", "Bobsleigh": "Bobsleigh", "Combiné nordique": "Nordic combined", "Curling": "Curling",
+    "Curling fauteuil": "Wheelchair curling", "Hockey sur glace": "Ice hockey", "Luge": "Luge",
+    "Para biathlon": "Para biathlon", "Para hockey sur glace": "Para ice hockey", "Para ski alpin": "Para alpine skiing",
+    "Para ski de fond": "Para cross-country skiing", "Para snowboard": "Para snowboard", "Patinage artistique": "Figure skating",
+    "Patinage de vitesse": "Speed skating", "Patinage de vitesse sur piste de course": "Short track",
+    "Saut à ski": "Ski jumping", "Skeleton": "Skeleton", "Ski acrobatique": "Freestyle skiing", "Ski alpin": "Alpine skiing",
+    "Ski de fond": "Cross-country skiing", "Ski-Alpinisme": "Ski mountaineering", "Ski-alpinisme": "Ski mountaineering",
+    "Ski alpinisme": "Ski mountaineering", "Snowboard": "Snowboard", "Short track": "Short track"
+  }
   };
 
   /* ===================== MOTEUR ===================== */
   var SKIP = { SCRIPT: 1, STYLE: 1, NOSCRIPT: 1, TEXTAREA: 1 };
+  var CUR = 'fr', DICT = {}, WMAP = {};   /* dictionnaire + table jours/mois de la langue active */
   function norm(s) { return (s || '').replace(/\s+/g, ' ').trim(); }
 
   function translateDates(key) {
     var out = key;
-    for (var w in WORD_MAP) { out = out.split(w).join(WORD_MAP[w]); }
+    for (var w in WMAP) { out = out.split(w).join(WMAP[w]); }
     return out;
   }
 
   /* Phrases templatisées récurrentes (évite une entrée par valeur). */
   function textPattern(key) {
     var m = key.match(/^(\d+) médailles? d'or en jeu$/);
-    if (m) return m[1] + (m[1] === '1' ? " medaglia d'oro in palio" : " medaglie d'oro in palio");
+    if (m) {
+      if (CUR === 'en') return m[1] + (m[1] === '1' ? ' gold medal up for grabs' : ' gold medals up for grabs');
+      return m[1] + (m[1] === '1' ? " medaglia d'oro in palio" : " medaglie d'oro in palio");
+    }
     m = key.match(/^(≈\s*)?([\d\s]+)\s*places$/);
-    if (m) return (m[1] || '') + m[2].trim() + ' posti';
+    if (m) return (m[1] || '') + m[2].trim() + (CUR === 'en' ? ' seats' : ' posti');
     return undefined;
   }
 
@@ -360,17 +428,17 @@
     });
   }
 
-  function sportIT(name) {
+  function sportName(name) {
     if (DICT[name]) return DICT[name];
     var cap = name.charAt(0).toUpperCase() + name.slice(1);
     return DICT[cap] || name;
   }
-  /* aria-labels génératifs (favoris / découvrir) — évite 44 entrées. */
+  /* aria-labels génératifs (favoris / découvrir) — évite des dizaines d'entrées. */
   function attrPattern(key) {
     var m = key.match(/^Ajouter (.+) aux favoris$/);
-    if (m) return 'Aggiungi ' + sportIT(m[1]) + ' ai preferiti';
+    if (m) return CUR === 'en' ? 'Add ' + sportName(m[1]) + ' to favourites' : 'Aggiungi ' + sportName(m[1]) + ' ai preferiti';
     m = key.match(/^Découvrir (?:le |la |les |l'|l’)?(.+)$/);
-    if (m) return 'Scopri ' + sportIT(m[1]);
+    if (m) return CUR === 'en' ? 'Discover ' + sportName(m[1]) : 'Scopri ' + sportName(m[1]);
     return undefined;
   }
 
@@ -392,8 +460,11 @@
     if (m && DICT[norm(m.getAttribute('content'))]) m.setAttribute('content', DICT[norm(m.getAttribute('content'))]);
   }
 
-  function applyIT() {
-    document.documentElement.setAttribute('lang', 'it');
+  function applyLang(lang) {
+    CUR = lang;
+    DICT = T[lang] || {};
+    WMAP = WORD_MAP[lang] || {};
+    document.documentElement.setAttribute('lang', lang);
     translateText(document.body);
     translateAttrs(document.body);
     translateMeta();
@@ -411,7 +482,7 @@
 
   function init() {
     var lang = currentLang();
-    if (lang === 'it') applyIT();
+    if (lang === 'it' || lang === 'en') applyLang(lang);
     setActive(lang);
 
     document.addEventListener('click', function (e) {
@@ -421,24 +492,26 @@
       var l = a.getAttribute('data-lang');
       if (l === currentLang()) return;
       localStorage.setItem('oj-lang', l);
-      if (l === 'it') { applyIT(); setActive('it'); }
-      else { location.reload(); } /* FR = source HTML -> rechargement propre */
+      /* Depuis le FR (DOM source) on traduit en direct ; sinon on recharge pour
+         repartir d'une base FR propre (évite tout texte figé en it<->en). */
+      if (CUR === 'fr' && l !== 'fr') { applyLang(l); setActive(l); }
+      else { location.reload(); }
     });
   }
 
   /* Outil de récolte des chaînes non encore traduites (console : __ojExtract()). */
-  window.__ojExtract = function () {
-    var out = {};
+  window.__ojExtract = function (lang) {
+    var d = T[lang || 'it'] || {}, out = {};
     var w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null), n;
     while ((n = w.nextNode())) {
       if (n.parentNode && SKIP[n.parentNode.nodeName]) continue;
       var k = norm(n.nodeValue);
-      if (k && !(k in DICT) && !DAY_RE.test(k) && !/^[\d\s.,:;%°·€–—()\/+x-]+$/.test(k)) out[k] = 1;
+      if (k && !(k in d) && !DAY_RE.test(k) && !/^[\d\s.,:;%°·€–—()\/+x-]+$/.test(k)) out[k] = 1;
     }
     ['alt', 'placeholder', 'aria-label', 'title'].forEach(function (a) {
       document.querySelectorAll('[' + a + ']').forEach(function (el) {
         var k = norm(el.getAttribute(a));
-        if (k && !(k in DICT)) out['@' + a + '|' + k] = 1;
+        if (k && !(k in d)) out['@' + a + '|' + k] = 1;
       });
     });
     return Object.keys(out).sort();

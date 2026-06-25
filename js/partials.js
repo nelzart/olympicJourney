@@ -61,7 +61,7 @@
       </p>
       <ul class="lang-switch" aria-label="Choix de la langue">
         <li><a href="#" data-lang="it">IT</a></li>
-        <li><a href="#">EN</a></li>
+        <li><a href="#" data-lang="en">EN</a></li>
         <li class="is-active"><a href="#" data-lang="fr" aria-current="true">FR</a></li>
       </ul>
     </div>`,
@@ -113,7 +113,7 @@
         <a class="btn btn--light nav-drawer__cta" href="connexion.html">S'inscrire</a>
         <ul class="nav-drawer__lang" aria-label="Choix de la langue">
           <li><a href="#" data-lang="it">IT</a></li>
-          <li><a href="#">EN</a></li>
+          <li><a href="#" data-lang="en">EN</a></li>
           <li class="is-active"><a href="#" data-lang="fr" aria-current="true">FR</a></li>
         </ul>
       </div>
