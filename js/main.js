@@ -291,3 +291,55 @@ var CAROUSEL_AUTOPLAY_MS = 4000;  // délai d'auto-défilement du carrousel des 
     counters.forEach(function (el) { cio.observe(el); });
   }
 })();
+
+/* ---- Cover d'accueil : contrôles vidéo (pause/lecture + son) + reduced-motion ---- */
+(function () {
+  var v = document.querySelector('.hero__video');
+  var wrap = document.querySelector('.hero__controls');
+  if (!v || !wrap) return;
+
+  var L = localStorage.getItem('oj-lang') || 'fr';
+  var LABELS = {
+    fr: { play: 'Lire la vidéo', pause: 'Mettre la vidéo en pause', mute: 'Couper le son', unmute: 'Activer le son' },
+    it: { play: 'Riproduci il video', pause: 'Metti in pausa il video', mute: "Disattiva l'audio", unmute: "Attiva l'audio" },
+    en: { play: 'Play video', pause: 'Pause video', mute: 'Mute', unmute: 'Unmute' }
+  };
+  var T = LABELS[L] || LABELS.fr;
+
+  var ICON = {
+    play: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>',
+    pause: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>',
+    sound: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3a4.5 4.5 0 0 0-2.5-4.03v8.05A4.5 4.5 0 0 0 16.5 12zM14 3.23v2.06a7 7 0 0 1 0 13.42v2.06a9 9 0 0 0 0-17.54z"/></svg>',
+    muted: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3zm18.59 3L24 9.41 22.59 8 20 10.59 17.41 8 16 9.41 18.59 12 16 14.59 17.41 16 20 13.41 22.59 16 24 14.59z"/></svg>'
+  };
+
+  var bPlay = wrap.querySelector('[data-ctrl="play"]');
+  var bMute = wrap.querySelector('[data-ctrl="mute"]');
+
+  function renderPlay() {
+    bPlay.innerHTML = v.paused ? ICON.play : ICON.pause;
+    bPlay.setAttribute('aria-label', v.paused ? T.play : T.pause);
+  }
+  function renderMute() {
+    bMute.innerHTML = v.muted ? ICON.muted : ICON.sound;
+    bMute.setAttribute('aria-label', v.muted ? T.unmute : T.mute);
+  }
+
+  bPlay.addEventListener('click', function () { if (v.paused) v.play(); else v.pause(); });
+  bMute.addEventListener('click', function () {
+    v.muted = !v.muted;
+    if (!v.muted && v.paused) v.play();
+    renderMute();
+  });
+  v.addEventListener('play', renderPlay);
+  v.addEventListener('pause', renderPlay);
+  v.addEventListener('volumechange', renderMute);
+
+  /* Respecte « animations réduites » : on n'autoplay pas dans ce cas. */
+  try {
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) v.pause();
+  } catch (e) {}
+
+  renderPlay();
+  renderMute();
+})();
