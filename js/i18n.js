@@ -29,6 +29,8 @@
   /* Dictionnaires FR (normalisé) -> { it, en }. Étendus page par page. */
   var T = {
   it: {
+    "Milan & Cortina": "Milano & Cortina",
+    "Découvrez les Jeux autrement": "Scopri i Giochi in modo diverso",
 
     /* ---------- TOPBAR ---------- */
     "Jeux Olympiques d'hiver™ · Du 6 au 22 février 2026 | Jeux Paralympiques d'hiver™ · Du 6 au 15 mars 2026":
@@ -1343,6 +1345,8 @@
      Socle partagé (chrome, ossature, sports, pays). La prose propre à chaque page
      reste à compléter page par page (cf. prompt de reprise). */
   en: {
+    "Milan & Cortina": "Milan & Cortina",
+    "Découvrez les Jeux autrement": "Discover the Games differently",
     /* TOPBAR */
     "Jeux Olympiques d'hiver™ · Du 6 au 22 février 2026 | Jeux Paralympiques d'hiver™ · Du 6 au 15 mars 2026":
       "Olympic Winter Games™ · 6–22 February 2026 | Paralympic Winter Games™ · 6–15 March 2026",

@@ -387,7 +387,8 @@ button {
   inset: 0;
   z-index: -1;
 }
-.hero__media img {
+.hero__media img,
+.hero__media video {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -431,6 +432,14 @@ button {
   transition: gap .15s ease;
 }
 .hero__more:hover { gap: 12px; }
+
+/* Cover d'accueil : groupe des 2 boutons (Télécharger / Découvrir) */
+.hero__actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+}
 
 /* =========================================================
    SECTION NOS ACTUALITÉS
