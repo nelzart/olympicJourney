@@ -2399,6 +2399,8 @@ a.sport-card__name:hover { color: var(--text-brand-milan); }
 
   .hero { min-height: 66vh; padding: 22px; border-radius: 18px; }
   .hero__title { font-size: 25px; max-width: 100%; }
+  /* Cover accueil : contrôles vidéo en haut à droite sur mobile (sinon ils chevauchent les CTA empilés en bas) */
+  .hero__controls { top: 14px; bottom: auto; right: 14px; }
 
   /* ---------- Titres de section ---------- */
   .section-title__logo { width: 92px; margin-right: -36px; }
